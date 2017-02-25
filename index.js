@@ -1,13 +1,6 @@
 // Variables
 var firebaseRef = firebase.database();
 
-$(document).ready(function(){
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('.modal').modal();
-  $('select').material_select();
-  $('.parallax').parallax();
-});
-
 $("#createAcc").click(function() {
   var email = $("#emailAcc").val();
   var remail = $("#remailAcc").val();

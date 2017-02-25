@@ -1,6 +1,7 @@
 (function($){
   $(function(){
-
+    $('.modal').modal();
+    $('select').material_select();
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
 
