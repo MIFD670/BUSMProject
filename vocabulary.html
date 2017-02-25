@@ -113,76 +113,76 @@
       <div class="box red"></div>
       <p>: Unit 2</p>
     </div>
-  <div class="section" id="admin">
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-      <a href="#add_Vocab" class="btn-floating btn-large waves-effect waves-light blue tooltipped" data-position="left" data-delay="50" data-tooltip="Only Admins will have access to this!"><i class="material-icons">add</i></a>
+    <div class="section" id="admin">
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a href="#add_Vocab" class="btn-floating btn-large waves-effect waves-light blue tooltipped" data-position="left" data-delay="50" data-tooltip="Only Admins will have access to this!"><i class="material-icons">add</i></a>
+      </div>
     </div>
-  </div>
-  <div class="section">
-    <div class="col s12 m12" id="card_holder">
-      <!-- Cards Start Here -->
-      <div id="card" class="card" style="display: none;">
-        <!-- btn-flat or no? -->
-        <button id="edit_button" class="right btn waves-effect white blue-text"><i class="material-icons">mode_edit</i></button>
-        <div id="card_Inside">
-          <div class="card-content">
-            <span class="card-title">Vocabulary Word</span>
-            <p id="speech">Speech</p>
-            <p id="section"></p>
-            <p id="definition">Definition</p>
-          </div>
-          <div class="card-action" style="display: none;">
-            <a id="update_button" class="btn waves-effect white blue-text">Update</a>
-            <a id="disregard_button" class="btn waves-effect white grey-text">Back</a>
-            <a id="delete_button" class="btn waves-effect red white-text">Delete</a>
+    <div class="section">
+      <div class="col s12 m12" id="card_holder">
+        <!-- Cards Start Here -->
+        <div id="card" class="card" style="display: none;">
+          <!-- btn-flat or no? -->
+          <button id="edit_button" class="right btn waves-effect white blue-text"><i class="material-icons">mode_edit</i></button>
+          <div id="card_Inside">
+            <div class="card-content">
+              <span class="card-title">Vocabulary Word</span>
+              <p id="speech">Speech</p>
+              <p id="section"></p>
+              <p id="definition">Definition</p>
+            </div>
+            <div class="card-action" style="display: none;">
+              <a id="update_button" class="btn waves-effect white blue-text">Update</a>
+              <a id="disregard_button" class="btn waves-effect white grey-text">Back</a>
+              <a id="delete_button" class="btn waves-effect red white-text">Delete</a>
+            </div>
           </div>
         </div>
+        <!-- Cards End Here -->
       </div>
-      <!-- Cards End Here -->
     </div>
   </div>
-</div>
-<!-- Modals Below -->
-<div id="add_Vocab" class="modal" style="opacity: 0.5;">
+  <!-- Modals Below -->
+  <div id="add_Vocab" class="modal" style="opacity: 0.5;">
+    <div class="modal-content">
+      <h4 class="center">Add Vocabulary</h4>
+      <div class="row">
+        <blockquote id="vocabErrorDisplay">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <form class="col s12">
+          <div class="input-field col s12">
+            <input id="add_Word" type="text" length="15">
+            <label for="add_Word">Vocabulary Word</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="add_Speech" type="text" length="10">
+            <label for="add_Speech">Word Speech</label>
+          </div>
+          <div class="input-field col s12">
+            <select id="add_Section">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">General</option>
+              <option value="2">Unit 1</option>
+              <option value="3">Unit 2</option>
+            </select>
+            <label>Section Select</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="add_Definition" class="materialize-textarea"></textarea>
+            <label for="add_Definition">Word Definition</label>
+          </div>
+        </form>
+        <div class="center">
+          <a id="write_Word" class="modal-action modal-close btn waves-effect blue lighten-1">Add Vocabulary</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div id="verify_Delete" class="modal">
   <div class="modal-content">
-    <h4 class="center">Add Vocabulary</h4>
-    <div class="row">
-      <blockquote id="vocabErrorDisplay">
-        This is an example quotation that uses the blockquote tag
-      </blockquote>
-      <form class="col s12">
-        <div class="input-field col s12">
-          <input id="add_Word" type="text" length="15">
-          <label for="add_Word">Vocabulary Word</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="add_Speech" type="text" length="10">
-          <label for="add_Speech">Word Speech</label>
-        </div>
-        <div class="input-field col s12">
-          <select id="add_Section">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">General</option>
-            <option value="2">Unit 1</option>
-            <option value="3">Unit 2</option>
-          </select>
-          <label>Section Select</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="add_Definition" class="materialize-textarea"></textarea>
-          <label for="add_Definition">Word Definition</label>
-        </div>
-      </form>
-      <div class="center">
-        <a id="write_Word" class="modal-action modal-close btn waves-effect blue lighten-1">Add Vocabulary</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!--<div id="verify_Delete" class="modal">
-<div class="modal-content">
-<h4>Delete Vocabulary Word</h4>
-<p>Are you sure you want to permanently delete this word?</p>
+  <h4>Delete Vocabulary Word</h4>
+  <p>Are you sure you want to permanently delete this word?</p>
 </div>
 <div class="modal-footer">
 <a id="delete_button" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
@@ -202,8 +202,7 @@ var config = {
 };
 firebase.initializeApp(config);
 </script>
-<script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-<script src="js/init.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/materialize.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
 <script src="js/javascript.js"></script>
