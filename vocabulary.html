@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <title>Quiz App</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <style>
+  body {
+    background-color: #f5f5f5;
+  }
+  #speech {
+    display:inline-block;
+    font-size: 16px;
+    color: #9e9e9e;
+  }
+  #section {
+    display:inline-block;
+    font-size: 16px;
+    color: #9e9e9e;
+  }
+  .card {
+    margin: 20px 0;
+    padding-left: 0.5rem;
+    border-left: 5px solid;
+    border-color: #2196f3;
+    /* Red: #ee6e73 */
+    /* Blue: #2196f3 */
+    /* Green: #4caf50 */
+  }
+  .box {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+  }
+  .green {
+    background: #4caf50;
+  }
+  .blue {
+    background: #2196f3;
+  }
+  .red {
+    background: #ee6e73;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- ALWAYS USE 1120 x 700 IMAGE SIZE FILES -->
+  <!-- Navbar -->
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a class="brand-logo center blue-text">Vocabulary</a>
+      <a id="logo-container" href="#" class="brand-logo"></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="#"></a>
+        </li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><div class="userView">
+          <div class="background">
+            <img src="http://1079638729.rsc.cdn77.org/pic/v2/gallery/preview/fon-20796.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="http://www.w3schools.com/w3css/img_avatar3.png"></a>
+          <a href="#!name"><span class="white-text name">John Doe</span></a>
+          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+        <a class="subheader">Menu</a>
+        <div class="divider"></div>
+        <a class="waves-effect" href="homePage.html">Home Page</a>
+        <a class="waves-effect" href="classLessons.html">Class Lessons</a>
+        <a class="waves-effect" href="vocabulary.html">Vocabulary</a>
+        <a class="waves-effect" href="quizzes.html">Quizzes</a>
+        <a class="waves-effect" href="">Settings</a>
+        <a class="waves-effect" href="">Log Out</a>
+      </ul>
+      <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <!-- End of Navbar -->
+  <!-- Parallax Starts -->
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <div id="content" class="center">
+          <h1 class="center white-text"><i class="large material-icons">translate</i></h1>
+          <h2 class="white-text" style="">Vocabulary</h2>
+          <h5 class="light white-text">The following is a list of vocabulary.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="http://1079638729.rsc.cdn77.org/pic/v2/gallery/preview/fon-20796.jpg" alt="Image 1"></div>
+  </div>
+  <!-- Parallax Ends -->
+  <!-- Main  Div -->
+  <div class="container">
+    <div>
+      <h5 class="light">Legend</h5>
+      <div class="box blue"></div>
+      <p>: General</p>
+      <div class="box green"></div>
+      <p>: Unit 1</p>
+      <div class="box red"></div>
+      <p>: Unit 2</p>
+    </div>
+  <div class="section" id="admin">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a href="#add_Vocab" class="btn-floating btn-large waves-effect waves-light blue tooltipped" data-position="left" data-delay="50" data-tooltip="Only Admins will have access to this!"><i class="material-icons">add</i></a>
+    </div>
+  </div>
+  <div class="section">
+    <div class="col s12 m12" id="card_holder">
+      <!-- Cards Start Here -->
+      <div id="card" class="card" style="display: none;">
+        <!-- btn-flat or no? -->
+        <button id="edit_button" class="right btn waves-effect white blue-text"><i class="material-icons">mode_edit</i></button>
+        <div id="card_Inside">
+          <div class="card-content">
+            <span class="card-title">Vocabulary Word</span>
+            <p id="speech">Speech</p>
+            <p id="section"></p>
+            <p id="definition">Definition</p>
+          </div>
+          <div class="card-action" style="display: none;">
+            <a id="update_button" class="btn waves-effect white blue-text">Update</a>
+            <a id="disregard_button" class="btn waves-effect white grey-text">Back</a>
+            <a id="delete_button" class="btn waves-effect red white-text">Delete</a>
+          </div>
+        </div>
+      </div>
+      <!-- Cards End Here -->
+    </div>
+  </div>
+</div>
+<!-- Modals Below -->
+<div id="add_Vocab" class="modal" style="opacity: 0.5;">
+  <div class="modal-content">
+    <h4 class="center">Add Vocabulary</h4>
+    <div class="row">
+      <blockquote id="vocabErrorDisplay">
+        This is an example quotation that uses the blockquote tag
+      </blockquote>
+      <form class="col s12">
+        <div class="input-field col s12">
+          <input id="add_Word" type="text" length="15">
+          <label for="add_Word">Vocabulary Word</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="add_Speech" type="text" length="10">
+          <label for="add_Speech">Word Speech</label>
+        </div>
+        <div class="input-field col s12">
+          <select id="add_Section">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">General</option>
+            <option value="2">Unit 1</option>
+            <option value="3">Unit 2</option>
+          </select>
+          <label>Section Select</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="add_Definition" class="materialize-textarea"></textarea>
+          <label for="add_Definition">Word Definition</label>
+        </div>
+      </form>
+      <div class="center">
+        <a id="write_Word" class="modal-action modal-close btn waves-effect blue lighten-1">Add Vocabulary</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div id="verify_Delete" class="modal">
+<div class="modal-content">
+<h4>Delete Vocabulary Word</h4>
+<p>Are you sure you want to permanently delete this word?</p>
+</div>
+<div class="modal-footer">
+<a id="delete_button" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
+</div>
+</div> -->
+<!-- Modals End Here -->
+<!--  Scripts-->
+<script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
+  authDomain: "qadata-6c30d.firebaseapp.com",
+  databaseURL: "https://qadata-6c30d.firebaseio.com",
+  storageBucket: "qadata-6c30d.appspot.com",
+  messagingSenderId: "591410256857"
+};
+firebase.initializeApp(config);
+</script>
+<script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script src="js/init.js"></script>
+<script src="js/materialize.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
+<script src="js/javascript.js"></script>
+<script src="index.js"></script>
+</body>
+
+</html>

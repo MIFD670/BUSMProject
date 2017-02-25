@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <title>Quiz App</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <style>
+  body {
+    background-color: #1565c0;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar
+  <nav class="white" role="navigation">
+  <div class="nav-wrapper container">
+  <a id="logo-container" href="#" class="brand-logo"></a>
+  <ul class="right hide-on-med-and-down">
+  <li>
+  <a href="#"></a>
+</li>
+</ul>
+
+<ul id="nav-mobile" class="side-nav">
+<li><a href="#">Navbar Link</a></li>
+</ul>
+<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+</div>
+</nav>
+-->
+<!-- Main  Div -->
+
+
+<div class="container">
+  <br><br>
+  <h1 class="header center white-text">Quiz App</h1>
+  <div class="row center">
+    <!-- The App Logo Goes Below this line -->
+    <h5 class="header col s12 light white-text">
+      A modern quiz application to help students learn better, and faster!
+    </h5>
+  </div>
+  <div class="row center">
+    <p class="light white-text" style="font-size: 18px;">
+      Sign in to your account below!
+    </p>
+    <a href="#loginModal" class="btn waves-effect blue lighten-1">Sign In</a>
+    <br></br>
+    <h5 class="col s12 light white-text" style="font-size: 18px;">
+      Don't have an account? Sign up!
+    </h5>
+    <a href="#signUpModal" class="btn waves-effect blue lighten-1">Sign Up</a>
+  </div>
+  <!-- This is the end of the main div-->
+
+  <div id="loginModal" class="modal" style="opacity: 0.5;">
+    <div class="modal-content">
+      <h4 class="center">Sign in</h4>
+      <div class="row">
+        <blockquote id="logInErrorDisplay">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <form class="col s12">
+          <div class="input-field col s12">
+            <input id="logEmail" type="email" class="validate">
+            <label for="logEmail" data-error="wrong" data-success="right">Email:</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="logPassword" type="password" class="validate">
+            <label for="logPassword">Password:</label>
+          </div>
+          <div class="center">
+            <a id="logInAcc" class="btn waves-effect blue lighten-1">Log in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="signUpModal" class="modal">
+  <div class="modal-content">
+    <h4 class="center">Sign up</h4>
+    <div class="row">
+      <blockquote id="signUpErrorDisplay">
+        Place Holder
+      </blockquote>
+      <form class="col s12">
+        <div class="input-field col s12">
+          <input id="displayNameAcc" type="text" length="15">
+          <label for="displayNameAcc">Display Name:</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="emailAcc" type="email" class="validate">
+          <label for="emailAcc" data-error="Provide a correct email">Email:</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="remailAcc" type="email" class="validate">
+          <label for="remailAcc" data-error="Provide a correct email">Confirm Email:</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="passwordAcc" type="password">
+          <label for="passwordAcc">Password:</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="repasswordAcc" type="password">
+          <label for="repasswordAcc">Confirm Password:</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="birthdateAcc" type="date" class="datepicker">
+        </div>
+        <div class="input-field col s12">
+          <select name="gender">
+            <option value="" disabled selected>Choose your gender:</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Other</option>
+          </select>
+        </div>
+        <div class="center">
+          <a id="createAcc" class="btn waves-effect blue lighten-1">Create account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--  Scripts-->
+<script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script src="js/init.js"></script>
+<script src="js/materialize.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
+<script src="js/javascript.js"></script>
+<script src="index.js"></script>
+</body>
+
+</html>
