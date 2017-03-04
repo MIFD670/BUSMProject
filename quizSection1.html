@@ -19,6 +19,12 @@
     font-size: 16px;
     color: #9e9e9e;
   }
+  .btnw {
+    width: 100%;
+  }
+  #question_section {
+    display: none;
+  }
   </style>
 </head>
 
@@ -58,7 +64,20 @@
   <!-- End of Navbar -->
   <!-- Main  Div -->
   <div class="container">
-    <div class="section">
+    <div id="loader_section" class="section">
+      <div class="col s12 m12">
+        <label for="progress">Loading...</label>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+    </div>
+    <div id="question_section" class="section">
+      <label for="progress">Time Left: 0:00</label>
+      <label for="progress" class="right">70%</label>
+      <div class="progress">
+        <div class="determinate" style="width: 70%"></div>
+      </div>
       <div class="col s12 m12" id="card_holder">
         <!-- Cards Start Here -->
         <div class="card">
@@ -70,20 +89,40 @@
           </div>
         </div>
         <!-- Cards End Here -->
+        <div>
+          <!-- Answer Section Start Here -->
+          <button id="answer1" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <br><br>
+          <button id="answer2" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <br><br>
+          <button id="answer3" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <br><br>
+          <button id="answer4" class="btnw btn waves-effect btn-large white blue-text"value="">Answer 1</button>
+          <br><br>
+          <!-- <button id="next" class="btnw btn waves-effect blue white-text">Next</button> -->
+        </div>
       </div>
     </div>
   </div>
-  <div id="answer_div">
-
-  </div>
   <!--  Scripts-->
-  <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
+    authDomain: "qadata-6c30d.firebaseapp.com",
+    databaseURL: "https://qadata-6c30d.firebaseio.com",
+    storageBucket: "qadata-6c30d.appspot.com",
+    messagingSenderId: "591410256857"
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/materialize.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
   <script src="js/javascript.js"></script>
-  <script src="bcb_data.js"></script>
-  <script src="app.js" async></script>
-  <!-- <script src="index.js"></script> -->
+  <script src="quizSection.js"></script>
 </body>
 
 </html>
