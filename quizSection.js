@@ -97,7 +97,8 @@ function processAnswer(intAnswerIndex) {
   currentQuestionIndex++;
 
   if (currentQuestionIndex < quizNumQuestions) displayQuestion(currentQuestionIndex);
-  else console.log("The End...");
+  else loadSummaryPage();
+;
 };
 
 function checkAnswer(correctAnswer) {
@@ -110,4 +111,6 @@ function checkAnswer(correctAnswer) {
 };
 
 
-//function loadSummaryPage() {}
+function loadSummaryPage() {
+  window.location = "quizzes.html"
+};
