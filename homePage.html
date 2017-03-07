@@ -12,7 +12,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <style>
   body {
-    background-color: white;
+    background-color: #f5f5f5;
   }
   #userimg {
     display: inline-block;
@@ -32,6 +32,15 @@
 <body>
   <!-- ALWAYS USE 1120 x 700 IMAGE SIZE FILES -->
   <!-- Navbar -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="homePage.html">Home Page</a></li>
+    <li><a href="classLessons.html">Class Lessons</a></li>
+    <li><a href="vocabulary.html">Vocabulary</a></li>
+    <li><a href="quizzes.html">Quizzes</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Log Out</a></li>
+  </ul>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a class="brand-logo center light blue-text">Home Page</a>
@@ -41,7 +50,11 @@
           <a href="#"></a>
         </li>
       </ul>
-
+      <ul class="left hide-on-med-and-down">
+        <li>
+          <a class="dropdown-button blue-text" href="#!" data-activates="dropdown1">Menu<i class="blue-text medium material-icons left">menu</i></a>
+        </li>
+      </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><div class="userView">
           <div class="background">
@@ -81,42 +94,136 @@
   <!-- Parallax Closes -->
   <div class="container">
     <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center blue-text"><i class="material-icons">description</i></h2>
-            <h5 class="center">Class Lessons</h5>
-            <p class="light">Teachers are able to post daily class lessons through our <b>Class Lessons</b> section. Students can find class notes and lessons below.</p>
-          </div>
-          <center><a href="classLessons.html" class="btn waves-effect blue">Lessons</a></center>
+      <h5 class="light">News Feed</h5>
+      <span>Pinned Announcements:</span>
+      <div class="col s12 m12" id="pinned_announcements">
+        <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
+            <span class="title">System Notification</span>
+            <p class="light">Pinned Announcement<br>
+              Happy Birthday, <b>John Doe</b>!
+            </p>
+            <a href="#!" class="secondary-content"><i class="red-text material-icons">new_releases</i></a>
+          </li>
+        </ul>
+      </div>
+      <span>Announcements:</span>
+      <div class="section">
+        <div id="most_recent_announcements">
+          <ul class="collection" id="collection_card">
+            <li class="collection-item avatar">
+              <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
+              <span class="title">Teacher Name</span>
+              <p class="light">Announcement<br>
+                An announcement is to be made here!
+              </p>
+              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
+            </li>
+          </ul>
+          <ul class="collection" id="collection_card">
+            <li class="collection-item avatar">
+              <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
+              <span class="title">Teacher Name</span>
+              <p class="light">Announcement<br>
+                An announcement is to be made here!
+              </p>
+              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
+            </li>
+          </ul>
         </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center blue-text"><i class="material-icons">translate</i></h2>
-            <h5 class="center">Vocabulary</h5>
-            <p class="light">Teachers can create a list of vocabulary through our <b>Vocabulary</b> section. Students can find the entire list of vocabulary below.</p>
-          </div>
-          <center><a href="vocabulary.html" class="btn waves-effect blue">Vocabulary</a></center>
+        <div id="older_announcements" style="display: none;">
+          <ul class="collection" id="collection_card">
+            <li class="collection-item avatar">
+              <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
+              <span class="title">Teacher Name</span>
+              <p class="light">Announcement<br>
+                An announcement is to be made here!
+              </p>
+              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
+            </li>
+          </ul>
         </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center blue-text"><i class="material-icons">question_answer</i></h2>
-            <h5 class="center">Quizzes</h5>
-            <p class="light">Students are able to take different quizzes to test their knowledge on the subject through our <b>Quiz</b> section. These practice quizzes were created to be interactive and to allow students to quiz themselves before the real tests and quizzes.</p>
+      </div>
+      <u><center><a href="#">Show more</a></center><u>
+      </div>
+      <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center blue-text"><i class="material-icons">description</i></h2>
+              <h5 class="center">Class Lessons</h5>
+              <p class="light">Teachers are able to post daily class lessons through our <b>Class Lessons</b> section. Students can find class notes and lessons below.</p>
+            </div>
+            <center><a href="classLessons.html" class="btn waves-effect blue">Lessons</a></center>
           </div>
-          <center><a href="quizzes.html" class="btn waves-effect blue">Quizzes</a></center>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center blue-text"><i class="material-icons">translate</i></h2>
+              <h5 class="center">Vocabulary</h5>
+              <p class="light">Teachers can create a list of vocabulary through our <b>Vocabulary</b> section. Students can find the entire list of vocabulary below.</p>
+            </div>
+            <center><a href="vocabulary.html" class="btn waves-effect blue">Vocabulary</a></center>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center blue-text"><i class="material-icons">question_answer</i></h2>
+              <h5 class="center">Quizzes</h5>
+              <p class="light">Students are able to take different quizzes to test their knowledge on the subject through our <b>Quiz</b> section. These practice quizzes were created to be interactive and to allow students to quiz themselves before the real tests and quizzes.</p>
+            </div>
+            <center><a href="quizzes.html" class="btn waves-effect blue">Quizzes</a></center>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--  Scripts-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/materialize.js"></script>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
-  <script src="js/javascript.js"></script>
-  <script src="index.js"></script>
-</body>
+    <div class="section" id="admin">
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a href="#add_Announcement" class="btn-floating btn-large waves-effect waves-light blue tooltipped" data-position="left" data-delay="50" data-tooltip="Only Admins will have access to this!"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+    <!-- Modals Below -->
+    <div id="add_Announcement" class="modal" style="opacity: 0.5;">
+      <div class="modal-content">
+        <h4 class="center">Create Announcement</h4>
+        <div class="row">
+          <blockquote id="announcementErrorDisplay" style="display: none;">
+            This is an example quotation that uses the blockquote tag
+          </blockquote>
+          <form class="col s12">
+            <div class="input-field col s12">
+              <input disabled id="announcement_user" type="text">
+              <label for="add_Word">Username</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="announcement_subject" type="text" length="15">
+              <label for="add_Speech">Subject</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="announcement_message" class="materialize-textarea"></textarea>
+              <label for="add_Definition">Message</label>
+            </div>
+            <div class="col s12">
+              <p>
+                <input type="checkbox" class="filled-in" id="filled-in-box" />
+                <label for="filled-in-box">Pin Announcement (Note: Pin announcements will be displayed before other announcements)</label>
+              </p>
+              <br>
+            </div>
+          </form>
+          <div class="center">
+            <a id="write_Word" class="modal-action modal-close btn waves-effect blue lighten-1">Post Announcement</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  Scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/materialize.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
+    <script src="js/javascript.js"></script>
+    <script src="index.js"></script>
+  </body>
 
-</html>
+  </html>

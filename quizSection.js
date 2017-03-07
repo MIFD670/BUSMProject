@@ -82,7 +82,7 @@ function loadQuestion(objQuestion) {
   $('#answer2').attr('value', objQuestion.Answer2);
   $('#answer3').html("3. " + objQuestion.Answer3);
   $('#answer3').attr('value', objQuestion.Answer3)
-  $('#answer4').html("3. " + objQuestion.Answer4);
+  $('#answer4').html("4. " + objQuestion.Answer4);
   $('#answer4').attr('value', objQuestion.Answer4)
   $('#loader_section').css('display', 'none');
   $('#question_section').css('display', 'block');

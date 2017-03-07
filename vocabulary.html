@@ -14,6 +14,9 @@
   body {
     background-color: #f5f5f5;
   }
+  #card_holder {
+    display: none;
+  }
   #speech {
     display:inline-block;
     font-size: 16px;
@@ -55,6 +58,15 @@
 <body>
   <!-- ALWAYS USE 1120 x 700 IMAGE SIZE FILES -->
   <!-- Navbar -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="homePage.html">Home Page</a></li>
+    <li><a href="classLessons.html">Class Lessons</a></li>
+    <li><a href="vocabulary.html">Vocabulary</a></li>
+    <li><a href="quizzes.html">Quizzes</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Log Out</a></li>
+  </ul>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a class="brand-logo center light blue-text">Vocabulary</a>
@@ -64,7 +76,11 @@
           <a href="#"></a>
         </li>
       </ul>
-
+      <ul class="left hide-on-med-and-down">
+        <li>
+          <a class="dropdown-button blue-text" href="#!" data-activates="dropdown1">Menu<i class="blue-text medium material-icons left">menu</i></a>
+        </li>
+      </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><div class="userView">
           <div class="background">
@@ -104,14 +120,19 @@
   <!-- Parallax Ends -->
   <!-- Main  Div -->
   <div class="container">
+    <div id="loader_section" class="section">
+      <div class="col s12 m12">
+        <label for="progress">Loading...</label>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+    </div>
     <div>
       <h5 class="light">Legend:</h5>
       <div class="box blue"></div>
-      <p>: General</p>
       <div class="box green"></div>
-      <p>: Unit 1</p>
       <div class="box red"></div>
-      <p>: Unit 2</p>
     </div>
     <div class="section" id="admin">
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -138,8 +159,8 @@
             </div>
           </div>
         </div>
-        <!-- Cards End Here -->
       </div>
+              <!-- Cards End Here -->
     </div>
   </div>
   <!-- Modals Below -->

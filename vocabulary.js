@@ -49,6 +49,8 @@ firebaseRef.ref('/Vocabulary').on("child_added", snap => {
   }
   // Appends the vocab card to the "card_holder" div
   $('#card_holder').append(newCard);
+  $('#loader_section').css('display', 'none');
+  $('#card_holder').css('display', 'block');
   // Edit button
   newCard.find('#edit_button').on("click", function() {
     console.log("The edit button works!");

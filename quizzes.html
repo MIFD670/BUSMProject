@@ -20,6 +20,15 @@
 <body>
   <!-- ALWAYS USE 1120 x 700 IMAGE SIZE FILES -->
   <!-- Navbar -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="homePage.html">Home Page</a></li>
+    <li><a href="classLessons.html">Class Lessons</a></li>
+    <li><a href="vocabulary.html">Vocabulary</a></li>
+    <li><a href="quizzes.html">Quizzes</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Log Out</a></li>
+  </ul>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a class="brand-logo center light blue-text">Quiz</a>
@@ -29,7 +38,11 @@
           <a href="#"></a>
         </li>
       </ul>
-
+      <ul class="left hide-on-med-and-down">
+        <li>
+          <a class="dropdown-button blue-text" href="#!" data-activates="dropdown1">Menu<i class="blue-text medium material-icons left">menu</i></a>
+        </li>
+      </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><div class="userView">
           <div class="background">
@@ -70,21 +83,21 @@
   <!-- Main  Div -->
   <div class="container">
     <div class="section">
-      <h5>Select the type of quiz you would like to take below.</h5>
+      <h5 class="light">Select the type of quiz you would like to take below.</h5>
       <br>
-      <!-- <h5 class="light">Topics:</h5>
+      <h5 class="light">Topics:</h5>
       <form>
         <div class="input-field col s12">
           <select>
             <option value="" disabled selected>Select Topic</option>
             <option value="1">General</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
+            <option value="2">Elements</option>
+            <option value="3">Ions</option>
+            <option value="4">Unknown</option>
           </select>
         </div>
       </form>
-    </div> -->
+    </div>
     <div id="amount">
       <form>
         <div class="input-field col s12">
@@ -94,7 +107,7 @@
             <option value="1">10</option>
             <option value="2">20</option>
             <option value="3">30</option>
-            <option value="4">ALL</option>
+            <option value="4">Unknown</option>
           </select>
         </div>
       </form>
@@ -102,18 +115,20 @@
     <div id="type">
       <form>
         <div class="input-field col s12">
-          <h5 class="light">Type of Questions:</h5>
+          <h5 class="light">Type of Quiz:</h5>
           <select>
             <option value="" disabled selected>Select Type</option>
             <option value="1">Multiple Choice</option>
-            <option value="2">Matching</option>
-            <option value="3">Written</option>
-            <option value="4">All</option>
+            <option value="2">Interactive Multiple Choice</option>
+            <option value="3">Matching Memory</option>
+            <option value="4">Unknown</option>
           </select>
         </div>
       </form>
     </div>
     <center><a id="startQuiz" href="quizSection1.html" class="btn waves-effect blue white-text">Start Quiz</a></center>
+    <br>
+
   </div>
   <!--  Scripts-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
