@@ -93,59 +93,48 @@
   </div>
   <!-- Parallax Closes -->
   <div class="container">
-    <div class="section">
+    <div id="loader_section" class="section">
+      <div class="col s12 m12">
+        <label for="progress">Loading...</label>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="1" style="display: none;">
       <h5 class="light">News Feed</h5>
-      <span>Pinned Announcements:</span>
       <div class="col s12 m12" id="pinned_announcements">
-        <ul class="collection">
+        <span>Pinned Announcements:</span>
+        <ul class="collection" id="pinned_card" style="display: none;">
           <li class="collection-item avatar">
             <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
             <span class="title">System Notification</span>
-            <p class="light">Pinned Announcement<br>
-              Happy Birthday, <b>John Doe</b>!
-            </p>
-            <a href="#!" class="secondary-content"><i class="red-text material-icons">new_releases</i></a>
+            <p class="light" id="subject">Pinned Announcement</p>
+            <p class="light" id="message">Happy Birthday, <b>John Doe</b>!</p>
+            <a href="#!" class="secondary-content"><i id="logo" class="red-text material-icons">new_releases</i></a>
           </li>
         </ul>
       </div>
-      <span>Announcements:</span>
-      <div class="section">
+      <div class="section" id="2" style="display: none;">
         <div id="most_recent_announcements">
-          <ul class="collection" id="collection_card">
+          <span>Announcements:</span>
+          <ul class="collection" id="announcement_card" style="display: none;">
             <li class="collection-item avatar">
               <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
               <span class="title">Teacher Name</span>
-              <p class="light">Announcement<br>
-                An announcement is to be made here!
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
-            </li>
-          </ul>
-          <ul class="collection" id="collection_card">
-            <li class="collection-item avatar">
-              <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
-              <span class="title">Teacher Name</span>
-              <p class="light">Announcement<br>
-                An announcement is to be made here!
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
+              <p class="light" id="subject">Pinned Announcement</p>
+              <p class="light" id="message">Happy Birthday, <b>John Doe</b>!</p>
+              <a href="#!" class="secondary-content"><i id="logo" class="material-icons">message</i></a>
             </li>
           </ul>
         </div>
         <div id="older_announcements" style="display: none;">
-          <ul class="collection" id="collection_card">
-            <li class="collection-item avatar">
-              <img src="http://www.w3schools.com/w3css/img_avatar3.png" alt="" class="circle">
-              <span class="title">Teacher Name</span>
-              <p class="light">Announcement<br>
-                An announcement is to be made here!
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">message</i></a>
-            </li>
-          </ul>
+          <span>Older Announcements:</span>
+          <!-- DATA GOES HERE -->
         </div>
       </div>
-      <u><center><a href="#">Show more</a></center><u>
+      <u><center><a id="showMore">Show more</a></center><u>
+      <u><center><a id="showLess" style="display: none;">Show less</a></center><u>
       </div>
       <div class="section">
         <!--   Icon Section   -->
@@ -192,16 +181,17 @@
           </blockquote>
           <form class="col s12">
             <div class="input-field col s12">
-              <input disabled id="announcement_user" type="text">
-              <label for="add_Word">Username</label>
+              <!-- Disable this -->
+              <input id="announcement_user" type="text">
+              <label for="announcement_user">Username</label>
             </div>
             <div class="input-field col s12">
               <input id="announcement_subject" type="text" length="15">
-              <label for="add_Speech">Subject</label>
+              <label for="announcement_subject">Subject</label>
             </div>
             <div class="input-field col s12">
               <textarea id="announcement_message" class="materialize-textarea"></textarea>
-              <label for="add_Definition">Message</label>
+              <label for="announcement_message">Message</label>
             </div>
             <div class="col s12">
               <p>
@@ -212,12 +202,24 @@
             </div>
           </form>
           <div class="center">
-            <a id="write_Word" class="modal-action modal-close btn waves-effect blue lighten-1">Post Announcement</a>
+            <a id="write_Announcement" class="modal-action modal-close btn waves-effect blue lighten-1">Post Announcement</a>
           </div>
         </div>
       </div>
     </div>
     <!--  Scripts-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
+      authDomain: "qadata-6c30d.firebaseapp.com",
+      databaseURL: "https://qadata-6c30d.firebaseio.com",
+      storageBucket: "qadata-6c30d.appspot.com",
+      messagingSenderId: "591410256857"
+    };
+    firebase.initializeApp(config);
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/materialize.js"></script>
