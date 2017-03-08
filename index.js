@@ -108,4 +108,11 @@ firebaseRef.ref('/Announcements').on("child_added", snap => {
   if (cardNumber > 3) {
     $('#older_announcements').append(newCard);
   }
+  var pinNumber = $('div pinned_announcements .collection').length;
+  $('#p_announce').text('Pinned Announcements (' + pinNumber + '):');
+  var oldNumber = $('div older_announcements .collection').length;
+  $('#old_announce').text('Older Announcements (' + oldNumber + '):');
+  var newcardNumber = cardNumber - 1;
+  $('#announce').text('Announcements (' + newcardNumber + '):');
+
 });
