@@ -109,10 +109,11 @@ firebaseRef.ref('/Announcements').on("child_added", snap => {
     $('#older_announcements').append(newCard);
   }
   var pinNumber = $('div #pinned_announcements .collection').length;
-  $('#p_announce').text('Pinned Announcements (' + pinNumber + '):');
+  var newpinNumber = pinNumber - 1;
+  $('#p_announce').text('Pinned Announcements (' + newpinNumber + '):');
   var oldNumber = $('div #older_announcements .collection').length;
   $('#old_announce').text('Older Announcements (' + oldNumber + '):');
   var newcardNumber = cardNumber - 1;
   $('#announce').text('Announcements (' + newcardNumber + '):');
-
+  console.log('# of cards in Pinned Announcements: ' + pinNumber + ', # of old cards ' + oldNumber + ', # of recent cards ' + newcardNumber);
 });
