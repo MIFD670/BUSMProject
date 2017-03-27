@@ -34,14 +34,14 @@
     position: relative;
   }
   .doughnutSummary {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  color: #d5d5d5;
-  text-align: center;
-  text-shadow: 0 -1px 0 #111;
-  cursor: default;
-}
+    position: relative;
+    top: 50%;
+    left: 50%;
+    color: #d5d5d5;
+    text-align: center;
+    text-shadow: 0 -1px 0 #111;
+    cursor: default;
+  }
   .doughnutTip {
     position: absolute;
     min-width: 30px;
@@ -70,89 +70,83 @@
       border-top: 6px solid rgba(0,0,0,.7);
       line-height: 0;
     }
-  }
-  #summaryValue {
-    text-align:center;
-    position: absolute;
-    line-height: 270px;
-    width: 100%;
-  }
-  #summaryTitleName {
-    text-align:center;
-    position: absolute;
-    line-height: 205px;
-    width: 100%;
-  }
-  .chart path:hover { opacity: 0.65; }
-  </style>
-</head>
 
-<body>
-  <!-- Navbar -->
-  <nav class="red darken-1" role="navigation">
-    <div class="nav-wrapper container">
-      <a class="brand-logo center light white-text">Scores</a>
-      <a id="logo-container" href="#" class="brand-logo"></a>
-      <ul class="right hide-on-med-and-down">
-        <li>
-          <a href="#"></a>
-        </li>
-      </ul>
+    .chart path:hover { opacity: 0.65; }
+    </style>
+  </head>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><div class="userView">
-          <div class="background">
-            <img src="http://1079638729.rsc.cdn77.org/pic/v2/gallery/preview/fon-20796.jpg">
-          </div>
-          <a href="#!user"><img class="circle" src="http://www.w3schools.com/w3css/img_avatar3.png"></a>
-          <a href="#!name"><span class="white-text name">John Doe</span></a>
-          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <a class="subheader">Menu</a>
-        <div class="divider"></div>
-        <a class="waves-effect" href="homePage.html">Home Page</a>
-        <a class="waves-effect" href="classLessons.html">Class Lessons</a>
-        <a class="waves-effect" href="vocabulary.html">Vocabulary</a>
-        <a class="waves-effect" href="quizzes.html">Quizzes</a>
-        <a class="waves-effect" href="">Settings</a>
-        <a class="waves-effect" href="">Log Out</a>
-      </ul>
-      <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons white-text">menu</i></a>
-    </div>
-  </nav>
-  <!-- End of Navbar -->
-  <!-- Main  Div -->
-  <div class="container">
-    <h3 class="center light white-text">Your Scores:</h3>
-    <center>
-        <div id="doughnutChart" class="chart">
-          <h5 class="white-text" id="summaryTitleName">Total</h5>
-          <h5 class="light white-text" id="summaryValue">Value</h5>
+  <body>
+    <!-- Navbar -->
+    <nav class="red darken-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a class="brand-logo center light white-text">Scores</a>
+        <a id="logo-container" href="#" class="brand-logo"></a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="#"></a>
+          </li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+          <li><div class="userView">
+            <div class="background">
+              <img src="http://1079638729.rsc.cdn77.org/pic/v2/gallery/preview/fon-20796.jpg">
+            </div>
+            <a href="#!user"><img class="circle" src="http://www.w3schools.com/w3css/img_avatar3.png"></a>
+            <a href="#!name"><span class="white-text name">John Doe</span></a>
+            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          </div></li>
+          <a class="subheader">Menu</a>
+          <div class="divider"></div>
+          <a class="waves-effect" href="homePage.html">Home Page</a>
+          <a class="waves-effect" href="classLessons.html">Class Lessons</a>
+          <a class="waves-effect" href="vocabulary.html">Vocabulary</a>
+          <a class="waves-effect" href="quizzes.html">Quizzes</a>
+          <a class="waves-effect" href="">Settings</a>
+          <a class="waves-effect" href="">Log Out</a>
+        </ul>
+        <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons white-text">menu</i></a>
       </div>
-    </center>
-    <div class="section">
-      <a href="http://jsfiddle.net/4azpfk3r/">Try These :( </a>
-    </div>
-  </div>
-  <!--  Scripts-->
-  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
-  <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
-    authDomain: "qadata-6c30d.firebaseapp.com",
-    databaseURL: "https://qadata-6c30d.firebaseio.com",
-    storageBucket: "qadata-6c30d.appspot.com",
-    messagingSenderId: "591410256857"
-  };
-  firebase.initializeApp(config);
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/materialize.js"></script>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
-  <script src="js/javascript.js"></script>
-  <script src="scoreTesting.js"></script
-  </body>
+    </nav>
+    <!-- End of Navbar -->
+    <!-- Main  Div -->
+    <div class="container">
+      <h3 class="center light white-text">Your Scores:</h3>
 
-  </html>
+      <div class="section col s12 m12">
+        <center>
+          <div id="doughnutChart" class="chart">
+          </div>
+        </center>
+      </div>
+      <div class="row">
+        <h5 class="center white-text" id="summaryTitleName">Total</h5>
+        <h5 class="center light white-text" id="summaryValue">Value</h5>
+      </div>
+
+      <div class="section">
+        <a href="http://jsfiddle.net/4azpfk3r/">Try These :( </a>
+      </div>
+    </div>
+    <!--  Scripts-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
+      authDomain: "qadata-6c30d.firebaseapp.com",
+      databaseURL: "https://qadata-6c30d.firebaseio.com",
+      storageBucket: "qadata-6c30d.appspot.com",
+      messagingSenderId: "591410256857"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/materialize.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
+    <script src="js/javascript.js"></script>
+    <script src="scoreTesting.js"></script
+    </body>
+
+    </html>

@@ -12,7 +12,13 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <style>
   body {
-    background-color: #1565c0;
+    background: #eee; /* Old browsers */
+
+  }
+
+
+  #logInForm, #signUpForm {
+    padding: 1.5em 1em 1em 1em;
   }
   </style>
 </head>
@@ -35,111 +41,126 @@
 </div>
 </nav>
 -->
-<!-- Main  Div -->
+<!-- START OF MAIN DIV -->
 
 
 <div class="container">
+  <div id="hide">
   <br><br>
-  <h1 class="header center white-text">Quiz App</h1>
+  <h1 class="header center blue-text">Chemistry Quiz App</h1>
+  <center>
+    <img src="ChemistryIcon.png" alt="Smiley face" height="200" width="200">
+  </center>
+</div>
   <div class="row center">
     <!-- The App Logo Goes Below this line -->
-    <h5 class="header col s12 light white-text">
-      A modern quiz application to help students learn better, and faster!
+    <h5 id="hide1" class="header col s12 light blue-text">
+      A modern, and interactive, quiz application to help students learn Chemistry quicker, easier, and smarter!
     </h5>
   </div>
-  <div class="row center">
-    <p class="light white-text" style="font-size: 18px;">
-      Sign in to your account below!
-    </p>
-    <a href="#loginModal" class="btn waves-effect blue lighten-1">Sign In</a>
-    <br></br>
-    <h5 class="col s12 light white-text" style="font-size: 18px;">
-      Don't have an account? Sign up!
-    </h5>
-    <a href="#signUpModal" class="btn waves-effect blue lighten-1">Sign Up</a>
-  </div>
-  <!-- This is the end of the main div-->
-
-  <div id="loginModal" class="modal" style="opacity: 0.5;">
-    <div class="modal-content">
-      <h4 class="center">Sign in</h4>
-      <div class="row">
-        <blockquote id="logInErrorDisplay">
-          This is an example quotation that uses the blockquote tag
-        </blockquote>
-        <form class="col s12">
-          <div class="input-field col s12">
-            <input id="logEmail" type="email" class="validate">
-            <label for="logEmail" data-error="wrong" data-success="right">Email:</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="logPassword" type="password" class="validate">
-            <label for="logPassword">Password:</label>
-          </div>
-          <div class="center">
-            <a id="logInAcc" class="btn waves-effect blue lighten-1">Log in</a>
-          </div>
-        </form>
+  <div class="container">
+    <div class="card" id="logInForm" style="display: none;">
+      <div class="content">
+        <div class="row">
+          <form class="col s12">
+            <center>
+              <img src="ChemistryIcon.png" alt="Smiley face" height="100" width="100">
+            </center>
+            <h5 class="light grey-text text-darken-1 center">Sign In</h5>
+            <blockquote id="logInErrorDisplay">
+              Place Holder
+            </blockquote>
+            <div class="input-field col s12">
+              <input id="logInAcc" type="email" class="validate">
+              <label for="logInAcc" data-error="Provide a correct email">Email:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="logPassword" type="password">
+              <label for="logPassword">Password:</label>
+            </div>
+            <div class="center">
+              <a id="logInAccBtn" class="btn waves-effect blue">Log In</a>
+              <a id="backBtn" class="btn waves-effect white blue-text">Back</a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="signUpModal" class="modal">
-  <div class="modal-content">
-    <h4 class="center">Sign up</h4>
-    <div class="row">
-      <blockquote id="signUpErrorDisplay">
-        Place Holder
-      </blockquote>
-      <form class="col s12">
-        <div class="input-field col s12">
-          <input id="displayNameAcc" type="text" length="15">
-          <label for="displayNameAcc">Display Name:</label>
+    <br>
+    <div class="card" id="signUpForm" style="display: none;">
+      <div class="content">
+        <div class="row">
+          <form class="col s12">
+            <center>
+              <img src="ChemistryIcon.png" alt="Smiley face" height="100" width="100">
+            </center>
+            <h5 class="light grey-text text-darken-1 center">Sign Up</h5>
+            <blockquote id="signUpErrorDisplay">
+              Place Holder
+            </blockquote>
+            <div class="input-field col s12">
+              <input id="displayNameAcc" type="text" length="15">
+              <label for="displayNameAcc">Display Name:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="emailAcc" type="email" class="validate">
+              <label for="emailAcc" data-error="Provide a correct email">Email:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="remailAcc" type="email" class="validate">
+              <label for="remailAcc" data-error="Provide a correct email">Confirm Email:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="passwordAcc" type="password">
+              <label for="passwordAcc">Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="repasswordAcc" type="password">
+              <label for="repasswordAcc">Confirm Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="birthdateAcc" type="date" class="datepicker">
+            </div>
+            <div class="input-field col s12">
+              <select name="gender">
+                <option value="" disabled selected>Choose your gender:</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
+              </select>
+            </div>
+          </form>
+          <div class="center">
+            <a id="createAcc" class="btn waves-effect blue">Sign Up</a>
+            <a id="backBtn1" class="btn waves-effect white blue-text">Back</a>
+          </div>
         </div>
-        <div class="input-field col s12">
-          <input id="emailAcc" type="email" class="validate">
-          <label for="emailAcc" data-error="Provide a correct email">Email:</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="remailAcc" type="email" class="validate">
-          <label for="remailAcc" data-error="Provide a correct email">Confirm Email:</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="passwordAcc" type="password">
-          <label for="passwordAcc">Password:</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="repasswordAcc" type="password">
-          <label for="repasswordAcc">Confirm Password:</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="birthdateAcc" type="date" class="datepicker">
-        </div>
-        <div class="input-field col s12">
-          <select name="gender">
-            <option value="" disabled selected>Choose your gender:</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Other</option>
-          </select>
-        </div>
-        <div class="center">
-          <a id="createAcc" class="btn waves-effect blue lighten-1">Create account</a>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-</div>
+    <div id="buttons" class="row center">
+      <a id="showLogIn" class="btn waves-effect blue">Log In</a>
+      <a id="showSignUp" class="btn waves-effect white blue-text text-lighten-1">Sign Up</a>
+    </div>
+    <!-- END OF MAIN DIV -->
+    <!--  Scripts-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCP4QgmVwNhL7H9YkpXosSjgjRhw3GyaLA",
+      authDomain: "qadata-6c30d.firebaseapp.com",
+      databaseURL: "https://qadata-6c30d.firebaseio.com",
+      storageBucket: "qadata-6c30d.appspot.com",
+      messagingSenderId: "591410256857"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/materialize.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
+    <script src="js/javascript.js"></script>
+    <script src="index.js"></script>
+  </body>
 
-<!--  Scripts-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="js/init.js"></script>
-<script src="js/materialize.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
-<script src="js/javascript.js"></script>
-<script src="index.js"></script>
-</body>
-
-</html>
+  </html>

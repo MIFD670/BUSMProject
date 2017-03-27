@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="http://cdn.rawgit.com/noelboss/featherlight/1.2.3/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
+  <link href="lightboxFolder/css/lightbox.css" rel="stylesheet">
   <style>
   body {
     background-color: #f5f5f5;
@@ -17,11 +19,13 @@
   #values {
     display: inline;
   }
-  .btnw {
-    width: 100%;
-  }
   #question_section {
     display: none;
+  }
+  #answer1 {
+    left: 0;
+    transition:left 1s ease;
+    -webkit-transition:left 1s ease;
   }
   </style>
 </head>
@@ -62,6 +66,9 @@
   <!-- End of Navbar -->
   <!-- Main  Div -->
   <div class="container">
+    <a id="imageLink" data-lightbox="image-1" data-title="My caption" style="display: none;">
+      <img id="imageToTest" class="example-image" src="" alt="">
+    </a>
     <div id="loader_section" class="section">
       <div class="col s12 m12">
         <label for="progress">Loading...</label>
@@ -90,13 +97,13 @@
         <!-- Cards End Here -->
         <div>
           <!-- Answer Section Start Here -->
-          <button id="answer1" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <button id="answer1" class="btn waves-effect btn-large white blue-text" value="">Answer 1</button>
           <br><br>
-          <button id="answer2" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <button id="answer2" class="btn waves-effect btn-large white blue-text" value="">Answer 1</button>
           <br><br>
-          <button id="answer3" class="btnw btn waves-effect btn-large white blue-text" value="">Answer 1</button>
+          <button id="answer3" class="btn waves-effect btn-large white blue-text" value="">Answer 1</button>
           <br><br>
-          <button id="answer4" class="btnw btn waves-effect btn-large white blue-text"value="">Answer 1</button>
+          <button id="answer4" class="btn waves-effect btn-large white blue-text"value="">Answer 1</button>
           <br><br>
           <!-- <button id="next" class="btnw btn waves-effect blue white-text">Next</button> -->
         </div>
@@ -121,7 +128,9 @@
   <script src="js/materialize.js"></script>
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
   <script src="js/javascript.js"></script>
-  <script src="quizSection.js"></script>
+  <script src="lightboxFolder/js/lightbox.js"></script>
+  <!--<script src="http://cdn.rawgit.com/noelboss/featherlight/1.2.3/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>-->
+  <script src="quizSection3.js"></script>
 </body>
 
 </html>
