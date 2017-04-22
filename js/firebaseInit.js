@@ -346,6 +346,10 @@ function getSimpleRank(strPaygrade, strBranch) {
     formattedRank = "GEN";
   } else if (strPaygrade == 'O-10' && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "ADM";
+  } else if (strPaygrade == 'SECDEF' && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force" || branch == "Navy" || branch == "Coast Guard")) {
+    formattedRank = "SECDEF";
+  } else if (strPaygrade == 'Founder' && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force" || branch == "Navy" || branch == "Coast Guard")) {
+    formattedRank = "Mr.";
   }
   console.log('The rank is: ' + formattedRank);
   return formattedRank;
