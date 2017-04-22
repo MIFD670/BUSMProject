@@ -36,6 +36,7 @@ $(document).ready(function() {
   $('#sign_Up_Error_Follow').val('');
   $('#sign_Up_Error_Follow').css('display', 'none');
   console.log('All fields cleared');
+  //$('#sign_Up_Trigger').css('display', 'none');
   initApp();
 });
 
@@ -101,26 +102,53 @@ function initApp() {
     }
   });
 }
-
+// Sign in
 $('#sign_In_Nav_Btn_Link').on("click", function() {
   console.log('Clear!');
   $('#sign_In_Error').html('');
   $('#sign_In_Error').css('display', 'none');
   $('#sign_In_Email').val('');
   $('#sign_In_Password').val('');
+  $('#codeVerifier').css('display', 'none');
   $('#sign_In').modal('open');
 });
-
+// Sign up
 $('#sign_Up_Trigger').on("click", function() {
-  console.log('Clear 1!');
-  $('#sign_Up_Error').html('');
-  $('sign_Up_Error').css('display', 'none');
-  $('#sign_Up_Email').val('');
-  $('#sign_Up_Password').val('');
-  $('#sign_Up_Password_Verify').val('');
-  $('#sign_Up').modal('open');
+  $('#verify_Error').html('');
+  $('#verify_Error').css('display', 'none');
+  console.log('Opening verifier.');
+  $('#codeVerifier').css('display', 'block');
 });
+// Code verifier
+$('#code_Verification_Btn').on("click", function() {
+  var code = $('#verification_Input').val();
 
+  firebaseRef.ref('/ServerSettings/verifyCode').once('value').then(function(snapshot) {
+    var verifier = snapshot.val();
+    if ((code < 5) || (code == null)) {
+      $('#verify_Error').html('Error: Verification code is not valid.');
+      $('#verify_Error').css('display', 'block');
+      return;
+    }
+    if (code !== verifier) {
+      $('#verify_Error').html('Error: Verification code does not match the code we have in record. Please try again.');
+      $('#verify_Error').css('display', 'block');
+      return;
+    } else if (code == verifier) {
+      console.log('Went through');
+      console.log('Clear 1!');
+      $('#sign_Up_Error').html('');
+      $('sign_Up_Error').css('display', 'none');
+      $('#sign_Up_Email').val('');
+      $('#sign_Up_Password').val('');
+      $('#sign_Up_Password_Verify').val('');
+      $('#sign_In').modal('close');
+      $('#sign_Up').modal('open');
+    }
+  });
+  $('#verification_Input').val('');
+});
+// Transfer
 $('#transfer_Send_Btn').on("click", function() {
   var username = $('#transfer_Username').val().toLowerCase();
   var currentBranch = $('#transfer_Current_Branch option:selected').text();
@@ -151,7 +179,48 @@ $('#transfer_Send_Btn').on("click", function() {
   console.log('User Key: ' + userKey);
   firebaseRef.ref('/PendingTransfer').child(userKey).update(dataToPush);
 });
-
+// To Password Reset Page
+$('#forgot_Password_Btn').on("click", function() {
+  window.location.href = 'passwordReset.html';
+});
+// Password Reset
+$('#password_Reset_Send_Btn').on("click", function() {
+  var email = $('#password_Reset_Email').val();
+  if ((email.length <= 4) || (email == null)) {
+    $('#password_Reset_Error').html('Error: Please enter a valid email.');
+    $('#password_Reset_Error').css('display', 'block');
+    $("#forgotPasswordForm").animate({ scrollTop: 0 }, "slow");
+    return;
+  }
+  if (email.includes('@')) {
+    firebase.auth().sendPasswordResetEmail(email).then(function() {
+         // Password Reset Email Sent!
+         $('#user_Email_Send_Name').html('Thank You! An email specifying how to reset your password has been sent to <em class="blue-text">' + email + '</em>!');
+         $('#resetPasswordNotice').css('display', 'none');
+         $('#thankYouNotice').css('display', 'block');
+       }).catch(function(error) {
+         // Handle Errors here.
+         var errorCode = error.code;
+         var errorMessage = error.message;
+         // [START_EXCLUDE]
+         if (errorCode == 'auth/invalid-email') {
+           $('#password_Reset_Error').html('Error: ' + errorMessage);
+           $('#password_Reset_Error').css('display', 'block');
+           $("#forgotPasswordForm").animate({ scrollTop: 0 }, "slow");
+         } else if (errorCode == 'auth/user-not-found') {
+           $('#password_Reset_Error').html('Error: ' + errorMessage);
+           $('#password_Reset_Error').css('display', 'block');
+           $("#forgotPasswordForm").animate({ scrollTop: 0 }, "slow");
+         }
+         console.log(error);
+       });
+  } else {
+    console.log('The form does not meet the requirements');
+    $('#password_Reset_Error').html('Error: Email is invalid.');
+    $('#password_Reset_Error').css('display', 'block');
+    $("#forgotPasswordForm").animate({ scrollTop: 0 }, "slow");
+  }
+});
 
 function getCurrentDate() {
   var today = new Date();
