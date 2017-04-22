@@ -21,10 +21,12 @@
     background-color: #e53935;
   }
 
+  #header_Text {
+    text-shadow: 3px 3px 3px #000000;
+  }
   #admin_Btn /*,#sign_In_Nav_Btn*/ {
     display: none;
   }
-
   </style>
 
 </head>
@@ -46,15 +48,15 @@
             <a href="https://www.roblox.com/Groups/Group.aspx?gid=2520003" class="light white-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="ROBLOX: United States Military"><img id="iconImage" src="images/DoDIcon.png" alt="Department of Defense" height="55" width="55"></a>
           </ul>
           <ul class="right hide-on-med-and-down">
-            <li class="active"><a href="index.html" class="white-text">Home</a></li>
-            <li><a href="about.html" class="white-text">About</a></li>
+            <li><a href="index.html" class="white-text">Home</a></li>
+            <li class="active"><a href="about.html" class="white-text">About</a></li>
             <li><a href="chainOfCommand.html" class="white-text">Chain of Command</a></li>
             <li><a href="search.html" class="white-text">Search</a></li>
             <li id="transfer_Nav_Btn"><a id="transfer_Nav_Btn_Link" class="btn waves-effect blue darken-1">Transfer</a></li>
             <li id="sign_In_Nav_Btn" hidden><a id="sign_In_Nav_Btn_Link" class="btn waves-effect red darken-1">Sign In</a></li>
             <!-- Dropdown Trigger -->
 
-            <li id="admin_Btn"><a id="admin_Btn_Text" class="dropdown-button waves-effect blue-text text-darken-1" data-activates="navBarDropdown">Username<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li id="admin_Btn"><a id="admin_Btn_Text" class="dropdown-button waves-effect blue-text text-darken-1" href="#!" data-activates="navBarDropdown"><i class="material-icons right">arrow_drop_down</i></a></li>
 
           </ul>
 
@@ -69,82 +71,45 @@
       <h5 id="announcement_important" class="center white-text" style="width: 100%; background-color: #e53935;">This is an important announcement.</h5>
       <h5 id="announcement_normal" class="center white-text" style="width: 100%; background-color: #fb8c00;">This is a normal announcement.</h5>
     </div>
-    <!-- Main Page -->
-    <div class="slider">
-      <ul class="slides">
-        <li>
-          <img src="images/SlideTest1.png"> <!-- random image -->
-          <div class="caption center-align">
-            <h3>Welcome to the United States Military</h3>
-            <h5 class="light grey-text text-lighten-3">Where <i>"<p style="display: inline; color: #00acc1;">realism</p> is our priority."</i></h5>
-            <!--<h5 class="light grey-text text-lighten-3">Founded by <a href="https://www.roblox.com/users/41467039/profile" target="_blank">Buddy1926</a> on April 12, 2016</h5>-->
-          </div>
-
-        </li>
-        <li>
-          <img src="images/Advertisement2.png"> <!-- random image -->
-          <div class="caption left-align">
-            <h3>Semper Paratus</h3>
-            <h5 class="light grey-text text-lighten-3"><i>"Always ready."</i></h5>
-          </div>
-        </li>
-        <li>
-          <img src="images/Advertisement1.png"> <!-- random image -->
-          <div class="caption right-align">
-            <h3>We Are Recruiting</h3>
-            <h5 class="light grey-text text-lighten-3">Join <a href="https://www.roblox.com/Groups/Group.aspx?gid=2520003" target="_blank">here</a> today!</h5>
-          </div>
-        </li>
-        <!--
-        <li>
-        <img src="images/USMNewLogo.png">
-        <div class="caption center-align">
-        <h3>This is our big Tagline!</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+  <!-- Main Page -->
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+      <h1 id="header_Text" class="header center">The United States Military</h1>
       </div>
-    </li>-->
-  </ul>
-</div>
-<div class="container">
-  <div class="section">
-    <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center white-text"><i class="material-icons">language</i></h2>
-          <h5 class="center red-text text-darken-1">Knowledge</h5>
+    </div>
+    <div class="parallax"><img src="images/USMNewLogo.png"></div>
+  </div>
 
-          <p class="light white-text">The United States Military personnel are taught self-discipline, loyalty, duty, and respect. Personnel learn the importance of teamwork and the role it plays in conducting successful missions. Following realism, training involves similar training styles to those of the real United States Armed Forces.</p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center white-text"><i class="material-icons">group</i></h2>
-          <h5 class="center red-text text-darken-1">Strength</h5>
-
-          <p class="light white-text">With more than 2,000 members within our branches, the United States Military conducts daily training, raids, and other operations. Each branch consists of several training commands, forces commands, and specialized commands to provide the best force for the United States Military.</p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center white-text"><i class="material-icons">verified_user</i></h2>
-          <h5 class="center red-text text-darken-1">Integrity</h5>
-
-          <p class="light white-text">Service members of the United States Military follow the values of the real United States Armed Forces. They learn the importance of loyalty, duty, respect, selfless service, honor, integrity, and personal courage. Honesty plays an important role in this United States Military.</p>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send"></i></h3>
+          <h4 class="light white-text">- Mission Statement -</h4>
+          <p class="left-align light white-text">The United States Military was created with the intent to provide strength and security throughout Roblox. Unlike the rest, this United States Military follows the ideals and values of the real United States Armed Forces. The purpose of this group is to create a realistic roleplay that simulates the training, discipline, and operations of the real United States Armed Forces. This United States Military strives for a corruption-less leadership, compared to other United States Militaries in the Roblox community.</p>
         </div>
       </div>
     </div>
-
   </div>
-</div>
 
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-        <h5 class="header col s12 light red-text text-darken-1">*The United States Military (B-USM) is not affiliated with the real United States Armed Forces</h5>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light grey-text text-lighten-3">Founded by <a href="https://www.roblox.com/users/41467039/profile" target="_blank">Buddy1926</a> on April 12, 2016</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send"></i></h3>
+        <h4 class="white-text">Contact Us</h4>
+        <p class="left-align light white-text">Currently unavailable. Please check back later.</p>
       </div>
     </div>
   </div>
@@ -186,8 +151,6 @@
     </div>
   </div>
 </footer>
-</div>
-<!-- Modals Below -->
 <!-- Sign in Modal -->
 <div id="sign_In" class="modal blue-grey darken-4">
   <div class="modal-content">
@@ -210,10 +173,6 @@
         <a id="sign_In_Btn" class="btn waves-effect red darken-1">Sign In</a>
         <br><br>
         <a id="sign_Up_Trigger" class="modal-action modal-close white-text">Or create account</a>
-        <div class="input-field inline">
-            <input id="email" type="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
-          </div>
       </div>
     </div>
   </div>
@@ -252,7 +211,7 @@
   </div>
 </div>
 <!-- Follow up modal -->
-<div id="sign_Up_Follow" class="modal special_Modal blue-grey darken-4">
+<div id="sign_Up_Follow" class="modal blue-grey darken-4">
   <div class="modal-content">
     <h4 class="center white-text">Continue</h4>
     <div class="row">

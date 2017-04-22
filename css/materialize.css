@@ -2621,7 +2621,7 @@ a {
 blockquote {
   margin: 20px 0;
   padding-left: 1.5rem;
-  border-left: 5px solid #ee6e73;
+  border-left: 5px solid #c62828;
 }
 
 i {
@@ -4119,6 +4119,7 @@ nav ul li {
 
 nav ul li.active {
   background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #fff;
 }
 
 nav ul a {
@@ -5200,7 +5201,7 @@ button.btn-floating {
 
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #2196F3;
+  color: #263238;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -5796,8 +5797,8 @@ input[type=tel]:focus:not([readonly]),
 input[type=number]:focus:not([readonly]),
 input[type=search]:focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #2196F3;
-  box-shadow: 0 1px 0 0 #2196F3;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: 0 1px 0 0 #ffffff;
 }
 
 input:not([type]):focus:not([readonly]) + label,
@@ -6023,7 +6024,7 @@ textarea.materialize-textarea + label:after {
 }
 
 .input-field .prefix.active {
-  color: #2196F3;
+  color: #ffffff;
 }
 
 .input-field .prefix ~ input,
@@ -7709,7 +7710,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .slider .indicators .indicator-item.active {
-  background-color: #4CAF50;
+  background-color: #e53935;
 }
 
 .carousel {
@@ -8296,7 +8297,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .picker__weekday-display {
-  background-color: #1f897f;
+  background-color: #1976d2;
   padding: 10px;
   font-weight: 200;
   letter-spacing: .5;

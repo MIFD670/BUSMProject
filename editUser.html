@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>B-United States Military</title>
+  <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style>
+  #iconImage {
+    position: relative;
+    top: 4px;
+  }
+
+  .m {
+    width: 100%;
+    background-color: #e53935;
+  }
+
+  #user_Img {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  #user_Card {
+    display: none;
+  }
+
+  #af_Section, #army_Section, #cg_Section, #mc_Section, #navy_Section, #userSection {
+    display: none;
+  }
+  #circular_Loader_Section {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #admin_Btn /*,#sign_In_Nav_Btn*/ {
+    display: none;
+  }
+  </style>
+
+</head>
+<body class="blue-grey darken-4">
+  <div>
+    <!-- Dropdown Structure -->
+    <ul id="navBarDropdown" class="dropdown-content">
+      <li class="normal"><a href="manageUsers.html" class="blue-grey-text darken-3">Manage Users</a></li>
+      <li class="mod" hidden><a href="manageBranch.html" class="blue-grey-text darken-3">Manage Branch</a></li>
+      <li class="admin" hidden><a href="manageAdmins.html" class="blue-grey-text darken-3">Manage Admin</a></li>
+      <li class="divider"></li>
+      <li hidden><a href="settings.html" class="blue-grey-text darken-3">Settings</a></li>
+      <li><a id="sign_Out_Btn" class="red-text darken-1">Sign Out</a></li>
+    </ul>
+    <div class="navbar-fixed">
+      <nav class="blue-grey darken-4" role="navigation">
+        <div class="nav-wrapper container">
+          <ul class="left hide-on-med-and-down">
+            <a href="https://www.roblox.com/Groups/Group.aspx?gid=2520003" class="light white-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="ROBLOX: United States Military"><img id="iconImage" src="images/DoDIcon.png" alt="Department of Defense" height="55" width="55"></a>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html" class="white-text">Home</a></li>
+            <li><a href="about.html" class="white-text">About</a></li>
+            <li><a href="chainOfCommand.html" class="white-text">Chain of Command</a></li>
+            <li><a href="search.html" class="white-text">Search</a></li>
+            <li id="transfer_Nav_Btn"><a id="transfer_Nav_Btn_Link" class="btn waves-effect blue darken-1">Transfer</a></li>
+            <li id="sign_In_Nav_Btn" hidden><a id="sign_In_Nav_Btn_Link" class="btn waves-effect red darken-1">Sign In</a></li>
+            <!-- Dropdown Trigger -->
+
+            <li id="admin_Btn"><a id="admin_Btn_Text" class="dropdown-button waves-effect blue-text text-darken-1" href="#!" data-activates="navBarDropdown"><i class="material-icons right">arrow_drop_down</i></a></li>
+
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    </div>
+    <div class="announcement">
+      <h5 id="announcement_important" class="center white-text" style="width: 100%; background-color: #e53935;">This is an important announcement.</h5>
+      <h5 id="announcement_normal" class="center white-text" style="width: 100%; background-color: #fb8c00;">This is a normal announcement.</h5>
+    </div>
+    <!-- Main Page -->
+    <!-- Circular Loader -->
+    <div id="loader_Container" class="container">
+      <div id="circular_Loader_Section" class="section">
+        <div id="circular_Loader" class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Data Divs -->
+    <div id="main_Container" class="container" style="display: none;">
+      <div class="section">
+        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large waves-effect blue-grey darken-1"><i class="material-icons white-text">menu</i></a>
+          <ul>
+            <li><a href="addUser.html" class="normal btn-floating blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Add Users" style="display: none;"><i class="material-icons white-text">add</i></a></li>
+            <li><a href="editUser.html" class="mod btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Users" style="display: none;"><i class="material-icons white-text">mode_edit</i></a></li>
+            <li><a href="removeUser.html" class="admin btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Remove Users" style="display: none;"><i class="material-icons white-text">clear_all</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="header center light white-text">Manage Personnel</h3>
+      <div class="section">
+        <h5 class="white-text">Your Information:</h5>
+        <p id="user_Information_Username" class="white-text">Username:</p>
+        <p id="user_Information_Branch" class="white-text">Branch:</p>
+        <p id="user_Information_Admin" class="white-text">Account Type:</p>
+      </div>
+      <h3 class="light white-text">Search</h3>
+      <p class="white-text">Type the username and press enter to display data. Scroll down to view the data.</p>
+      <blockquote id="search_User_Error" class="white-text" style="font-size: 20px; display: none;">
+        This is an example quotation that uses the blockquote tag
+      </blockquote>
+      <div class="row">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input id="search_Username" type="text" class="white-text">
+            <label for="search_Username" class="white-text">Search</label>
+            <input id="submit_search_Username" type="submit" class="white-text" hidden>
+          </div>
+        </div>
+      </div>
+      <div id="sub_Container" class="row" style="display: none;">
+        <h4 class="center white-text">Edit User</h4>
+        <p class="center light white-text">*<b>Authorized</b> personnel only should edit user information. Only authorized personnel will have permission to delete user information.</p>
+        <blockquote id="edit_User_Error" class="white-text" style="font-size: 20px; display: none;">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <div class="input-field col s12">
+          <input disabled id="edit_User_Username" type="text" class="white-text">
+          <label id="edit_User_Username_Label" for="edit_User_Username" class="active white-text">Roblox Username</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="edit_User_CurrentUnit" type="text" class="white-text" length="10">
+          <label id="edit_User_CurrentUnit_Label" for="edit_User_CurrentUnit" class="white-text">Current Unit</label>
+        </div>
+        <div class="input-field col s12">
+          <input disabled id="edit_User_CurrentUnit_Key" type="text" class="white-text" length="10">
+          <label id="edit_User_CurrentUnit_Key_Label" for="edit_User_CurrentUnit_Key" class="white-text">Current Unit Key</label>
+        </div>
+        <div class="input-field col s12 m12">
+          <select class="icons white-text" id="edit_User_Branch">
+            <option value="" disabled selected>Select Branch</option>
+            <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+            <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+            <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+            <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+            <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12">
+          <select class="icons white-text" id="edit_User_Paygrade">
+            <option value="" disabled selected>Select Pay-Grade</option>
+            <option value="Discharge" class="red-text">DISCHARGE</option>
+            <option value="E-1">E-1</option>
+            <option value="E-2">E-2</option>
+            <option value="E-3">E-3</option>
+            <option value="E-4A">E-4 or E-4A (If Applicable)</option>
+            <option value="E-4B">E-4B (If Applicable)</option>
+            <option value="E-5">E-5</option>
+            <option value="E-6">E-6</option>
+            <option value="E-7A">E-7 or E-7A (If Applicable)</option>
+            <option value="E-7B">E-7B (If Applicable)</option>
+            <option value="E-8A">E-8 or E-8A (If Applicable)</option>
+            <option value="E-8A">E-8B (If Applicable)</option>
+            <option value="E-9A">E-9A</option>
+            <option value="E-9B">E-9B</option>
+            <option value="E-9C">E-9C (Air Force or Navy ONLY)</option>
+            <option value="SEA">SEA (ALL BRANCHES)</option>
+            <option value="O-1">O-1</option>
+            <option value="O-2">O-2</option>
+            <option value="O-3">O-3</option>
+            <option value="O-4">O-4</option>
+            <option value="O-5">O-5</option>
+            <option value="O-6">O-6</option>
+            <option value="O-7">O-7</option>
+            <option value="O-8">O-8</option>
+            <option value="O-9">O-9</option>
+            <option value="O-10">O-10</option>
+          </select>
+        </div>
+        <u><center><a id="show_Awards_Section_Btn" class="admin" style="display: none; cursor: pointer;">Add Awards</a></center></u>
+        <br>
+        <div id="awards_Section" hidden>
+          <blockquote id="award_User_Error" class="white-text" style="font-size: 20px; display: none;">
+            This is an example quotation that uses the blockquote tag
+          </blockquote>
+          <div class="input-field col s12 m12">
+            <select class="icons white-text" id="add_User_Award">
+              <option value="" disabled selected>Select Award</option>
+              <option value="1" data-icon="Ribbons/1.png" class="left circle">Medal of Honor</option>
+              <option value="2" data-icon="Ribbons/2.png" class="left circle">Army Distinguished Service Cross</option>
+              <option value="3" data-icon="Ribbons/3.png" class="left circle">Navy Cross</option>
+              <option value="4" data-icon="Ribbons/4.png" class="left circle">Air Force Cross</option>
+              <option value="5" data-icon="Ribbons/5.png" class="left circle">Coast Guard Cross</option>
+              <option value="6" data-icon="Ribbons/6.png" class="left circle">Defense Distinguished Service Medal</option>
+              <option value="7" data-icon="Ribbons/7.png" class="left circle">Homeland Security Distinguished Service Medal</option>
+              <option value="8" data-icon="Ribbons/8.png" class="left circle">Distinguished Service Medal (Army)</option>
+              <option value="9" data-icon="Ribbons/9.png" class="left circle">Navy Distinguished Service Medal</option>
+              <option value="10" data-icon="Ribbons/10.png" class="left circle">Air Force Distinguished Service Medal</option>
+              <option value="11" data-icon="Ribbons/11.png" class="left circle">Coast Guard Distinguished Service Medal</option>
+              <option value="12" data-icon="Ribbons/12.png" class="left circle">Silver Star</option>
+              <option value="13" data-icon="Ribbons/13.png" class="left circle">Defense Superior Service Medal</option>
+              <option value="14" data-icon="Ribbons/14.png" class="left circle">Legion of Merit</option>
+              <option value="15" data-icon="Ribbons/15.png" class="left circle">Distinguished Flying Cross</option>
+              <option value="16" data-icon="Ribbons/16.png" class="left circle">Soldier's Medal</option>
+              <option value="17" data-icon="Ribbons/17.png" class="left circle">Navy and Marine Corps Medal</option>
+              <option value="18" data-icon="Ribbons/18.png" class="left circle">Airman's Medal</option>
+              <option value="19" data-icon="Ribbons/19.png" class="left circle">Coast Guard Medal</option>
+              <option value="20" data-icon="Ribbons/20.png" class="left circle">Bronze Star Medal</option>
+              <option value="21" data-icon="Ribbons/21.png" class="left circle">Purple Heart</option>
+              <option value="22" data-icon="Ribbons/22.png" class="left circle">Defense Meritorious Service Medal</option>
+              <option value="23" data-icon="Ribbons/23.png" class="left circle"> Meritorious Service Medal</option>
+              <option value="24" data-icon="Ribbons/24.png" class="left circle">Air Medal</option>
+              <option value="25" data-icon="Ribbons/25.png" class="left circle">Aerial Achievement Medal</option>
+              <option value="26" data-icon="Ribbons/26.png" class="left circle">Joint Service Commendation Medal</option>
+              <option value="27" data-icon="Ribbons/27.png" class="left circle">Army Commendation Medal</option>
+              <option value="28" data-icon="Ribbons/28.png" class="left circle">Navy and Marine Corps Commendation Medal</option>
+              <option value="29" data-icon="Ribbons/29.png" class="left circle">Air Force Commendation Medal</option>
+              <option value="30" data-icon="Ribbons/30.png" class="left circle">Coast Guard Commendation Medal</option>
+              <option value="31" data-icon="Ribbons/31.png" class="left circle">Joint Service Achievement Medal</option>
+              <option value="32" data-icon="Ribbons/32.png" class="left circle">Army Achievement Medal</option>
+              <option value="33" data-icon="Ribbons/33.png" class="left circle">Navy and Marine Corps Achievement Medal</option>
+              <option value="34" data-icon="Ribbons/34.png" class="left circle">Air Force Achievement Medal</option>
+              <option value="35" data-icon="Ribbons/35.png" class="left circle">Coast Guard Achievement Medal</option>
+              <option value="36" data-icon="Ribbons/36.png" class="left circle">Commandant's Letter of Commendation</option>
+              <option value="37" data-icon="Ribbons/37.png" class="left circle">Navy Combat Action Ribbon</option>
+              <option value="38" data-icon="Ribbons/38.png" class="left circle">Coast Guard Combat Action Ribbon</option>
+              <option value="39" data-icon="Ribbons/39.png" class="left circle">Air Force Combat Action Medal</option>
+              <option value="40" data-icon="Ribbons/40.png" class="left circle">Army and Air Force Presidential Unit Citation</option>
+              <option value="41" data-icon="Ribbons/41.png" class="left circle">Navy and Marine Corps Presidential Unit Citation</option>
+              <option value="42" data-icon="Ribbons/42.png" class="left circle">Coast Guard Presidential Unit Citation</option>
+              <option value="43" data-icon="Ribbons/43.png" class="left circle">Joint Meritorious Unit Award</option>
+              <option value="44" data-icon="Ribbons/44.png" class="left circle">Army Valorous Unit Award</option>
+              <option value="45" data-icon="Ribbons/45.png" class="left circle">Navy Unit Commendation</option>
+              <option value="46" data-icon="Ribbons/46.png" class="left circle">Air Force Gallant Unit Citation</option>
+              <option value="47" data-icon="Ribbons/47.png" class="left circle">Coast Guard Unit Commendation</option>
+              <option value="48" data-icon="Ribbons/48.png" class="left circle">Army Meritorious Unit Commendation</option>
+              <option value="49" data-icon="Ribbons/49.png" class="left circle">Navy Meritorious Unit Commendation</option>
+              <option value="50" data-icon="Ribbons/50.png" class="left circle">Air Force Meritorious Unit Award</option>
+              <option value="51" data-icon="Ribbons/51.png" class="left circle">Coast Guard Meritorious Unit Commendation</option>
+              <option value="52" data-icon="Ribbons/52.png" class="left circle">Army Superior Unit Award</option>
+              <option value="53" data-icon="Ribbons/53.png" class="left circle">Air Force Outstanding Unit Award</option>
+              <option value="54" data-icon="Ribbons/54.png" class="left circle">Coast Guard Meritorious Team Commendation</option>
+              <option value="55" data-icon="Ribbons/55.png" class="left circle">Navy "E" Ribbon</option>
+              <option value="56" data-icon="Ribbons/56.png" class="left circle">Air Force Organizational Excellence Award</option>
+              <option value="57" data-icon="Ribbons/57.png" class="left circle">Coast Guard "E" Ribbon</option>
+              <option value="58" data-icon="Ribbons/58.png" class="left circle">Prisoner of War Medal</option>
+              <option value="59" data-icon="Ribbons/59.png" class="left circle">Army Good Conduct Medal</option>
+              <option value="60" data-icon="Ribbons/60.png" class="left circle">Navy Good Conduct Medal</option>
+              <option value="61" data-icon="Ribbons/61.png" class="left circle">Air Force Good Conduct Medal</option>
+              <option value="62" data-icon="Ribbons/62.png" class="left circle">Marine Corps Good Conduct Medal</option>
+              <option value="63" data-icon="Ribbons/63.png" class="left circle">Coast Guard Good Conduct Medal</option>
+              <option value="64" data-icon="Ribbons/64.png" class="left circle">Combat Readiness Medal (Air Force)</option>
+              <option value="65" data-icon="Ribbons/65.png" class="left circle">Outstanding Airman of the Year Ribbon</option>
+              <option value="66" data-icon="Ribbons/66.png" class="left circle">Coast Guard Enlisted Person of the Year Ribbon</option>
+              <option value="67" data-icon="Ribbons/67.png" class="left circle">Air Force Recognition Ribbon</option>
+              <option value="68" data-icon="Ribbons/68.png" class="left circle">Army Reserve Components Achievement Medal</option>
+              <option value="69" data-icon="Ribbons/69.png" class="left circle">Naval Reserve Meritorious Service Medal</option>
+              <option value="70" data-icon="Ribbons/70.png" class="left circle">Air Reserve Forces Meritorious Service Medal</option>
+              <option value="71" data-icon="Ribbons/71.png" class="left circle">Selected Marine Corps Reserve Medal</option>
+              <option value="72" data-icon="Ribbons/72.png" class="left circle">Coast Guard Reserve Good Conduct Medal</option>
+              <option value="73" data-icon="Ribbons/73.png" class="left circle">Armed Forces Reserve Medal</option>
+              <option value="74" data-icon="Ribbons/74.png" class="left circle">Navy Expeditionary Medal</option>
+              <option value="75" data-icon="Ribbons/75.png" class="left circle">Marine Corps Expeditionary Medal</option>
+              <option value="76" data-icon="Ribbons/76.png" class="left circle">Army of Occupation Medal</option>
+              <option value="77" data-icon="Ribbons/77.png" class="left circle">Navy Occupation Service Medal</option>
+              <option value="78" data-icon="Ribbons/78.png" class="left circle">National Defense Service Medal</option>
+              <option value="79" data-icon="Ribbons/79.png" class="left circle">Global War on Terrorism Service Medal</option>
+              <option value="80" data-icon="Ribbons/80.png" class="left circle">Korea Defense Service Medal</option>
+              <option value="81" data-icon="Ribbons/81.png" class="left circle">Armed Forces Service Medal</option>
+              <option value="82" data-icon="Ribbons/82.png" class="left circle">Humanitarian Service Medal</option>
+              <option value="83" data-icon="Ribbons/83.png" class="left circle">Outstanding Volunteer Service Medal</option>
+              <option value="84" data-icon="Ribbons/84.png" class="left circle">Antarctica Service Medal</option>
+              <option value="85" data-icon="Ribbons/85.png" class="left circle">Coast Guard Arctic Service Medal</option>
+              <option value="86" data-icon="Ribbons/86.png" class="left circle">Air and Space Campaign Medal</option>
+              <option value="87" data-icon="Ribbons/87.png" class="left circle">Nuclear Deterrence Operations Service Medal</option>
+              <option value="88" data-icon="Ribbons/88.png" class="left circle">Armed Forces Expeditionary Medal</option>
+              <option value="90" data-icon="Ribbons/90.png" class="left circle">Southwest Asia Service Medal</option>
+              <option value="92" data-icon="Ribbons/92.png" class="left circle">Afghanistan Campaign Medal</option>
+              <option value="93" data-icon="Ribbons/93.png" class="left circle">Iraq Campaign Medal</option>
+              <option value="94" data-icon="Ribbons/94.png" class="left circle">Inherent Resolve Campaign Medal</option>
+              <option value="95" data-icon="Ribbons/95.png" class="left circle">Global War on Terrorism Expeditionary Medal</option>
+              <option value="96" data-icon="Ribbons/96.png" class="left circle">Navy Sea Service Deployment Ribbon</option>
+              <option value="97" data-icon="Ribbons/97.png" class="left circle">Coast Guard Sea Service Ribbon</option>
+              <option value="98" data-icon="Ribbons/98.png" class="left circle">Army Sea Duty Ribbon</option>
+              <option value="99" data-icon="Ribbons/99.png" class="left circle">Naval Reserve Sea Service Ribbon</option>
+              <option value="100" data-icon="Ribbons/100.png" class="left circle">Air Force Expeditionary Service Ribbon</option>
+              <option value="101" data-icon="Ribbons/101.png" class="left circle">Navy Arctic Service Ribbon</option>
+              <option value="102" data-icon="Ribbons/102.png" class="left circle">Navy and Marine Corps Overseas Service Ribbon</option>
+              <option value="103" data-icon="Ribbons/103.png" class="left circle">Coast Guard Overseas Service Ribbon</option>
+              <option value="104" data-icon="Ribbons/104.png" class="left circle">Air Force Overseas Short Tour Service Ribbon</option>
+              <option value="105" data-icon="Ribbons/105.png" class="left circle">Air Force Overseas Long Tour Service Ribbon</option>
+              <option value="106" data-icon="Ribbons/106.png" class="left circle">Army Overseas Service Ribbon</option>
+              <option value="107" data-icon="Ribbons/107.png" class="left circle">Army Reserve Overseas Training Ribbon</option>
+              <option value="108" data-icon="Ribbons/108.png" class="left circle">Coast Guard Restricted Duty Ribbon</option>
+              <option value="109" data-icon="Ribbons/109.png" class="left circle">Coast Guard Special Operations Service Ribbon</option>
+              <option value="110" data-icon="Ribbons/110.png" class="left circle">Air Force Special Duty Ribbon</option>
+              <option value="111" data-icon="Ribbons/111.png" class="left circle">Air Force Longevity Service Award</option>
+              <option value="112" data-icon="Ribbons/112.png" class="left circle">Navy Recruiting Service Ribbon</option>
+              <option value="113" data-icon="Ribbons/113.png" class="left circle">Air Force Recruiter Ribbon</option>
+              <option value="114" data-icon="Ribbons/114.png" class="left circle">Marine Corps Recruiting Ribbon</option>
+              <option value="115" data-icon="Ribbons/115.png" class="left circle">Coast Guard Recruiting Service Ribbon</option>
+              <option value="117" data-icon="Ribbons/117.png" class="left circle">Navy Recruit Training Service Ribbon</option>
+              <option value="118" data-icon="Ribbons/118.png" class="left circle">Marine Corps Drill Instructor Ribbon</option>
+              <option value="119" data-icon="Ribbons/119.png" class="left circle">Marine Corps Combat Instructor Ribbon</option>
+              <option value="120" data-icon="Ribbons/120.png" class="left circle">Navy Ceremonial Guard Ribbon</option>
+              <option value="121" data-icon="Ribbons/121.png" class="left circle">Marine Corps Security Guard Ribbon</option>
+              <option value="122" data-icon="Ribbons/122.png" class="left circle">Army NCO Professional Development Ribbon</option>
+              <option value="123" data-icon="Ribbons/123.png" class="left circle">Air Force NCO PME Graduate Ribbon</option>
+              <option value="124" data-icon="Ribbons/124.png" class="left circle">Air Force Basic Military Training Honor Graduate Ribbon</option>
+              <option value="125" data-icon="Ribbons/125.png" class="left circle">Coast Guard Basic Training Honor Graduate Ribbon</option>
+              <option value="126" data-icon="Ribbons/126.png" class="left circle">Navy Basic Military Training Honor Graduate Ribbon</option>
+              <option value="127" data-icon="Ribbons/127.png" class="left circle">Army Service Ribbon</option>
+              <option value="128" data-icon="Ribbons/128.png" class="left circle">Air Force Training Ribbon</option>
+              <option value="129" data-icon="Ribbons/129.png" class="left circle">Air Force Small Arms Expert Marksmanship Ribbon</option>
+              <option value="130" data-icon="Ribbons/130.png" class="left circle">Coast Guard Distinguished Marksman Award</option>
+              <option value="131" data-icon="Ribbons/131.png" class="left circle">Coast Guard Silver Rifle Excellence-in-Competition Award</option>
+              <option value="132" data-icon="Ribbons/132.png" class="left circle">Coast Guard Bronze Rifle Excellence-in-Competition Award</option>
+              <option value="133" data-icon="Ribbons/133.png" class="left circle">Navy Expert Rifleman Medal</option>
+              <option value="134" data-icon="Ribbons/134.png" class="left circle">Coast Guard Expert Rifleman Medal</option>
+              <option value="135" data-icon="Ribbons/135.png" class="left circle">Navy Rifle Marksmanship Ribbon with Sharpshooter Device</option>
+              <option value="136" data-icon="Ribbons/136.png" class="left circle">Coast Guard Rifle Marksmanship Ribbon with Sharpshooter Device</option>
+              <option value="137" data-icon="Ribbons/137.png" class="left circle">Navy Rifle Marksmanship Ribbon</option>
+              <option value="138" data-icon="Ribbons/138.png" class="left circle">Coast Guard Rifle Marksmanship Ribbon</option>
+              <option value="139" data-icon="Ribbons/139.png" class="left circle">Coast Guard Distinguished Pistol Shot Award</option>
+              <option value="140" data-icon="Ribbons/140.png" class="left circle">Coast Guard Silver Pistol Excellence-in-Competition Award</option>
+              <option value="141" data-icon="Ribbons/141.png" class="left circle">Coast Guard Bronze Pistol Excellence-in-Competition Award</option>
+              <option value="142" data-icon="Ribbons/142.png" class="left circle">Navy Expert Pistol Shot Medal</option>
+              <option value="143" data-icon="Ribbons/143.png" class="left circle">Coast Guard Expert Pistol Shot Medal</option>
+              <option value="144" data-icon="Ribbons/144.png" class="left circle"> Navy Pistol Marksmanship Ribbon with Sharpshooter Device</option>
+              <option value="145" data-icon="Ribbons/145.png" class="left circle">Coast Guard Pistol Marksmanship Ribbon with Sharpshooter Device</option>
+              <option value="146" data-icon="Ribbons/146.png" class="left circle">Navy Pistol Marksmanship Ribbon</option>
+              <option value="147" data-icon="Ribbons/147.png" class="left circle">Coast Guard Pistol Marksmanship Ribbon</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="award_Description" class="materialize-textarea white-text"></textarea>
+            <label for="award_Description" class="white-text">Award Citation:</label>
+          </div>
+          <div class="center">
+            <a id="add_Award_Btn" class="btn waves-effect red darken-1">Add Award</a>
+          </div>
+          <br><br>
+        </div>
+        <u><center><a id="show_Activity_Section_Btn" style="cursor: pointer;">Add Activity</a></center></u>
+        <br>
+        <div id="activity_Section" hidden>
+          <blockquote id="activity_User_Error" class="white-text" style="font-size: 20px; display: none;">
+            This is an example quotation that uses the blockquote tag
+          </blockquote>
+          <div class="input-field col s12">
+            <input id="add_User_Activity_Type" type="text" class="white-text">
+            <label for="add_User_Activity_Type" class="white-text">Activity Type</label>
+          </div>
+          <!-- Change to a Select Button Later -->
+          <div class="input-field col s12">
+            <input id="add_User_Activity_Name" type="text" class="white-text">
+            <label for="add_User_Activity_Name" class="white-text">Description</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="add_User_Date" type="date" class="datepicker white-text">
+            <label for="add_User_Date" class="white-text">Date Completed</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="add_User_Sponsor_Name" type="text" class="white-text">
+            <label for="add_User_Sponsor_Name" class="white-text">Sponsor Username</label>
+          </div>
+          <div class="center">
+            <a id="add_Activity_Btn" class="btn waves-effect red darken-1">Add Activity</a>
+          </div>
+          <br><br>
+        </div>
+        <u><center><a id="show_Unit_Section_Btn" style="cursor: pointer;">Add Unit History</a></center></u>
+        <br>
+        <div id="edit_Unit_Section" hidden>
+          <blockquote id="unit_User_Error" class="white-text" style="font-size: 20px; display: none;">
+            This is an example quotation that uses the blockquote tag
+          </blockquote>
+          <div class="input-field col s12 m12">
+            <select class="icons white-text" id="add_User_Unit_Branch">
+              <option value="" disabled selected>Select Branch</option>
+              <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+              <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+              <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+              <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+              <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+            </select>
+          </div>
+          <!-- Change to a Select Button Later -->
+          <div class="input-field col s12">
+            <input id="add_User_Unit_Name" type="text" class="white-text">
+            <label for="add_User_Unit_Name" class="white-text">Unit Name</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="add_User_Unit_Date" type="date" class="datepicker white-text">
+            <label for="add_User_Unit_Date" class="white-text">Entrance Date</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="add_User_Unit_Date_Depart" type="date" class="datepicker white-text">
+            <label for="add_User_Unit_Date_Depart" class="white-text">Departure Date</label>
+          </div>
+          <p class="center white-text">- Or -</p>
+          <center>
+            <p>
+              <input type="checkbox" id="serving_Box" />
+              <label for="serving_Box">Currently Serving</label>
+            </p>
+          </center>
+          <br>
+          <div class="center">
+            <a id="add_Unit_History_Btn" class="btn waves-effect red darken-1">Add Unit</a>
+          </div>
+          <br><br>
+        </div>
+        <div class="center">
+          <a id="update_User_Btn" class="btn waves-effect red darken-1">Update User</a>
+        </div>
+      </div>
+      <div class="section" id="unit_History_Section" style="display: block;">
+        <div class="col s12 m12" id="unit_Section" style="display: none;">
+          <h5 class="light white-text">Unit History</h5>
+          <!-- Air Force Cards Here -->
+          <div id="user_Card" class="card blue-grey darken-3" style="display: none;">
+            <!-- btn-flat or no? -->
+            <button id="edit_button" class="mod right btn waves-effect blue-grey darken-2 white-text" style="display: none;"><i class="material-icons">mode_edit</i></button>
+            <div id="card_Inside">
+              <div class="card-content">
+                <span class="card-title white-text">Username</span>
+                <p class="white-text" id="user_History_Branch">Branch:</p>
+                <p class="white-text" id="user_History_Unit">Unit</p>
+                <p class="white-text" id="user_History_Unit_Key">Key</p>
+                <p class="white-text" id="user_History_Entrance">Entrance</p>
+                <p class="white-text" id="user_History_Departure">Departure</p>
+              </div>
+              <div class="card-action" style="display: none;">
+                <a id="update_button" class="btn waves-effect blue-grey darken-2 white-text">Update</a>
+                <a id="disregard_button" class="btn waves-effect white blue-grey-text text-darken-2">Back</a>
+              </div>
+            </div>
+          </div>
+          <h5 id="unit_Card_Holder_Error" class="center light white-text">No units found.</h5>
+        </div>
+      </div>
+      <!-- Sign in Modal -->
+      <div id="sign_In" class="modal blue-grey darken-4">
+        <div class="modal-content">
+          <h4 class="center white-text">Sign In</h4>
+          <div class="row">
+            <blockquote id="sign_In_Error" class="white-text" style="font-size: 20px; display: none;">
+              This is an example quotation that uses the blockquote tag
+            </blockquote>
+            <form class="col s12">
+              <div class="input-field col s12">
+                <input id="sign_In_Email" type="email" class="validate white-text">
+                <label for="sign_In_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="sign_In_Password" type="password" class="white-text">
+                <label for="sign_In_Password" class="white-text">Password</label>
+              </div>
+            </form>
+            <div class="center">
+              <a id="sign_In_Btn" class="btn waves-effect red darken-1">Sign In</a>
+              <br><br>
+              <a id="sign_Up_Trigger" class="modal-action modal-close white-text">Or create account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sign up Modal -->
+      <div id="sign_Up" class="modal blue-grey darken-4">
+        <div class="modal-content">
+          <h4 class="center white-text">Sign Up</h4>
+          <div class="row">
+            <p class="center light white-text">*Accounts are only for <b>authorized</b> officers of the United States Military.</p>
+            <ul>
+              <li class="light white-text"><b>Requirements:</b></li>
+              <li class="light white-text">*Passwords must contain <u>more than 8</u> characters</li>
+              <li class="light white-text">*Emails must be <u>valid</u></li>
+            </ul>
+            <blockquote id="sign_Up_Error" class="white-text" style="font-size: 20px; display: none;">
+              Error
+            </blockquote>
+            <div class="input-field col s12">
+              <input id="sign_Up_Email" type="email" class="validate white-text">
+              <label for="sign_Up_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="sign_Up_Password" type="password" class="white-text">
+              <label for="sign_Up_Password" class="white-text">Password</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="sign_Up_Password_Verify" type="password" class="white-text">
+              <label for="sign_Up_Password_Verify" class="white-text">Confirm Password</label>
+            </div>
+            <div class="center">
+              <p class="center red-text"><b>A FOLLOW UP POPUP WILL DISPLAY SHORTLY AFTER YOUR DATA IS VALIDATED! PLEASE WAIT!</b></p>
+              <a id="sign_Up_Btn" class="btn waves-effect red darken-1">Create Account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Follow up modal -->
+      <div id="sign_Up_Follow" class="modal blue-grey darken-4">
+        <div class="modal-content">
+          <h4 class="center white-text">Continue</h4>
+          <div class="row">
+            <p class="center light white-text">*Please continue this form.</p>
+            <blockquote id="sign_Up_Error_Follow" class="white-text" style="font-size: 20px; display: none;">
+              This is an example quotation that uses the blockquote tag
+            </blockquote>
+            <div class="input-field col s12">
+              <input id="sign_Up_Username_Follow" type="text" class="white-text">
+              <label for="sign_Up_Username_Follow" class="white-text">Roblox Username</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="sign_Up_Current_Unit_Follow" type="text" class="white-text" length="20">
+              <label for="sign_Up_Current_Unit_Follow" class="white-text">Current Unit</label>
+            </div>
+            <div class="input-field col s12 m12">
+              <select class="icons white-text" id="sign_Up_Paygrade">
+                <option value="" disabled selected>Select Pay-Grade</option>
+                <option value="O-1">O-1</option>
+                <option value="O-2">O-2</option>
+                <option value="O-3">O-3</option>
+                <option value="O-4">O-4</option>
+                <option value="O-5">O-5</option>
+                <option value="O-6">O-6</option>
+                <option value="O-7">O-7</option>
+                <option value="O-8">O-8</option>
+                <option value="O-9">O-9</option>
+                <option value="O-10">O-10</option>
+              </select>
+            </div>
+            <div class="input-field col s12 m12">
+              <select class="icons white-text" id="sign_Up_Branch">
+                <option value="" disabled selected>Select Branch</option>
+                <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+                <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+                <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+                <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+                <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+              </select>
+            </div>
+            <div class="center">
+              <a id="sign_Up_Btn_Follow" class="btn waves-effect red darken-1">Create Account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Transfer modal -->
+      <div id="transfer_Request_Modal" class="modal blue-grey darken-4">
+        <div class="modal-content">
+          <h4 class="center white-text">Transfer Request</h4>
+          <div class="row">
+            <ul>
+              <li class="center light white-text">*Please complete this form if you wish to request a branch transfer.</li>
+              <li class="center light white-text">*Your request is not valid until your respective Joint Chief of Staff approves.</li>
+            </ul>
+            <blockquote id="transfer_Error" class="white-text" style="font-size: 20px; display: none;">
+              This is an example quotation that uses the blockquote tag
+            </blockquote>
+            <div class="input-field col s12">
+              <input id="transfer_Username" type="text" class="white-text">
+              <label for="transfer_Username" class="white-text">Roblox Username</label>
+            </div>
+            <div class="input-field col s12 m12">
+              <p class="white-text">Current Branch:</p>
+              <select class="icons white-text" id="transfer_Current_Branch">
+                <option value="" disabled selected>Branch</option>
+                <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+                <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+                <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+                <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+                <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+              </select>
+            </div>
+            <div class="input-field col s12 m12">
+              <p class="white-text">Transfer to:</p>
+              <select class="icons white-text" id="transfer_To_Branch">
+                <option value="" disabled selected>Branch</option>
+                <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+                <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+                <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+                <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+                <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+              </select>
+            </div>
+            <div class="center">
+              <a id="transfer_Send_Btn" class="btn waves-effect red darken-1">Send Transfer Request</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  Scripts-->
+      <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+      <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyB0OAIYQiVp4HtdkxATtkAf17Mf966CJU8",
+        authDomain: "busm-database.firebaseapp.com",
+        databaseURL: "https://busm-database.firebaseio.com",
+        projectId: "busm-database",
+        storageBucket: "busm-database.appspot.com",
+        messagingSenderId: "827489391075"
+      };
+      firebase.initializeApp(config);
+      </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="js/init.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/firebaseInit.js"></script>
+      <script src="js/editUser.js"></script>
+    </body>
+    </html>

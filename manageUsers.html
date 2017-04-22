@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>B-United States Military</title>
+  <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style>
+  #iconImage {
+    position: relative;
+    top: 4px;
+  }
+
+  .m {
+    width: 100%;
+    background-color: #e53935;
+  }
+
+  #user_Img {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  #af_Section, #army_Section, #cg_Section, #mc_Section, #navy_Section {
+    display: none;
+  }
+  #circular_Loader_Section {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .inline {
+    display: inline-block;
+  }
+
+  #admin_Btn /*,#sign_In_Nav_Btn*/ {
+    display: none;
+  }
+  </style>
+
+</head>
+<body class="blue-grey darken-4">
+  <div>
+    <!-- Dropdown Structure -->
+    <ul id="navBarDropdown" class="dropdown-content">
+      <li class="normal"><a href="manageUsers.html" class="blue-grey-text darken-3">Manage Users</a></li>
+      <li class="mod" hidden><a href="manageBranch.html" class="blue-grey-text darken-3">Manage Branch</a></li>
+      <li class="admin" hidden><a href="manageAdmins.html" class="blue-grey-text darken-3">Manage Admin</a></li>
+      <li class="divider"></li>
+      <li hidden><a href="settings.html" class="blue-grey-text darken-3">Settings</a></li>
+      <li><a id="sign_Out_Btn" class="red-text darken-1">Sign Out</a></li>
+    </ul>
+    <div class="navbar-fixed">
+      <nav class="blue-grey darken-4" role="navigation">
+        <div class="nav-wrapper container">
+          <ul class="left hide-on-med-and-down">
+            <a href="https://www.roblox.com/Groups/Group.aspx?gid=2520003" class="light white-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="ROBLOX: United States Military"><img id="iconImage" src="images/DoDIcon.png" alt="Department of Defense" height="55" width="55"></a>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html" class="white-text">Home</a></li>
+            <li><a href="about.html" class="white-text">About</a></li>
+            <li><a href="chainOfCommand.html" class="white-text">Chain of Command</a></li>
+            <li><a href="search.html" class="white-text">Search</a></li>
+            <li id="transfer_Nav_Btn"><a id="transfer_Nav_Btn_Link" class="btn waves-effect blue darken-1">Transfer</a></li>
+            <li id="sign_In_Nav_Btn" hidden><a id="sign_In_Nav_Btn_Link" class="btn waves-effect red darken-1">Sign In</a></li>
+            <!-- Dropdown Trigger -->
+
+            <li id="admin_Btn"><a id="admin_Btn_Text" class="dropdown-button waves-effect blue-text text-darken-1" href="#!" data-activates="navBarDropdown"><i class="material-icons right">arrow_drop_down</i></a></li>
+
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    </div>
+    <div class="announcement">
+      <h5 id="announcement_important" class="center white-text" style="width: 100%; background-color: #e53935;">This is an important announcement.</h5>
+      <h5 id="announcement_normal" class="center white-text" style="width: 100%; background-color: #fb8c00;">This is a normal announcement.</h5>
+    </div>
+  <!-- Main Page -->
+  <!-- Circular Loader -->
+  <div id="loader_Container" class="container">
+    <div id="circular_Loader_Section" class="section">
+      <div id="circular_Loader" class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Data Divs -->
+  <div id="main_Container" class="container" style="display: none;">
+    <div class="section">
+      <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large waves-effect blue-grey darken-1"><i class="material-icons white-text">menu</i></a>
+        <ul>
+          <li><a href="addUser.html" class="normal btn-floating blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Add Users" style="display: none;"><i class="material-icons white-text">add</i></a></li>
+          <li><a href="editUser.html" class="mod btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Users" style="display: none;"><i class="material-icons white-text">mode_edit</i></a></li>
+          <li><a href="removeUser.html" class="admin btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Remove Users" style="display: none;"><i class="material-icons white-text">clear_all</i></a></li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="header center light white-text">Manage Personnel</h3>
+    <div class="section">
+      <h5 class="white-text">Your Information:</h5>
+      <p id="user_Information_Username" class="white-text">Username:</p>
+      <p id="user_Information_Branch" class="white-text">Branch:</p>
+      <p id="user_Information_Admin" class="white-text">Account Type:</p>
+    </div>
+    <div class="section" id="af_Section">
+      <h5 class="light white-text">Air Force Personnel</h5>
+      <div class="col s12 m12" id="af_Card_Holder">
+        <!-- Air Force Cards Here -->
+        <div id="user_Card" class="card-panel blue-grey darken-3 waves-effect waves-block" style="display: none;">
+          <img id="user_Img" src="" style="vertical-align: middle; display: inline;">
+          <span id="user_Username" class="white-text" style="margin-left: 20px; font-size: 26px; vertical-align: middle; display: inline;">Buddy1926</span>
+          <br>
+          <span id="user_Paygrade" class="white-text" style="margin-left: 85px; font-size: 14px;">Rank: SECDEF</span>
+        </div>
+        <h5 id="af_Card_Holder_Error" class="center light white-text">No users found, try again.</h5>
+      </div>
+    </div>
+    <div class="section" id="army_Section">
+      <h5 class="light white-text">Army Personnel</h5>
+      <div class="col s12 m12" id="army_Card_Holder">
+        <!-- Army Cards Here -->
+        <h5 id="army_Card_Holder_Error" class="center light white-text">No users found, try again.</h5>
+      </div>
+    </div>
+    <div class="section" id="cg_Section">
+      <h5 class="light white-text">Coast Guard Personnel</h5>
+      <div class="col s12 m12" id="cg_Card_Holder">
+        <!-- Coast Guard Cards Here -->
+        <h5 id="cg_Card_Holder_Error" class="center light white-text">No users found, try again.</h5>
+      </div>
+    </div>
+    <div class="section" id="mc_Section">
+      <h5 class="light white-text">Marine Corps Personnel</h5>
+      <div class="col s12 m12" id="mc_Card_Holder">
+        <!-- Marine Corps Cards Here -->
+        <h5 id="mc_Card_Holder_Error" class="center light white-text">No users found, try again.</h5>
+      </div>
+    </div>
+    <div class="section" id="navy_Section">
+      <h5 class="light white-text">Navy Personnel</h5>
+      <div class="col s12 m12" id="navy_Card_Holder">
+        <!-- Navy Cards Here -->
+        <h5 id="navy_Card_Holder_Error" class="center light white-text">No users found, try again.</h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign in Modal -->
+  <div id="sign_In" class="modal blue-grey darken-4">
+    <div class="modal-content">
+      <h4 class="center white-text">Sign In</h4>
+      <div class="row">
+        <blockquote id="sign_In_Error" class="white-text" style="font-size: 20px; display: none;">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <form class="col s12">
+          <div class="input-field col s12">
+            <input id="sign_In_Email" type="email" class="validate white-text">
+            <label for="sign_In_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="sign_In_Password" type="password" class="white-text">
+            <label for="sign_In_Password" class="white-text">Password</label>
+          </div>
+        </form>
+        <div class="center">
+          <a id="sign_In_Btn" class="btn waves-effect red darken-1">Sign In</a>
+          <br><br>
+          <a id="sign_Up_Trigger" class="modal-action modal-close white-text">Or create account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sign up Modal -->
+  <div id="sign_Up" class="modal blue-grey darken-4">
+    <div class="modal-content">
+      <h4 class="center white-text">Sign Up</h4>
+      <div class="row">
+        <p class="center light white-text">*Accounts are only for <b>authorized</b> officers of the United States Military.</p>
+        <ul>
+          <li class="light white-text"><b>Requirements:</b></li>
+          <li class="light white-text">*Passwords must contain <u>more than 8</u> characters</li>
+          <li class="light white-text">*Emails must be <u>valid</u></li>
+        </ul>
+        <blockquote id="sign_Up_Error" class="white-text" style="font-size: 20px; display: none;">
+          Error
+        </blockquote>
+        <div class="input-field col s12">
+          <input id="sign_Up_Email" type="email" class="validate white-text">
+          <label for="sign_Up_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="sign_Up_Password" type="password" class="white-text">
+          <label for="sign_Up_Password" class="white-text">Password</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="sign_Up_Password_Verify" type="password" class="white-text">
+          <label for="sign_Up_Password_Verify" class="white-text">Confirm Password</label>
+        </div>
+        <div class="center">
+          <p class="center red-text"><b>A FOLLOW UP POPUP WILL DISPLAY SHORTLY AFTER YOUR DATA IS VALIDATED! PLEASE WAIT!</b></p>
+          <a id="sign_Up_Btn" class="btn waves-effect red darken-1">Create Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Follow up modal -->
+  <div id="sign_Up_Follow" class="modal blue-grey darken-4">
+    <div class="modal-content">
+      <h4 class="center white-text">Continue</h4>
+      <div class="row">
+        <p class="center light white-text">*Please continue this form.</p>
+        <blockquote id="sign_Up_Error_Follow" class="white-text" style="font-size: 20px; display: none;">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <div class="input-field col s12">
+          <input id="sign_Up_Username_Follow" type="text" class="white-text">
+          <label for="sign_Up_Username_Follow" class="white-text">Roblox Username</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="sign_Up_Current_Unit_Follow" type="text" class="white-text" length="20">
+          <label for="sign_Up_Current_Unit_Follow" class="white-text">Current Unit</label>
+        </div>
+        <div class="input-field col s12 m12">
+          <select class="icons white-text" id="sign_Up_Paygrade">
+            <option value="" disabled selected>Select Pay-Grade</option>
+            <option value="O-1">O-1</option>
+            <option value="O-2">O-2</option>
+            <option value="O-3">O-3</option>
+            <option value="O-4">O-4</option>
+            <option value="O-5">O-5</option>
+            <option value="O-6">O-6</option>
+            <option value="O-7">O-7</option>
+            <option value="O-8">O-8</option>
+            <option value="O-9">O-9</option>
+            <option value="O-10">O-10</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12">
+          <select class="icons white-text" id="sign_Up_Branch">
+            <option value="" disabled selected>Select Branch</option>
+            <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+            <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+            <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+            <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+            <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+          </select>
+        </div>
+        <div class="center">
+          <a id="sign_Up_Btn_Follow" class="btn waves-effect red darken-1">Create Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Transfer modal -->
+  <div id="transfer_Request_Modal" class="modal blue-grey darken-4">
+    <div class="modal-content">
+      <h4 class="center white-text">Transfer Request</h4>
+      <div class="row">
+        <ul>
+          <li class="center light white-text">*Please complete this form if you wish to request a branch transfer.</li>
+          <li class="center light white-text">*Your request is not valid until your respective Joint Chief of Staff approves.</li>
+        </ul>
+        <blockquote id="transfer_Error" class="white-text" style="font-size: 20px; display: none;">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <div class="input-field col s12">
+          <input id="transfer_Username" type="text" class="white-text">
+          <label for="transfer_Username" class="white-text">Roblox Username</label>
+        </div>
+        <div class="input-field col s12 m12">
+          <p class="white-text">Current Branch:</p>
+          <select class="icons white-text" id="transfer_Current_Branch">
+            <option value="" disabled selected>Branch</option>
+            <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+            <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+            <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+            <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+            <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12">
+          <p class="white-text">Transfer to:</p>
+          <select class="icons white-text" id="transfer_To_Branch">
+            <option value="" disabled selected>Branch</option>
+            <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+            <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+            <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+            <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+            <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+          </select>
+        </div>
+        <div class="center">
+          <a id="transfer_Send_Btn" class="btn waves-effect red darken-1">Send Transfer Request</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  Scripts-->
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB0OAIYQiVp4HtdkxATtkAf17Mf966CJU8",
+  authDomain: "busm-database.firebaseapp.com",
+  databaseURL: "https://busm-database.firebaseio.com",
+  projectId: "busm-database",
+  storageBucket: "busm-database.appspot.com",
+  messagingSenderId: "827489391075"
+};
+firebase.initializeApp(config);
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/init.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/firebaseInit.js"></script>
+<script src="js/manageUsers.js"></script>
+</body>
+</html>
