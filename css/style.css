@@ -159,14 +159,6 @@ footer.page-footer {
   }
 }
 
-#logInErrorDisplay {
-  display: none;
-}
-
-#signUpErrorDisplay {
-  display: none;
-}
-
-#vocabErrorDisplay {
-  display: none;
+.navbar-fixed {
+    z-index: 9999;
 }

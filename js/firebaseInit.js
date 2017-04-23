@@ -69,6 +69,8 @@ function initApp() {
           console.log('Has the needed admin');
           console.log('Text: ' + text + text2)
           $('#admin_Btn_Text').html(text + text2);
+          $('#admin_Btn_Text_SideNav').html(text);
+          $('#admin_Email_Text_SideNav').html(firebase.auth().currentUser.email);
           $('.normal').css('display', 'block');
           $('.normal').removeClass("disabled");
           if ((userAdmin == "owner") || (userAdmin == "admin") || (userAdmin == "mod")) {
@@ -86,23 +88,36 @@ function initApp() {
             $('.admin').removeClass("disabled");
           }
           $('#sign_In_Nav_Btn').css('display', 'none');
+          $('#sign_In_Nav_Btn_SideNav').css('display', 'none');
           $('#admin_Btn').css('display', 'block');
         } else if (userAdmin == ('none' || null)) {
           console.log('Does not have the needed admin!');
         }
       });
 
-
     } else {
       console.log('User is not signed in.');
       $('#admin_Btn').css('display', 'none');
       $('#admin_Btn_Text').html('');
       $('#sign_In_Nav_Btn').css('display', 'block');
+      $('#sign_In_Nav_Btn_SideNav').css('display', 'block');
       //$('#sign_In_Nav_Btn_Link').attr('href', '#sign_In');
     }
   });
 }
 // Sign in
+$('#sign_In_Nav_Btn_Link_SideNav').on("click", function() {
+  console.log('Clear!');
+  $('#sign_In_Error').html('');
+  $('#sign_In_Error').css('display', 'none');
+  $('#sign_In_Email').val('');
+  $('#sign_In_Password').val('');
+  $('#codeVerifier').css('display', 'none');
+  // Hide sideNav
+  $('#slide-out').sideNav('hide');
+  $('#sign_In').modal('open');
+});
+
 $('#sign_In_Nav_Btn_Link').on("click", function() {
   console.log('Clear!');
   $('#sign_In_Error').html('');
@@ -298,6 +313,24 @@ $('#transfer_Nav_Btn_Link').on("click", function() {
   console.log('Opening modal');
   $('#transfer_Error').html('');
   $('#transfer_Error').css('display', 'none');
+  $('#transfer_Request_Modal').modal('open');
+});
+
+$('#transfer_Nav_Btn_Link_SideNav').on("click", function() {
+  //Clear Forms
+  console.log('Clearing Transfer Request Forms');
+  $('#transfer_Error').val('');
+  $('#transfer_Username').val('');
+  $("#transfer_Current_Branch").prop('selectedIndex', 0);
+  $("#transfer_Current_Branch").material_select();
+  $('#transfer_To_Branch').prop('selectedIndex', 0);
+  $("#transfer_To_Branch").material_select();
+  $('#transfer_Error').css('display', 'none');
+  console.log('Opening modal');
+  $('#transfer_Error').html('');
+  $('#transfer_Error').css('display', 'none');
+  //Hide Side Nav
+  $('#slide-out').sideNav('hide');
   $('#transfer_Request_Modal').modal('open');
 });
 
@@ -683,6 +716,15 @@ function capitalizeFirstLetter(wordIdx) {
 }
 
 $('#sign_Out_Btn').on("click", function() {
+  firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+    window.location = "index.html";
+  }, function(error) {
+    console.error('Sign Out Error', error);
+  });
+});
+
+$('#sign_Out_Btn_SideNav').on("click", function() {
   firebase.auth().signOut().then(function() {
     console.log('Signed Out');
     window.location = "index.html";

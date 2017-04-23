@@ -2249,7 +2249,7 @@ $(document).ready(function(){
         // if closeOnClick, then add close event for all a tags in side sideNav
         if (options.closeOnClick === true) {
           menu_id.on("click.itemclick", "a:not(.collapsible-header)", function(){
-            removeMenu();
+            //removeMenu();
           });
         }
 
@@ -7776,14 +7776,3 @@ Picker.extend( 'pickadate', DatePicker )
       }
     }; // Plugin end
 }( jQuery ));
-
-
-
-
-
-
-
-
-
-
-

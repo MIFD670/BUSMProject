@@ -85,10 +85,34 @@
 
           </ul>
 
-          <ul id="nav-mobile" class="side-nav">
-            <li><a href="#">Navbar Link</a></li>
+          <ul id="slide-out" class="side-nav blue-grey darken-4">
+            <li class="normal" hidden><div class="userView">
+              <div class="background">
+                <img src="http://1079638729.rsc.cdn77.org/pic/v2/gallery/preview/fon-14724.jpg"/>
+              </div>
+              <a><img class="circle" src="http://www.w3schools.com/w3css/img_avatar3.png"></a>
+              <a><span id="admin_Btn_Text_SideNav" class="white-text">John Doe</span></a>
+              <a id="admin_Email_Text_SideNav" class="white-text">jdandturk@gmail.com</a>
+            </li>
+            <li><h5 class="white-text">&nbsp;&nbsp;&nbsp;<u>Menu</u></h5></li>
+            <li><a href="index.html" class="white-text"><i class="white-text material-icons">web</i>Home</a></li>
+            <li><a href="about.html" class="white-text"><i class="white-text material-icons">info</i>About</a></li>
+            <li><a href="chainOfCommand.html" class="white-text"><i class="white-text material-icons">star</i>Chain of Command</a></li>
+            <li><a href="search.html" class="white-text"><i class="white-text material-icons">search</i>Search</a></li>
+            <li><div class="divider"></div></li>
+            <div class="normal" style="display: none;">
+            <li><a class="subheader white-text">Administrator</a></li>
+            <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
+            <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
+            <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
+            <li class="divider"></li>
+            <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
+            <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
+            </div>
+            <li id="transfer_Nav_Btn_SideNav"><a id="transfer_Nav_Btn_Link_SideNav" class="btn waves-effect blue darken-1">Transfer</a></li>
+            <li id="sign_In_Nav_Btn_SideNav" hidden><a id="sign_In_Nav_Btn_Link_SideNav" class="btn waves-effect red darken-1">Sign In</a></li>
           </ul>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          <a data-activates="slide-out" class="button-collapse"><i class="white-text material-icons">menu</i></a>
         </div>
       </nav>
     </div>
