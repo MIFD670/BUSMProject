@@ -71,6 +71,7 @@ function initApp() {
           $('#admin_Btn_Text').html(text + text2);
           $('#admin_Btn_Text_SideNav').html(text);
           $('#admin_Email_Text_SideNav').html(firebase.auth().currentUser.email);
+          $('#profile_Picture_SideNav').attr('src', firebase.auth().currentUser.photoURL);
           $('.normal').css('display', 'block');
           $('.normal').removeClass("disabled");
           if ((userAdmin == "owner") || (userAdmin == "admin") || (userAdmin == "mod")) {
@@ -559,7 +560,7 @@ $('#sign_Up_Btn_Follow').on('click', function() {
   if ((checkUsername /*&& checkProfileID*/ && checkPaygrade && checkBranch && checkCurrentUnit && checkRank) == "false") {
     //Checks if any of the values is null or undefined, if not, then it will proceed to write the data
     //Write data presented in follow up modal to Firebase
-    firebaseRef.ref('/Users').child(username).set({
+    firebaseRef.ref('/Users').child(username).update({
       admin: 'none',
       branch: branch,
       currentUnit: currentUnit,

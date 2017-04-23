@@ -360,7 +360,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside').clone();
+          var newCardInside = newCard.find('#card_Inside').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#activity_Type').html('Activity Type: ' + type);
@@ -434,7 +434,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside').clone();
+          var newCardInside = newCard.find('#card_Inside').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#award_Name').html('Award Name: ' + awardName);
@@ -503,7 +503,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside').clone();
+          var newCardInside = newCard.find('#card_Inside').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#promotion_To').html('Promoted to: ' + promotion);
@@ -578,8 +578,9 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside').clone();
+          var newCardInside = newCard.find('#card_Inside').clone();
           console.log("The Disregard Upgrade button works!");
+          console.log('Disregard: ' + username + branch + unit + entranceDate + departureDate);
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#user_History_Branch').html('Branch: ' + branch);
           newCardInside.find('#user_History_Unit').html('Unit: ' + unit);

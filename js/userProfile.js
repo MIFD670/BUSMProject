@@ -78,6 +78,7 @@ function displayData(userIdx) {
     $('#promotion_Holder').prepend(newInfo);
     //$('#award_Error').css('display', 'none');
     //$('#promotionInformation').remove();
+    $('#promotionHead').css('display', '');
     $('#promotion_Holder').show();
   });
   //Activity Records
@@ -102,6 +103,7 @@ function displayData(userIdx) {
     $('#activity_Holder').prepend(newInfo);
     //$('#award_Error').css('display', 'none');
     //$('#promotionInformation').remove();
+    $('#activityHead').css('display', '');
     $('#activity_Holder').show();
   });
   //Unit Records
@@ -126,6 +128,7 @@ function displayData(userIdx) {
     $('#unit_Holder').prepend(newInfo);
     //$('#award_Error').css('display', 'none');
     //$('#promotionInformation').remove();
+    $('#unitHead').css('display', '');
     $('#unit_Holder').show();
   });
   getData();
