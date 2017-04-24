@@ -69,12 +69,12 @@ $('#add_User_Btn').on("click", function() {
 $('#add_User_Btn_Follow').on("click", function() {
   var username = $('#add_User_Username').val().toLowerCase();
   var currentUnit = $('#add_User_CurrentUnit').val();
-  branch = $('#add_User_Branch option:selected').text();
+  var branch = $('#add_User_Branch option:selected').text();
   var paygrade = $('#add_User_Paygrade option:selected').val();
   var verifiedUser = verified;
   console.log('Verified: ' + verifiedUser);
   var date = getCurrentDate();
-  rank = getRank(paygrade);
+  rank = getRank(paygrade, branch);
   var unitHistory = {
     username: username,
     branch: branch,
@@ -148,9 +148,9 @@ function capitalizeFirstLetter(wordIdx) {
   return newWord;
 }
 
-function getRank(strPaygrade) {
+function getRank(strPaygrade, strBranch) {
   console.log(strPaygrade);
-  var branch = $('#edit_User_Branch option:selected').val();
+  var branch = strBranch;
   var formattedRank = "";
 
   if (strPaygrade == "E-1" && (branch == "Army" || branch == "Marine Corps")) {
