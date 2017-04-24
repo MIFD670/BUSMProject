@@ -77,11 +77,11 @@ function showData() {
       window.location ='userProfile.html' + search_Query + username;
     });
 
-    var measureAF = $('#af_Card_Holder').children().size() - 2;
-    var measureArmy = $('#army_Card_Holder').children().size() - 1;
-    var measureCG = $('#cg_Card_Holder').children().size() - 1;
-    var measureMC = $('#mc_Card_Holder').children().size() - 1;
-    var measureNavy = $('#navy_Card_Holder').children().size() - 1;
+    var measureAF = $('#af_Card_Holder').length - 2;
+    var measureArmy = $('#army_Card_Holder').length - 1;
+    var measureCG = $('#cg_Card_Holder').length - 1;
+    var measureMC = $('#mc_Card_Holder').length - 1;
+    var measureNavy = $('#navy_Card_Holder').length - 1;
     $('#airForce_Text').html('Air Force Personnel (' + measureAF + ')');
     $('#army_Text').html('Army Personnel (' + measureArmy + ')');
     $('#coastGuard_Text').html('Coast Guard Personnel (' + measureCG + ')');
