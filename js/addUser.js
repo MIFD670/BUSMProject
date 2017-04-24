@@ -73,6 +73,7 @@ $('#add_User_Btn_Follow').on("click", function() {
   var paygrade = $('#add_User_Paygrade option:selected').val();
   var verifiedUser = verified;
   console.log('Verified: ' + verifiedUser);
+  console.log(paygrade);
   var date = getCurrentDate();
   rank = getRank(paygrade, branch);
   var unitHistory = {
@@ -156,9 +157,9 @@ function getRank(strPaygrade, strBranch) {
   if (strPaygrade == "E-1" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Private";
   } else if (strPaygrade == "E-1" && (branch == "Air Force")) {
-    formattedRank == "Airman Basic";
+    formattedRank = "Airman Basic";
   } else if (strPaygrade == "E-1" && (branch == "Navy" || branch == "Coast Guard")) {
-    formattedRank == "Seaman Recruit";
+    formattedRank = "Seaman Recruit";
   } else if (strPaygrade == "E-2" && (branch == "Army")) {
     formattedRank = "Private II";
   } else if (strPaygrade == "E-2" && (branch == "Marine Corps")) {

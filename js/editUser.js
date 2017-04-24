@@ -132,7 +132,7 @@ $('#update_User_Btn').on("click", function() {
     $("#edit_User_Error").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  rank = getRank(newPaygrade);
+  rank = getRank(newPaygrade, newBranch);
   firebase.database().ref('Users/' + username).update({
     branch: newBranch,
     paygrade: newPaygrade,
@@ -315,17 +315,17 @@ function capitalizeFirstLetter(wordIdx) {
   return newWord;
 }
 
-function getRank(strPaygrade) {
+function getRank(strPaygrade, strBranch) {
   console.log(strPaygrade);
-  var branch = $('#edit_User_Branch option:selected').val();
+  var branch = strBranch;
   var formattedRank = "";
 
   if (strPaygrade == "E-1" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Private";
   } else if (strPaygrade == "E-1" && (branch == "Air Force")) {
-    formattedRank == "Airman Basic";
+    formattedRank = "Airman Basic";
   } else if (strPaygrade == "E-1" && (branch == "Navy" || branch == "Coast Guard")) {
-    formattedRank == "Seaman Recruit";
+    formattedRank = "Seaman Recruit";
   } else if (strPaygrade == "E-2" && (branch == "Army")) {
     formattedRank = "Private II";
   } else if (strPaygrade == "E-2" && (branch == "Marine Corps")) {
