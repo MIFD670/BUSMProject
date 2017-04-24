@@ -76,7 +76,7 @@ function showData() {
       console.log(username + ' card has been clicked.');
       window.location ='userProfile.html' + search_Query + username;
     });
-
+    console.log('Hm.');
     var measureAF = $('#af_Card_Holder').length - 2;
     var measureArmy = $('#army_Card_Holder').length - 1;
     var measureCG = $('#cg_Card_Holder').length - 1;
