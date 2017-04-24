@@ -84,6 +84,12 @@ function showData() {
       console.log('The request was accepted by ' + currentUser);
       //Sends data to be moved in Firebase
       moveFirebaseData(oldRef, newRef, user, date);
+      var keyToLogs = firebaseRef.ref('Logs').push().key;
+      var log = 'Admin user (' + currentUser + ') accepted user (' + username + ') transfer request on ' + date + '.';
+      firebaseRef.ref('Logs').child(keyToLogs).update({
+        date: date,
+        log: log
+      });
       newCard.remove();
       console.log("REMOVE: Successfully removed card and changed the transfer request!");
       Materialize.toast('Success: Transfer Approved!', 4000);
@@ -98,6 +104,12 @@ function showData() {
       console.log('The request was accepted by ' + currentUser);
       //Sends data to be moved in Firebase
       moveFirebaseData(oldRef, newRef, user, date);
+      var keyToLogs = firebaseRef.ref('Logs').push().key;
+      var log = 'Admin user (' + currentUser + ') denied user (' + username + ') transfer request on ' + date + '.';
+      firebaseRef.ref('Logs').child(keyToLogs).update({
+        date: date,
+        log: log
+      });
       newCard.remove();
       console.log("REMOVE: Successfully removed card and changed the transfer request!");
       Materialize.toast('Success: Transfer Denied!', 4000);

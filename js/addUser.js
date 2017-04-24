@@ -148,102 +148,102 @@ function capitalizeFirstLetter(wordIdx) {
   return newWord;
 }
 
-function getRank(strPaygrade, strBranch) {
+function getRank(strPaygrade) {
   console.log(strPaygrade);
-  var branch = $('#add_User_Branch option:selected').text();
+  var branch = $('#edit_User_Branch option:selected').val();
   var formattedRank = "";
 
   if (strPaygrade == "E-1" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Private";
-  } else if (strPaygrade == "E-1" && branch == "Air Force") {
+  } else if (strPaygrade == "E-1" && (branch == "Air Force")) {
     formattedRank == "Airman Basic";
   } else if (strPaygrade == "E-1" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank == "Seaman Recruit";
-  } else if (strPaygrade == "E-2" && branch == "Army") {
+  } else if (strPaygrade == "E-2" && (branch == "Army")) {
     formattedRank = "Private II";
-  } else if (strPaygrade == "E-2" && branch == "Marine Corps") {
+  } else if (strPaygrade == "E-2" && (branch == "Marine Corps")) {
     formattedRank = "Private First";
-  } else if (strPaygrade == "E-2" && branch == "Air Force") {
+  } else if (strPaygrade == "E-2" && (branch == "Air Force")) {
     formattedRank = "Airman";
   } else if (strPaygrade == "E-2" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Seaman Apprentice";
-  } else if (strPaygrade == "E-3" && branch == "Army") {
+  } else if (strPaygrade == "E-3" && (branch == "Army")) {
     formattedRank = "Private First Class";
-  } else if (strPaygrade == "E-3" && branch == "Marine Corps") {
+  } else if (strPaygrade == "E-3" && (branch == "Marine Corps")) {
     formattedRank = "Lance Corporal";
-  } else if (strPaygrade == "E-3" && branch == "Air Force") {
+  } else if (strPaygrade == "E-3" && (branch == "Air Force")) {
     formattedRank = "Airman First Class";
   } else if (strPaygrade == "E-3" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Seaman";
   } else if (strPaygrade == "E-4A" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Corporal";
-  } else if (strPaygrade == "E-4B" && branch == "Army") {
+  } else if (strPaygrade == "E-4B" && (branch == "Army")) {
     formattedRank = "Specialist";
-  } else if (strPaygrade == "E-4A" && branch == "Air Force") {
+  } else if (strPaygrade == "E-4A" && (branch == "Air Force")) {
     formattedRank = "Senior Airman";
   } else if (strPaygrade == "E-4A" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Petty Officer Third Class";
   } else if (strPaygrade == "E-5" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Sergeant";
-  } else if (strPaygrade == "E-5" && branch == "Air Force") {
+  } else if (strPaygrade == "E-5" && (branch == "Air Force")) {
     formattedRank = "Staff Sergeant";
   } else if (strPaygrade == "E-5" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Petty Officer Second Class";
   } else if (strPaygrade == "E-6" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Staff Sergeant";
-  } else if (strPaygrade == "E-6" && branch == "Air Force") {
+  } else if (strPaygrade == "E-6" && (branch == "Air Force")) {
     formattedRank = "Technical Sergeant";
   } else if (strPaygrade == "E-6" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Petty Officer First Class";
-  } else if (strPaygrade == "E-7A" && branch == "Army") {
+  } else if (strPaygrade == "E-7A" && (branch == "Army")) {
     formattedRank = "Sergeant First Class";
-  } else if (strPaygrade == "E-7A" && branch == "Marine Corps") {
+  } else if (strPaygrade == "E-7A" && (branch == "Marine Corps")) {
     formattedRank = "Gunnery Sergeant";
-  } else if (strPaygrade == "E-7A" && branch == "Air Force") {
+  } else if (strPaygrade == "E-7A" && (branch == "Air Force")) {
     formattedRank = "Master Sergeant";
-  } else if (strPaygrade == "E-7B" && branch == "Air Force") {
+  } else if (strPaygrade == "E-7B" && (branch == "Air Force")) {
     formattedRank = "First Sergeant";
   } else if (strPaygrade == "E-7A" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Chief Petty Officer";
   } else if (strPaygrade == "E-8A" && (branch == "Army" || branch == "Marine Corps")) {
     formattedRank = "Master Sergeant";
-  } else if (strPaygrade == "E-8A" && branch == "Air Force") {
+  } else if (strPaygrade == "E-8A" && (branch == "Air Force")) {
     formattedRank = "Senior Master Sergeant";
   } else if (strPaygrade == "E-8A" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Senior Chief Petty Officer";
   } else if (strPaygrade == "E-8B" && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force")) {
     formattedRank = "First Sergeant";
-  } else if (strPaygrade == "E-9A" && branch == "Army") {
+  } else if (strPaygrade == "E-9A" && (branch == "Army")) {
     formattedRank = "Sergeant Major";
-  } else if (strPaygrade == "E-9A" && branch == "Marine Corps") {
+  } else if (strPaygrade == "E-9A" && (branch == "Marine Corps")) {
     formattedRank = "Master Gunnary Sergeant";
-  } else if (strPaygrade == "E-9A" && branch == "Air Force") {
+  } else if (strPaygrade == "E-9A" && (branch == "Air Force")) {
     formattedRank = "Chief Master Sergeant";
   } else if (strPaygrade == "E-9A" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Master Chief Petty Officer";
-  } else if (strPaygrade == "E-9B" && branch == "Army") {
+  } else if (strPaygrade == "E-9B" && (branch == "Army")) {
     formattedRank = "Command Sergeant Major";
-  } else if (strPaygrade == "E-9B" && branch == "Marine Corps") {
+  } else if (strPaygrade == "E-9B" && (branch == "Marine Corps")) {
     formattedRank = "Sergeant Major";
-  } else if (strPaygrade == "E-9B" && branch == "Air Force") {
+  } else if (strPaygrade == "E-9B" && (branch == "Air Force")) {
     formattedRank = "First Sergeant";
-  } else if (strPaygrade == "E-9B" && branch == "Navy") {
+  } else if (strPaygrade == "E-9B" && (branch == "Navy")) {
     formattedRank = "Force Command Chief Petty Officer";
-  } else if(strPaygrade == "E-9B" && branch == "Coast Guard") {
+  } else if(strPaygrade == "E-9B" && (branch == "Coast Guard")) {
     formattedRank = "Command Master Chief";
-  } else if (strPaygrade == "SEA" && branch == "Army") {
+  } else if (strPaygrade == "SEA" && (branch == "Army")) {
     formattedRank = "Sergeant Major of the Army";
-  } else if (strPaygrade == "SEA" && branch == "Marine Corps") {
+  } else if (strPaygrade == "SEA" && (branch == "Marine Corps")) {
     formattedRank = "Sergeant Major of the Marine Corps";
-  } else if (strPaygrade == "E-9C" && branch == "Air Force") {
+  } else if (strPaygrade == "E-9C" && (branch == "Air Force")) {
     formattedRank = "Command Chief Master Sergeant";
-  } else if (strPaygrade == "E-9C" && branch == "Navy") {
+  } else if (strPaygrade == "E-9C" && (branch == "Navy")) {
     formattedRank = "Fleet Command Chief Petty Officer";
-  } else if(strPaygrade == "SEA" && branch == "Coast Guard") {
+  } else if(strPaygrade == "SEA" && (branch == "Coast Guard")) {
     formattedRank = "Master Chief Petty Officer of the Coast Guard";
-  } else if(strPaygrade == "SEA" && branch == "Air Force") {
+  } else if(strPaygrade == "SEA" && (branch == "Air Force")) {
     formattedRank = "Chief Master Sergeant of the Air Force";
-  } else if(strPaygrade == "SEA" && branch == "Navy") {
+  } else if(strPaygrade == "SEA" && (branch == "Navy")) {
     formattedRank = "Master Chief Petty Officer of the Navy";
   } else if (strPaygrade == 'O-1' && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force")) {
     formattedRank = "Second Lieutenant";
