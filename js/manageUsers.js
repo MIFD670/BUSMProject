@@ -68,16 +68,6 @@ function showData() {
       $('#navy_Card_Holder').append(newCard);
       $('#navy_Card_Holder_Error').css('display', 'none');
     }
-    var measureAF = $('#af_Card_Holder').length - 2;
-    var measureArmy = $('#army_Card_Holder').length - 1;
-    var measureCG = $('#cg_Card_Holder').length - 1;
-    var measureMC = $('#mc_Card_Holder').length - 1;
-    var measureNavy = $('#navy_Card_Holder').length - 1;
-    $('#airForce_Text').html('Air Force Personnel (' + measureAF + ')');
-    $('#army_Text').html('Army Personnel (' + measureArmy + ')');
-    $('#coastGuard_Text').html('Coast Guard Personnel (' + measureCG + ')');
-    $('#marineCorps_Text').html('Marine Corps Personnel (' + measureMC + ')');
-    $('#navy_Text').html('Navy Personnel (' + measureNavy + ')');
 
     console.log('The current user branch is: ' + currentUserBranch + ' and, ' + currentAdmin);
     displayBranchData(currentUserBranch, currentAdmin);
@@ -191,6 +181,19 @@ function displayBranchData(branchIdx, adminIdx) {
     $('#cg_Section').css('display', 'block');
     $('#navy_Section').css('display', 'block');
   }
+
+  var measureAF = $('#af_Card_Holder').length - 2;
+  var measureArmy = $('#army_Card_Holder').length - 1;
+  var measureCG = $('#cg_Card_Holder').length - 1;
+  var measureMC = $('#mc_Card_Holder').length - 1;
+  var measureNavy = $('#navy_Card_Holder').length - 1;
+  $('#airForce_Text').html('Air Force Personnel (' + measureAF + ')');
+  $('#army_Text').html('Army Personnel (' + measureArmy + ')');
+  $('#coastGuard_Text').html('Coast Guard Personnel (' + measureCG + ')');
+  $('#marineCorps_Text').html('Marine Corps Personnel (' + measureMC + ')');
+  $('#navy_Text').html('Navy Personnel (' + measureNavy + ')');
+
+
   $('#loader_Container').css('display', 'none');
   $('#main_Container').css('display', 'block');
 }

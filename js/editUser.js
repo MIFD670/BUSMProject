@@ -613,7 +613,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
       });
     });
-
+    //REMOVE APRIL 30th, 2017
     firebaseRef.ref('/Users/' + user + '/promotions').orderByChild("departureDate").on("child_added", snap => {
       var username = capitalizeFirstLetter(user);
       var currentPromotionKey = snap.key;
