@@ -210,7 +210,7 @@ $('#add_Activity_Btn').on("click", function() {
   console.log('Passed, and all values do exist.');
   activityKey = firebaseRef.ref('/Users/' + username + '/activity').push().key;
   firebaseRef.ref('/Users/' + username + '/activity').child(activityKey).update(activityToAdd);
-  
+
   $('#activity_User_Error').css('display', 'none');
   $('#activity_User_Error').text('');
   $('#add_User_Activity_Type').val('');
@@ -588,6 +588,7 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCard.find('.card-title').text(username);
           newCardInside.find('#user_History_Branch').html('Branch: ' + updateBranch);
           newCardInside.find('#user_History_Unit').html('Unit: ' + updateUnit);
+          newCardInside.find('#user_History_Unit_Key').html('Key: ' + currentUnitKey);
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + updateEntrance);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + updateDeparture);
           // Hides the "Card-Action" and removes the "editable" view of the cards
@@ -607,6 +608,93 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
           newCard.find('#card_Inside').remove();
+          newCard.append(newCardInside);
+          console.log('Disregard!');
+        });
+      });
+    });
+
+    firebaseRef.ref('/Users/' + user + '/promotions').orderByChild("departureDate").on("child_added", snap => {
+      var username = capitalizeFirstLetter(user);
+      var currentPromotionKey = snap.key;
+      var promotion = snap.child('promotion').val();
+      var promotedBy = snap.child('promotedBy').val();
+      var promotionDate = snap.child('date').val();
+      // Console logs
+      console.log('USERNAME: ' + username + ", PROMOTION: " + promotion + ", PROMOTED BY: " + promotedBy + ", DATE: " + promotionDate);
+      // Creates a clone of the vocab card to edit
+      var newCard = $('#user_Card_Promotion').clone();
+      newCard.removeAttr('id');
+      newCard.find('.card-title').text(username);
+      newCard.find('#user_Promotion').html('Promotion to: ' + promotion);
+      newCard.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
+      newCard.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
+      newCard.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
+      //newCard.find('#user_Img').attr('src', profilePic);
+      newCard.removeAttr('style');
+      //Appends to "approved section"
+      $('#promotion_Section').append(newCard);
+      $('#promotion_Section').css('display', 'block');
+      $('#promotion_Card_Holder_Error').css('display', 'none');
+      // Edit button
+      newCard.find('#edit_button').on("click", function() {
+        console.log("The edit button works!");
+        // replaces current elements with input fields
+        newCard.find('.card-title').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Username' type='text'></input><label for='update_Username' class='active white-text'>Username</label></div>");
+        newCard.find('#update_Username').val(username);
+        newCard.find('#user_Promotion').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotionTo' type='text'></input><label for='update_Branch' class='active white-text'>Promotion to</label></div>");
+        newCard.find('#update_PromotionTo').val(promotion);
+        newCard.find('#user_PromotedBy').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotedBy' type='text'></input><label for='update_Unit' class='active white-text'>Promoted by</label></div>");
+        newCard.find('#update_PromotedBy').val(promotedBy);
+        newCard.find('#user_Promotion_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Promotion Key</label></div>");
+        newCard.find('#update_Key').val(currentPromotionKey);
+        newCard.find('#user_PromotedOn').replaceWith("<div class='input-field inline'><input class='white-text' id='update_PromotionDate' type='text'></input><label for='update_Entrance' class='active white-text'>Promotion Date (MM-DD-YYYY)</label></div>");
+        newCard.find('#update_PromotionDate').val(promotionDate);
+        newCard.find('.card-action').css("display", "block");
+        // Does indeed update
+        newCard.find('#update_button').on("click", function() {
+          var updatePromotion = $('#update_PromotionTo').val();
+          //console.log('Update Branch: ' + updateBranch);
+          var updatePromotionBy = $('#update_PromotedBy').val();
+          //console.log('Update Unit: ' + updateUnit);
+          var updatePromotionDate = $('#update_PromotionDate').val();
+          //console.log('Update Entrance: ' + updateEntrance);
+          var key = currentPromotionKey;
+          console.log(key);
+          console.log(username);
+          // This function updates the key and stores it in the Firebase database
+          firebaseRef.ref('/Users/' + username.toLowerCase() + '/promotions/' + key).update({
+            username: username,
+            promotion: updatePromotion,
+            promotedBy: updatePromotionBy,
+            date: updatePromotionDate,
+          });
+          console.log('The promotion information has been UPDATED');
+          // Returns the card back to normal with updated stuff
+          var newCardInside = $('#card_Inside_Promotion').clone();
+          console.log("The Upgrade button works!")
+          newCardInside.find('.card-title').text(username);
+          newCardInside.find('#user_Promotion').html('Promotion to: ' + updatePromotion);
+          newCardInside.find('#user_PromotedBy').html('Promoted by: ' + updatePromotionBy);
+          newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + key);
+          newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + updatePromotionDate);
+          // Hides the "Card-Action" and removes the "editable" view of the cards
+          newCard.find('.card-action').css("display", "none");
+          newCard.find('#card_Inside_Promotion').remove();
+          // Appends the new, updated "normal" view of the user cards
+          newCard.append(newCardInside);
+          Materialize.toast('Promotion History Updated!&nbsp<b><u><a href="">Reload</a></u></b>', 5000);
+        });
+        // Disregards update
+        newCard.find('#disregard_button').on("click", function() {
+          var newCardInside = $('#card_Inside_Promotion').clone();
+          console.log("The Disregard Upgrade button works!");
+          newCardInside.find('.card-title').text(username);
+          newCardInside.find('#user_Promotion').html('Promotion to: ' + promotion);
+          newCardInside.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
+          newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
+          newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
+          newCard.find('#card_Inside_Promotion').remove();
           newCard.append(newCardInside);
           console.log('Disregard!');
         });

@@ -101,13 +101,13 @@
             <li><a href="search.html" class="white-text"><i class="white-text material-icons">search</i>Search</a></li>
             <li><div class="divider"></div></li>
             <div class="normal" style="display: none;">
-            <li><a class="subheader white-text">Administrator</a></li>
-            <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
-            <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
-            <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
-            <li class="divider"></li>
-            <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
-            <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
+              <li><a class="subheader white-text">Administrator</a></li>
+              <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
+              <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
+              <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
+              <li class="divider"></li>
+              <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
+              <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
             </div>
             <li id="transfer_Nav_Btn_SideNav"><a id="transfer_Nav_Btn_Link_SideNav" class="btn waves-effect blue darken-1">Transfer</a></li>
             <li id="sign_In_Nav_Btn_SideNav" hidden><a id="sign_In_Nav_Btn_Link_SideNav" class="btn waves-effect red darken-1">Sign In</a></li>
@@ -498,6 +498,7 @@
           <a id="update_User_Btn" class="btn waves-effect red darken-1">Update User</a>
         </div>
       </div>
+      <!-- Unit History -->
       <div class="section" id="unit_History_Section" style="display: block;">
         <div class="col s12 m12" id="unit_Section" style="display: none;">
           <h5 class="light white-text">Unit History</h5>
@@ -521,6 +522,31 @@
             </div>
           </div>
           <h5 id="unit_Card_Holder_Error" class="center light white-text">No units found.</h5>
+        </div>
+      </div>
+      <!-- Promotion History -->
+      <div class="section" id="promotion_History_Section" style="display: block;">
+        <div class="col s12 m12" id="promotion_Section" style="display: none;">
+          <h5 class="light white-text">Promotion History</h5>
+          <!-- Air Force Cards Here -->
+          <div id="user_Card_Promotion" class="card blue-grey darken-3" style="display: none;">
+            <!-- btn-flat or no? -->
+            <button id="edit_button" class="mod right btn waves-effect blue-grey darken-2 white-text" style="display: none;"><i class="material-icons">mode_edit</i></button>
+            <div id="card_Inside_Promotion">
+              <div class="card-content">
+                <span class="card-title white-text">Username</span>
+                <p class="white-text" id="user_Promotion">Promotion:</p>
+                <p class="white-text" id="user_Promotion_Key">Promotion Key:</p>
+                <p class="white-text" id="user_PromotedBy">Promoted by:</p>
+                <p class="white-text" id="user_PromotedOn">Promoted on:</p>
+              </div>
+              <div class="card-action" style="display: none;">
+                <a id="update_button" class="btn waves-effect blue-grey darken-2 white-text">Update</a>
+                <a id="disregard_button" class="btn waves-effect white blue-grey-text text-darken-2">Back</a>
+              </div>
+            </div>
+          </div>
+          <h5 id="promotion_Card_Holder_Error" class="center light white-text">No promotion history found.</h5>
         </div>
       </div>
       <!-- Sign in Modal -->

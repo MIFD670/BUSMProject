@@ -360,14 +360,14 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = newCard.find('#card_Inside').clone();
+          var newCardInside = $('#card_Inside_Activity').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#activity_Type').html('Activity Type: ' + type);
           newCardInside.find('#activity_Desc').html('Activity Description: ' + description);
           newCardInside.find('#activity_Date').html('Activity Date: ' + date);
           newCardInside.find('#activity_Sponsor').html('Activity Sponsor: ' + sponsor);
-          newCard.find('#card_Inside').remove();
+          newCard.find('#card_Inside_Activity').remove();
           newCard.append(newCardInside);
           console.log('Disregard!');
         });
@@ -434,14 +434,14 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = newCard.find('#card_Inside').clone();
+          var newCardInside = $('#card_Inside_Award').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#award_Name').html('Award Name: ' + awardName);
           newCardInside.find('#award_Citation').html('Award Citation: ' + citation);
           newCardInside.find('#award_By').html('Awarded by: ' + awardedBy);
           newCardInside.find('#award_Date').html('Awarded on: ' + dateAwarded);
-          newCard.find('#card_Inside').remove();
+          newCard.find('#card_Inside_Award').remove();
           newCard.append(newCardInside);
           console.log('Disregard!');
         });
@@ -503,13 +503,13 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = newCard.find('#card_Inside').clone();
+          var newCardInside = $('#card_Inside_Promotion').clone();
           console.log("The Disregard Upgrade button works!");
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#promotion_To').html('Promoted to: ' + promotion);
           newCardInside.find('#promotion_By').html('Promoted by: ' + promotedBy);
           newCardInside.find('#promotion_Date').html('Promotion Date: ' + promoteDate);
-          newCard.find('#card_Inside').remove();
+          newCard.find('#card_Inside_Promotion').remove();
           newCard.append(newCardInside);
           console.log('Disregard!');
         });
@@ -578,7 +578,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         });
         // Disregards update
         newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = newCard.find('#card_Inside').clone();
+          var newCardInside = $('#card_Inside_Unit').clone();
           console.log("The Disregard Upgrade button works!");
           console.log('Disregard: ' + username + branch + unit + entranceDate + departureDate);
           newCardInside.find('.card-title').text(username);
@@ -586,7 +586,7 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCardInside.find('#user_History_Unit').html('Unit: ' + unit);
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
-          newCard.find('#card_Inside').remove();
+          newCard.find('#card_Inside_Unit').remove();
           newCard.append(newCardInside);
           console.log('Disregard!');
         });

@@ -184,6 +184,8 @@ function showData() {
     //     Materialize.toast('Vocabulary Word Removed!', 4000);
     //   });
     // });
+    $('#loader_Container').css('display', 'none');
+    $('#main_Container').css('display', 'block');
   });
   //Loops through the approved transfer requests
   firebaseRef.ref('/AcceptTransfer').orderByChild("acceptedOn").limitToLast(10).on("child_added", snap => {
@@ -259,8 +261,6 @@ function displayBranchData(branchIdx, adminIdx) {
   }
   $('#accepted_Section').css('display', 'block');
   $('#denied_Section').css('display', 'block');
-  $('#loader_Container').css('display', 'none');
-  $('#main_Container').css('display', 'block');
 }
 
 function capitalizeFirstLetter(wordIdx) {
