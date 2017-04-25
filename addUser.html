@@ -100,13 +100,13 @@
             <li><a href="search.html" class="white-text"><i class="white-text material-icons">search</i>Search</a></li>
             <li><div class="divider"></div></li>
             <div class="normal" style="display: none;">
-            <li><a class="subheader white-text">Administrator</a></li>
-            <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
-            <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
-            <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
-            <li class="divider"></li>
-            <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
-            <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
+              <li><a class="subheader white-text">Administrator</a></li>
+              <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
+              <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
+              <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
+              <li class="divider"></li>
+              <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
+              <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
             </div>
             <li id="transfer_Nav_Btn_SideNav"><a id="transfer_Nav_Btn_Link_SideNav" class="btn waves-effect blue darken-1">Transfer</a></li>
             <li id="sign_In_Nav_Btn_SideNav" hidden><a id="sign_In_Nav_Btn_Link_SideNav" class="btn waves-effect red darken-1">Sign In</a></li>
@@ -430,6 +430,16 @@
         messagingSenderId: "827489391075"
       };
       firebase.initializeApp(config);
+      </script>
+      <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-98022200-1', 'auto');
+      ga('send', 'pageview');
+
       </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="js/init.js"></script>
