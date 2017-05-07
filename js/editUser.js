@@ -517,7 +517,7 @@ $('#add_Award_Btn').on("click", function() {
     dateAwarded: date,
     awardedBy: currentUser
   };
-  if ((award == null) || (award == "Select Branch")){
+  if ((award.length == 0) || (award == null)){
     $('#award_User_Error').html('Error: Award value invalid. Please select a valid award.');
     $('#award_User_Error').css('display', 'block');
     $("#awards_Section").animate({ scrollTop: 0 }, "slow");
@@ -530,8 +530,7 @@ $('#add_Award_Btn').on("click", function() {
     return;
   }
   firebaseRef.ref('/Users/' + username + '/awards').child(awardNumber).update(awardToAdd);
-  $('#add_User_Award').prop('selectedIndex', 0);
-  $('#add_User_Award').material_select();
+  $('#add_User_Award').val('');
   $('#award_Description').val('');
 });
 // Add activity to user Firebase
