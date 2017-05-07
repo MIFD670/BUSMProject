@@ -65,7 +65,7 @@ function initApp() {
           console.log('Text meets the limit');
           text = text1;
         }
-        if ((userAdmin == "owner") || (userAdmin == "admin") || (userAdmin == "mod") || (userAdmin == "normal")) {
+        if ((userAdmin == "owner") || (userAdmin == "superAdmin") || (userAdmin == "admin") || (userAdmin == "mod") || (userAdmin == "normal")) {
           console.log('Has the needed admin');
           console.log('Text: ' + text + text2)
           $('#admin_Btn_Text').html(text + text2);
@@ -80,13 +80,23 @@ function initApp() {
             $('.mod').css('display', 'block');
             $('.mod').removeClass("disabled");
           }
-          if ((userAdmin == "owner") || (userAdmin == "admin")) {
+          if ((userAdmin == "owner") || (userAdmin == "superAdmin") || (userAdmin == "admin")) {
             $('.normal').css('display', 'block');
             $('.normal').removeClass("disabled");
             $('.mod').css('display', 'block');
             $('.mod').removeClass("disabled");
             $('.admin').css('display', 'block');
             $('.admin').removeClass("disabled");
+          }
+          if ((userAdmin == "owner") || (userAdmin == "superAdmin")) {
+            $('.normal').css('display', 'block');
+            $('.normal').removeClass("disabled");
+            $('.mod').css('display', 'block');
+            $('.mod').removeClass("disabled");
+            $('.admin').css('display', 'block');
+            $('.admin').removeClass("disabled");
+            $('.superAdmin').css('display', 'block');
+            $('.superAdmin').removeClass("disabled");
           }
           $('#sign_In_Nav_Btn').css('display', 'none');
           $('#sign_In_Nav_Btn_SideNav').css('display', 'none');
@@ -104,6 +114,39 @@ function initApp() {
       $('#sign_In_Nav_Btn_SideNav').css('display', 'block');
       //$('#sign_In_Nav_Btn_Link').attr('href', '#sign_In');
     }
+  });
+  // Listen for announcements
+  firebaseRef.ref('/Announcements/').on("child_added", snap => {
+    var key = snap.key;
+    var username = capitalizeFirstLetter(snap.child('username').val());
+    var date = snap.child('date').val();
+    var message = snap.child('message').val();
+    var color = snap.child('color').val();
+    var type;
+
+    if (color == "#fb8c00") {
+      type = "Normal";
+    } else if (color == "#e53935") {
+      type = "Important";
+    } else {
+      type = "Unknown";
+    }
+    // Console logs
+    console.log('Message: ' + message + ', ' +  ', color: ' + color);
+    // Creates a clone of the template to edit
+    var newMessage;
+    if (type == "Important") {
+      newMessage = $('#announcement_important').clone();
+    } else if (type == "Normal") {
+      newMessage = $('#announcement_normal').clone();
+    } else if (type == "Unknown") {
+      newMessage = $('#announcement_normal').clone();
+    }
+    newMessage.removeAttr('id');
+    newMessage.text(message);
+    newMessage.css('display', '');
+    $('#announcement').append(newMessage);
+    $('#announcement').css('display', 'block');
   });
 }
 // Sign in

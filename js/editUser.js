@@ -41,6 +41,346 @@ var search_Username;
 var newUnitKey;
 var activityKey;
 var unitHistoryKey;
+var currentUnitPosition;
+var awardList = {
+  "Medal of Honor": 'Ribbons/1.png',
+  "Army Distinguished Service Cross": 'Ribbons/2.png',
+  "Navy Cross": 'Ribbons/3.png',
+  "Air Force Cross": 'Ribbons/4.png',
+  "Coast Guard Cross": 'Ribbons/5.png',
+  "Defense Distinguished Service Medal": 'Ribbons/6.png',
+  "Homeland Security Distinguished Service Medal": 'Ribbons/7.png',
+  "Distinguished Service Medal (Army)": 'Ribbons/8.png',
+  "Navy Distinguished Service Medal": 'Ribbons/9.png',
+  "Air Force Distinguished Service Medal": 'Ribbons/10.png',
+  "Coast Guard Distinguished Service Medal": 'Ribbons/11.png',
+  "Silver Star</option": 'Ribbons/12.png',
+  "Defense Superior Service Medal": 'Ribbons/13.png',
+  "Legion of Merit": 'Ribbons/14.png',
+  "Distinguished Flying Cross": 'Ribbons/15.png',
+  "Soldier's Medal": 'Ribbons/16.png',
+  "Navy and Marine Corps Medal": 'Ribbons/17.png',
+  "Airman's Medal": 'Ribbons/18.png',
+  "Coast Guard Medal": 'Ribbons/19.png',
+  "Bronze Star Medal": 'Ribbons/20.png',
+  "Purple Heart": 'Ribbons/21.png',
+  "Defense Meritorious Service Medal": 'Ribbons/22.png',
+  "Meritorious Service Medal": 'Ribbons/23.png',
+  "Air Medal": 'Ribbons/24.png',
+  "Aerial Achievement Medal": 'Ribbons/25.png',
+  "Joint Service Commendation Medal": 'Ribbons/26.png',
+  "Army Commendation Medal": 'Ribbons/27.png',
+  "Navy and Marine Corps Commendation Medal": 'Ribbons/28.png',
+  "Air Force Commendation Medal": 'Ribbons/29.png',
+  "Coast Guard Commendation Medal": 'Ribbons/30.png',
+  "Joint Service Achievement Medal": 'Ribbons/31.png',
+  "Army Achievement Medal": 'Ribbons/32.png',
+  "Navy and Marine Corps Achievement Medal": 'Ribbons/33.png',
+  "Air Force Achievement Medal": 'Ribbons/34.png',
+  "Coast Guard Achievement Medal": 'Ribbons/35.png',
+  "Commandant's Letter of Commendation": 'Ribbons/36.png',
+  "Navy Combat Action Ribbon": 'Ribbons/37.png',
+  "Coast Guard Combat Action Ribbon": 'Ribbons/38.png',
+  "Air Force Combat Action Medal": 'Ribbons/39.png',
+  "Army and Air Force Presidential Unit Citation": 'Ribbons/40.png',
+  "Navy and Marine Corps Presidential Unit Citation": 'Ribbons/41.png',
+  "Coast Guard Presidential Unit Citation": 'Ribbons/42.png',
+  "Joint Meritorious Unit Award": 'Ribbons/43.png',
+  "Army Valorous Unit Award": 'Ribbons/44.png',
+  "Navy Unit Commendation": 'Ribbons/45.png',
+  "Air Force Gallant Unit Citation": 'Ribbons/46.png',
+  "Coast Guard Unit Commendation": 'Ribbons/47.png',
+  "Army Meritorious Unit Commendation": 'Ribbons/48.png',
+  "Navy Meritorious Unit Commendation": 'Ribbons/49.png',
+  "Air Force Meritorious Unit Award": 'Ribbons/50.png',
+  "Coast Guard Meritorious Unit Commendation":  51,
+  "Army Superior Unit Award": 'Ribbons/52.png',
+  "Air Force Outstanding Unit Award": 'Ribbons/53.png',
+  "Coast Guard Meritorious Team Commendation": 'Ribbons/54.png',
+  "Navy E Ribbon": 'Ribbons/55.png',
+  "Air Force Organizational Excellence Award": 'Ribbons/56.png',
+  "Coast Guard E Ribbon": 'Ribbons/57.png',
+  "Prisoner of War Medal": 'Ribbons/58.png',
+  "Army Good Conduct Medal": 'Ribbons/59.png',
+  "Navy Good Conduct Medal": 'Ribbons/60.png',
+  "Air Force Good Conduct Medal": 'Ribbons/61.png',
+  "Marine Corps Good Conduct Medal": 'Ribbons/62.png',
+  "Coast Guard Good Conduct Medal": 'Ribbons/63.png',
+  "Combat Readiness Medal (Air Force)": 'Ribbons/64.png',
+  "Outstanding Airman of the Year Ribbon": 'Ribbons/65.png',
+  "Coast Guard Enlisted Person of the Year Ribbon": 'Ribbons/66.png',
+  "Air Force Recognition Ribbon": 'Ribbons/67.png',
+  "Army Reserve Components Achievement Medal": 'Ribbons/68.png',
+  "Naval Reserve Meritorious Service Medal": 'Ribbons/69.png',
+  "Air Reserve Forces Meritorious Service Medal": 'Ribbons/70.png',
+  "Selected Marine Corps Reserve Medal": 'Ribbons/71.png',
+  "Coast Guard Reserve Good Conduct Medal": 'Ribbons/72.png',
+  "Armed Forces Reserve Medal": 'Ribbons/73.png',
+  "Navy Expeditionary Medal": 'Ribbons/74.png',
+  "Marine Corps Expeditionary Medal": 'Ribbons/75.png',
+  "Army of Occupation Medal": 'Ribbons/76.png',
+  "Navy Occupation Service Medal": 'Ribbons/77.png',
+  "National Defense Service Medal": 'Ribbons/78.png',
+  "Global War on Terrorism Service Medal": 'Ribbons/79.png',
+  "Korea Defense Service Medal": 'Ribbons/80.png',
+  "Armed Forces Service Medal": 'Ribbons/81.png',
+  "Humanitarian Service Medal": 'Ribbons/82.png',
+  "Outstanding Volunteer Service Medal": 'Ribbons/83.png',
+  "Antarctica Service Medal": 'Ribbons/84.png',
+  "Coast Guard Arctic Service Medal": 'Ribbons/85.png',
+  "Air and Space Campaign Medal": 'Ribbons/86.png',
+  "Nuclear Deterrence Operations Service Medal": 'Ribbons/87.png',
+  "Armed Forces Expeditionary Medal": 'Ribbons/88.png',
+  "Southwest Asia Service Medal": 'Ribbons/90.png',
+  "Afghanistan Campaign Medal": 'Ribbons/92.png',
+  "Iraq Campaign Medal": 'Ribbons/93.png',
+  "Inherent Resolve Campaign Medal": 'Ribbons/94.png',
+  "Global War on Terrorism Expeditionary Medal": 'Ribbons/95.png',
+  "Navy Sea Service Deployment Ribbon": 'Ribbons/96.png',
+  "Coast Guard Sea Service Ribbon": 'Ribbons/97.png',
+  "Army Sea Duty Ribbon": 'Ribbons/98.png',
+  "Naval Reserve Sea Service Ribbon": 'Ribbons/99.png',
+  "Air Force Expeditionary Service Ribbon": 'Ribbons/100.png',
+  "Navy Arctic Service Ribbon": 'Ribbons/101.png',
+  "Navy and Marine Corps Overseas Service Ribbon": 'Ribbons/102.png',
+  "Coast Guard Overseas Service Ribbon": 'Ribbons/103.png',
+  "Air Force Overseas Short Tour Service Ribbon": 'Ribbons/104.png',
+  "Air Force Overseas Long Tour Service Ribbon": 'Ribbons/105.png',
+  "Army Overseas Service Ribbon": 'Ribbons/106.png',
+  "Army Reserve Overseas Training Ribbon": 'Ribbons/107.png',
+  "Coast Guard Restricted Duty Ribbon": 'Ribbons/108.png',
+  "Coast Guard Special Operations Service Ribbon": 'Ribbons/109.png',
+  "Air Force Special Duty Ribbon": 'Ribbons/110.png',
+  "Air Force Longevity Service Award": 'Ribbons/111.png',
+  "Navy Recruiting Service Ribbon": 'Ribbons/112.png',
+  "Air Force Recruiter Ribbon": 'Ribbons/113.png',
+  "Marine Corps Recruiting Ribbon": 'Ribbons/114.png',
+  "Coast Guard Recruiting Service Ribbon": 'Ribbons/115.png',
+  "Navy Recruit Training Service Ribbon": 'Ribbons/117.png',
+  "Marine Corps Drill Instructor Ribbon": 'Ribbons/118.png',
+  "Marine Corps Combat Instructor Ribbon": 'Ribbons/119.png',
+  "Navy Ceremonial Guard Ribbon": 'Ribbons/120.png',
+  "Marine Corps Security Guard Ribbon": 'Ribbons/121.png',
+  "Army NCO Professional Development Ribbon": 'Ribbons/122.png',
+  "Air Force NCO PME Graduate Ribbon": 'Ribbons/123.png',
+  "Air Force Basic Military Training Honor Graduate Ribbon": 'Ribbons/124.png',
+  "Coast Guard Basic Training Honor Graduate Ribbon": 'Ribbons/125.png',
+  "Navy Basic Military Training Honor Graduate Ribbon": 'Ribbons/126.png',
+  "Army Service Ribbon": 'Ribbons/127.png',
+  "Air Force Training Ribbon": 'Ribbons/128.png',
+  "Air Force Small Arms Expert Marksmanship Ribbon": 'Ribbons/129.png',
+  "Coast Guard Distinguished Marksman Award": 'Ribbons/130.png',
+  "Coast Guard Silver Rifle Excellence-in-Competition Award": 'Ribbons/131.png',
+  "Coast Guard Bronze Rifle Excellence-in-Competition Award": 'Ribbons/132.png',
+  "Navy Expert Rifleman Medal": 'Ribbons/133.png',
+  "Coast Guard Expert Rifleman Medal": 'Ribbons/134.png',
+  "Navy Rifle Marksmanship Ribbon with Sharpshooter Device": 'Ribbons/135.png',
+  "Coast Guard Rifle Marksmanship Ribbon with Sharpshooter Device": 'Ribbons/136.png',
+  "Navy Rifle Marksmanship Ribbon": 'Ribbons/137.png',
+  "Coast Guard Rifle Marksmanship Ribbon": 'Ribbons/138.png',
+  "Coast Guard Distinguished Pistol Shot Award": 'Ribbons/139.png',
+  "Coast Guard Silver Pistol Excellence-in-Competition Award": 'Ribbons/140.png',
+  "Coast Guard Bronze Pistol Excellence-in-Competition Award": 'Ribbons/141.png',
+  "Navy Expert Pistol Shot Medal": 'Ribbons/142.png',
+  "Coast Guard Expert Pistol Shot Medal": 'Ribbons/143.png',
+  "Navy Pistol Marksmanship Ribbon with Sharpshooter Device": 'Ribbons/144.png',
+  "Coast Guard Pistol Marksmanship Ribbon with Sharpshooter Device": 'Ribbons/145.png',
+  "Navy Pistol Marksmanship Ribbon": 'Ribbons/146.png',
+  "Coast Guard Pistol Marksmanship Ribbon": 'Ribbons/147.png',
+  "Operation SideSwipe Campaign Medal": 'Ribbons/148.png',
+  "BUSM-BA Conflict Medal": 'Ribbons/149.png',
+  "Chairman of Joint Chiefs of Staff Service Medal": 'Ribbons/150.png',
+  " Vice Chairman of Joint Chiefs of Staff Service Medal": 'Ribbons/151.png',
+  "Senion Enlisted Advisor to the Chairman of Joint Chiefs of Staff Service Medal": 'Ribbons/152.png',
+  "Chief of Staff of the Army Service Medal": 'Ribbons/153.png',
+  "Vice Chief of Staff of the Army Service Medal": 'Ribbons/154.png',
+  "Sergeant Major of the Army Service Medal": 'Ribbons/155.png',
+  "Chief of Naval Operations Service Medal": 'Ribbons/156.png',
+  "Vice Chief of Naval Operations Service Medal": 'Ribbons/157.png',
+  "Master Chief Petty Officer of the Navy Service Medal": 'Ribbons/158.png',
+  "Chief of Staff of the Air Force Service Medal": 'Ribbons/159.png',
+  "Vice Chief of Staff of the Air Force Service Medal": 'Ribbons/160.png',
+  "Command Master Sergeant of the Air Force Service Medal": 'Ribbons/161.png',
+  "Commadant of the Marine Corps Service Medal": 'Ribbons/162.png',
+  "Assistant Commadant of the Marine Corps Service Medal": 'Ribbons/163.png',
+  "Sergeant Major of the Marine Corps Service Medal": 'Ribbons/164.png',
+  "Defense Advanced Research Projects Agency Service Medal": /*'Ribbons/165.png'*/ null,
+  "Enlisted Service Member of the Quarter Achievement Medal": /*'Ribbons/166.png'*/ null,
+  "Warrant Officer of the Quarter Achievement Medal": /*'Ribbons/167.png'*/ null,
+  "Officer of the Quarter Achievement Medal": /*'Ribbons/168.png'*/ null,
+  "Founder's Meritorious Acheivement Medal": 'Ribbons/169.png',
+  "Founder's Distinguished Service Ribbon": 'Ribbons/170.png'
+};
+var awardListNumber = {
+  "Medal of Honor": 1,
+  "Army Distinguished Service Cross": 2,
+  "Navy Cross": 3,
+  "Air Force Cross": 4,
+  "Coast Guard Cross": 5,
+  "Defense Distinguished Service Medal": 6,
+  "Homeland Security Distinguished Service Medal": 7,
+  "Distinguished Service Medal (Army)": 8,
+  "Navy Distinguished Service Medal": 9,
+  "Air Force Distinguished Service Medal": 10,
+  "Coast Guard Distinguished Service Medal": 11,
+  "Silver Star</option": 12,
+  "Defense Superior Service Medal": 13,
+  "Legion of Merit": 14,
+  "Distinguished Flying Cross": 15,
+  "Soldier's Medal": 16,
+  "Navy and Marine Corps Medal": 17,
+  "Airman's Medal": 18,
+  "Coast Guard Medal": 19,
+  "Bronze Star Medal":  20,
+  "Purple Heart":  21,
+  "Defense Meritorious Service Medal": 22,
+  "Meritorious Service Medal": 23,
+  "Air Medal": 24,
+  "Aerial Achievement Medal": 25,
+  "Joint Service Commendation Medal": 26,
+  "Army Commendation Medal": 27,
+  "Navy and Marine Corps Commendation Medal": 28,
+  "Air Force Commendation Medal": 29,
+  "Coast Guard Commendation Medal": 30,
+  "Joint Service Achievement Medal": 31,
+  "Army Achievement Medal": 32,
+  "Navy and Marine Corps Achievement Medal": 33,
+  "Air Force Achievement Medal": 34,
+  "Coast Guard Achievement Medal": 35,
+  "Commandant's Letter of Commendation": 36,
+  "Navy Combat Action Ribbon": 37,
+  "Coast Guard Combat Action Ribbon": 38,
+  "Air Force Combat Action Medal": 39,
+  "Army and Air Force Presidential Unit Citation":  40,
+  "Navy and Marine Corps Presidential Unit Citation":  41,
+  "Coast Guard Presidential Unit Citation": 42,
+  "Joint Meritorious Unit Award": 43,
+  "Army Valorous Unit Award": 44,
+  "Navy Unit Commendation": 45,
+  "Air Force Gallant Unit Citation": 46,
+  "Coast Guard Unit Commendation": 47,
+  "Army Meritorious Unit Commendation": 48,
+  "Navy Meritorious Unit Commendation": 49,
+  "Air Force Meritorious Unit Award": 50,
+  "Coast Guard Meritorious Unit Commendation": 51,
+  "Army Superior Unit Award": 52,
+  "Air Force Outstanding Unit Award": 53,
+  "Coast Guard Meritorious Team Commendation": 54,
+  "Navy E Ribbon": 55,
+  "Air Force Organizational Excellence Award": 56,
+  "Coast Guard E Ribbon": 57,
+  "Prisoner of War Medal": 58,
+  "Army Good Conduct Medal": 59,
+  "Navy Good Conduct Medal": 60,
+  "Air Force Good Conduct Medal": 61,
+  "Marine Corps Good Conduct Medal": 62,
+  "Coast Guard Good Conduct Medal": 63,
+  "Combat Readiness Medal (Air Force)": 64,
+  "Outstanding Airman of the Year Ribbon": 65,
+  "Coast Guard Enlisted Person of the Year Ribbon": 66,
+  "Air Force Recognition Ribbon": 67,
+  "Army Reserve Components Achievement Medal": 68,
+  "Naval Reserve Meritorious Service Medal": 69,
+  "Air Reserve Forces Meritorious Service Medal": 70,
+  "Selected Marine Corps Reserve Medal": 71,
+  "Coast Guard Reserve Good Conduct Medal": 'Ribbons/72.png',  number: 72,
+  "Armed Forces Reserve Medal": 73,
+  "Navy Expeditionary Medal": 74,
+  "Marine Corps Expeditionary Medal": 75,
+  "Army of Occupation Medal": 76,
+  "Navy Occupation Service Medal": 77,
+  "National Defense Service Medal": 78,
+  "Global War on Terrorism Service Medal": 79,
+  "Korea Defense Service Medal": 80,
+  "Armed Forces Service Medal": 81,
+  "Humanitarian Service Medal": 82,
+  "Outstanding Volunteer Service Medal": 83,
+  "Antarctica Service Medal": 84,
+  "Coast Guard Arctic Service Medal": 85,
+  "Air and Space Campaign Medal": 86,
+  "Nuclear Deterrence Operations Service Medal": 87,
+  "Armed Forces Expeditionary Medal": 88,
+  "Southwest Asia Service Medal": 90,
+  "Afghanistan Campaign Medal": 92,
+  "Iraq Campaign Medal": 93,
+  "Inherent Resolve Campaign Medal": 94,
+  "Global War on Terrorism Expeditionary Medal": 95,
+  "Navy Sea Service Deployment Ribbon": 96,
+  "Coast Guard Sea Service Ribbon": 97,
+  "Army Sea Duty Ribbon": 98,
+  "Naval Reserve Sea Service Ribbon": 99,
+  "Air Force Expeditionary Service Ribbon": 100,
+  "Navy Arctic Service Ribbon": 101,
+  "Navy and Marine Corps Overseas Service Ribbon": 102,
+  "Coast Guard Overseas Service Ribbon": 103,
+  "Air Force Overseas Short Tour Service Ribbon": 104,
+  "Air Force Overseas Long Tour Service Ribbon": 105,
+  "Army Overseas Service Ribbon": 106,
+  "Army Reserve Overseas Training Ribbon": 107,
+  "Coast Guard Restricted Duty Ribbon": 108,
+  "Coast Guard Special Operations Service Ribbon": 109,
+  "Air Force Special Duty Ribbon": 110,
+  "Air Force Longevity Service Award": 111,
+  "Navy Recruiting Service Ribbon": 112,
+  "Air Force Recruiter Ribbon": 113,
+  "Marine Corps Recruiting Ribbon": 114,
+  "Coast Guard Recruiting Service Ribbon": 115,
+  "Navy Recruit Training Service Ribbon": 117,
+  "Marine Corps Drill Instructor Ribbon": 118,
+  "Marine Corps Combat Instructor Ribbon": 119,
+  "Navy Ceremonial Guard Ribbon": 120,
+  "Marine Corps Security Guard Ribbon": 121,
+  "Army NCO Professional Development Ribbon": 122,
+  "Air Force NCO PME Graduate Ribbon": 123,
+  "Air Force Basic Military Training Honor Graduate Ribbon": 124,
+  "Coast Guard Basic Training Honor Graduate Ribbon": 125,
+  "Navy Basic Military Training Honor Graduate Ribbon": 126,
+  "Army Service Ribbon": 127,
+  "Air Force Training Ribbon": 128,
+  "Air Force Small Arms Expert Marksmanship Ribbon": 129,
+  "Coast Guard Distinguished Marksman Award": 130,
+  "Coast Guard Silver Rifle Excellence-in-Competition Award": 131,
+  "Coast Guard Bronze Rifle Excellence-in-Competition Award": 132,
+  "Navy Expert Rifleman Medal": 133,
+  "Coast Guard Expert Rifleman Medal": 134,
+  "Navy Rifle Marksmanship Ribbon with Sharpshooter Device": 135,
+  "Coast Guard Rifle Marksmanship Ribbon with Sharpshooter Device": 136,
+  "Navy Rifle Marksmanship Ribbon": 137,
+  "Coast Guard Rifle Marksmanship Ribbon": 138,
+  "Coast Guard Distinguished Pistol Shot Award": 139,
+  "Coast Guard Silver Pistol Excellence-in-Competition Award": 140,
+  "Coast Guard Bronze Pistol Excellence-in-Competition Award": 141,
+  "Navy Expert Pistol Shot Medal": 142,
+  "Coast Guard Expert Pistol Shot Medal": 143,
+  "Navy Pistol Marksmanship Ribbon with Sharpshooter Device": 144,
+  "Coast Guard Pistol Marksmanship Ribbon with Sharpshooter Device": 145,
+  "Navy Pistol Marksmanship Ribbon": 146,
+  "Coast Guard Pistol Marksmanship Ribbon": 147,
+  "Operation SideSwipe Campaign Medal": 148,
+  "BUSM-BA Conflict Medal": 149,
+  "Chairman of Joint Chiefs of Staff Service Medal": 150,
+  " Vice Chairman of Joint Chiefs of Staff Service Medal": 151,
+  "Senion Enlisted Advisor to the Chairman of Joint Chiefs of Staff Service Medal": 152,
+  "Chief of Staff of the Army Service Medal": 153,
+  "Vice Chief of Staff of the Army Service Medal": 154,
+  "Sergeant Major of the Army Service Medal": 155,
+  "Chief of Naval Operations Service Medal": 156,
+  "Vice Chief of Naval Operations Service Medal": 157,
+  "Master Chief Petty Officer of the Navy Service Medal": 158,
+  "Chief of Staff of the Air Force Service Medal": 159,
+  "Vice Chief of Staff of the Air Force Service Medal": 160,
+  "Command Master Sergeant of the Air Force Service Medal": 161,
+  "Commadant of the Marine Corps Service Medal": 162,
+  "Assistant Commadant of the Marine Corps Service Medal": 163,
+  "Sergeant Major of the Marine Corps Service Medal": 164,
+  "Defense Advanced Research Projects Agency Service Medal": 165,
+  "Enlisted Service Member of the Quarter Achievement Medal": 166,
+  "Warrant Officer of the Quarter Achievement Medal": 167,
+  "Officer of the Quarter Achievement Medal": 168,
+  "Founder's Meritorious Acheivement Medal": 169,
+  "Founder's Distinguished Service Ribbon": 170
+};
+
 
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
@@ -62,7 +402,7 @@ function displayUserInformation () {
 
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
-    $('#user_Information_Admin').html('Account Type: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
     $('#main_Container').css('display', 'block');
     $('#circular_Loader_Section').css('display', 'none');
   });
@@ -82,6 +422,7 @@ $('#update_User_Btn').on("click", function() {
   var newCurrentUnit = $('#edit_User_CurrentUnit').val();
   var newBranch = $('#edit_User_Branch option:selected').text();
   var newPaygrade = $('#edit_User_Paygrade option:selected').val();
+  var newCurrentUnitPosition = $('#edit_User_CurrentUnit_Pos').val();
   var date = getCurrentDate();
   console.log('Current paygrade is: ' + paygrade);
   console.log('New paygrade is: ' + newPaygrade);
@@ -102,6 +443,7 @@ $('#update_User_Btn').on("click", function() {
       username: username,
       branch: newBranch,
       unit: newCurrentUnit,
+      unitPosition: newCurrentUnitPosition,
       entranceDate: date,
       departureDate: 'UPDATE'
     };
@@ -156,14 +498,14 @@ $('#update_User_Btn').on("click", function() {
 $('#add_Award_Btn').on("click", function() {
   var username = $('#edit_User_Username').val().toLowerCase();
   console.log('Username for awards:' + username);
-  var award = $('#add_User_Award option:selected').val();
-  var awardName = $('#add_User_Award option:selected').text();
-  var image = $('#add_User_Award option:selected').data('icon');
+  var award = $('#add_User_Award').val();
+  var image = getAwardURL(award);
+  var awardNumber = getAwardNumber(award);
   console.log('The image is: ' + image);
   var citation = $('#award_Description').val();
   var date = getCurrentDate();
   var awardToAdd = {
-    awardName: awardName,
+    awardName: award,
     awardImage: image,
     citation: citation,
     dateAwarded: date,
@@ -181,7 +523,7 @@ $('#add_Award_Btn').on("click", function() {
     $("#awards_Section").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  firebaseRef.ref('/Users/' + username + '/awards').child(award).update(awardToAdd);
+  firebaseRef.ref('/Users/' + username + '/awards').child(awardNumber).update(awardToAdd);
   $('#add_User_Award').prop('selectedIndex', 0);
   $('#add_User_Award').material_select();
   $('#award_Description').val('');
@@ -224,12 +566,13 @@ $('#add_Unit_History_Btn').on("click", function() {
   var username = $('#edit_User_Username').val().toLowerCase();
   var branch = $('#add_User_Unit_Branch option:selected').text();
   var unitName = $('#add_User_Unit_Name').val();
+  var unitPosition = $('#add_User_Unit_Position').val();
   var entranceDate = $('#add_User_Unit_Date').val();
   var actualDepartureDate;
   var departureDate = $('#add_User_Unit_Date_Depart').val();
   var currentlyServing;
 
-  if ((branch.length == 0) || (unitName.length == 0) || (!entranceDate)) {
+  if ((branch.length == 0) || (unitName.length == 0) || (unitPosition.length == 0) || (!entranceDate)) {
     $('#unit_User_Error').html('Error: Input values invalid. Please add values before proceeding.');
     $('#unit_User_Error').css('display', 'block');
     $("#edit_Unit_Section").animate({ scrollTop: 0 }, "slow");
@@ -249,6 +592,7 @@ $('#add_Unit_History_Btn').on("click", function() {
     username: username,
     branch: branch,
     unit: unitName,
+    unitPosition: unitPosition,
     entranceDate: entranceDate,
     departureDate: actualDepartureDate
   };
@@ -259,6 +603,7 @@ $('#add_Unit_History_Btn').on("click", function() {
   $('#unit_User_Error').css('display', 'none');
   $('#unit_User_Error').text('');
   $('#add_User_Unit_Name').val('');
+  $('#add_User_Unit_Position').val('');
   $('#add_User_Unit_Branch').prop('selectedIndex', 0);
   $('#add_User_Unit_Branch').material_select();
   $('#add_User_Unit_Date').val(null);
@@ -474,6 +819,22 @@ function getCurrentDate() {
   return today;
 }
 
+function getAwardURL(awardIdx) {
+  var award = awardIdx;
+  var returnAward;
+  console.log(award);
+  returnAward = awardList[award];
+  return returnAward;
+}
+
+function getAwardNumber(awardIdx) {
+  var award = awardIdx;
+  var returnNumber;
+  console.log(award);
+  returnNumber = awardListNumber[award];
+  return returnNumber;
+}
+
 function checkIfUserExists(userIdx) {
   //Checks to see if the user already exists
   var user = userIdx;
@@ -503,6 +864,7 @@ function userExistsCallback(userIdx, verifyIdx) {
     firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
       var username = user;
       currentUnit = snapshot.child('currentUnit').val();
+      currentUnitPosition = snapshot.child('currentUnitPosition').val();
       branch = snapshot.child('branch').val();
       paygrade = snapshot.child('paygrade').val();
       var currentUnitKey = snapshot.child('currentUnitKey').val();
@@ -511,6 +873,8 @@ function userExistsCallback(userIdx, verifyIdx) {
       $('#edit_User_Username_Label').addClass('active');
       $('#edit_User_CurrentUnit').val(currentUnit);
       $('#edit_User_CurrentUnit_Label').addClass('active');
+      $('#edit_User_CurrentUnit_Pos').val(currentUnitPosition);
+      $('#edit_User_CurrentUnit_Pos_Label').addClass('active');
       $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
       $('#edit_User_CurrentUnit_Key_Label').addClass('active');
       $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
@@ -523,6 +887,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       var username = capitalizeFirstLetter(user);
       var currentUnitKey = snap.key;
       var unit = snap.child('unit').val();
+      var currentPosition = snap.child('unitPosition').val();
       var branch = snap.child('branch').val();
       var entranceDate = snap.child('entranceDate').val();
       var departureDate = snap.child('departureDate').val();
@@ -534,6 +899,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       newCard.find('.card-title').text(username);
       newCard.find('#user_History_Branch').html('Branch: ' + branch);
       newCard.find('#user_History_Unit').html('Unit: ' + unit);
+      newCard.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
       newCard.find('#user_History_Unit_Key').html('Unit Key: ' + currentUnitKey);
       newCard.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
       newCard.find('#user_History_Departure').html('Departure Date: ' + departureDate);
@@ -553,6 +919,8 @@ function userExistsCallback(userIdx, verifyIdx) {
         newCard.find('#update_Branch').val(branch);
         newCard.find('#user_History_Unit').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit' type='text'></input><label for='update_Unit' class='active white-text'>Unit</label></div>");
         newCard.find('#update_Unit').val(unit);
+        newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Position</label></div>");
+        newCard.find('#update_Unit_Pos').val(currentPosition);
         newCard.find('#user_History_Unit_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Unit Key</label></div>");
         newCard.find('#update_Key').val(currentUnitKey);
         newCard.find('#user_History_Entrance').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Entrance' type='text'></input><label for='update_Entrance' class='active white-text'>Entrance Date (MM-DD-YYYY)</label></div>");
@@ -570,6 +938,8 @@ function userExistsCallback(userIdx, verifyIdx) {
           console.log('Update Entrance: ' + updateEntrance);
           var updateDeparture = $('#update_Departure').val();
           console.log('Update Departure: ' + updateDeparture);
+          var updatePosition = $('#update_Unit_Pos').val();
+          console.log('Update Position: ' + updatePosition);
           var key = currentUnitKey;
           console.log(key);
           console.log(username);
@@ -578,6 +948,7 @@ function userExistsCallback(userIdx, verifyIdx) {
             username: username,
             branch: updateBranch,
             unit: updateUnit,
+            unitPosition: updatePosition,
             entranceDate: updateEntrance,
             departureDate: updateDeparture
           });
@@ -588,6 +959,7 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCard.find('.card-title').text(username);
           newCardInside.find('#user_History_Branch').html('Branch: ' + updateBranch);
           newCardInside.find('#user_History_Unit').html('Unit: ' + updateUnit);
+          newCardInside.find('#user_History_Unit_Position').html('Position: ' + updatePosition);
           newCardInside.find('#user_History_Unit_Key').html('Key: ' + currentUnitKey);
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + updateEntrance);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + updateDeparture);
@@ -605,6 +977,7 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#user_History_Branch').html('Branch: ' + branch);
           newCardInside.find('#user_History_Unit').html('Unit: ' + unit);
+          newCardInside.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
           newCard.find('#card_Inside').remove();

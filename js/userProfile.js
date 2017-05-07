@@ -111,6 +111,7 @@ function displayData(userIdx) {
     var username = capitalizeFirstLetter(snap.child('username').val());
     var branch = snap.child('branch').val();
     var unit = snap.child('unit').val();
+    var position = capitalizeFirstLetter(snap.child('unitPosition').val());
     var entranceDate = snap.child('entranceDate').val();
     var departureDate = snap.child('departureDate').val();
     // Console logs
@@ -121,6 +122,7 @@ function displayData(userIdx) {
     newInfo.find('#unit_User').text(username);
     newInfo.find('#unit_Branch').text(branch);
     newInfo.find('#unit_Unit').text(unit);
+    newInfo.find('#unit_Unit_Pos').text(position);
     newInfo.find('#unit_Entrance').text(entranceDate);
     newInfo.find('#unit_Departure').text(departureDate);
     newInfo.css('display', '');

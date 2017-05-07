@@ -117,14 +117,14 @@
       </nav>
     </div>
     <div class="announcement" style="display: none;">
-      <h5 id="announcement_important" class="center white-text" style="width: 100%; background-color: #e53935;">This is an important announcement.</h5>
-      <h5 id="announcement_normal" class="center white-text" style="width: 100%; background-color: #fb8c00;">This is a normal announcement.</h5>
+      <h5 id="announcement_important" class="center white-text" style="width: 100%; background-color: #e53935;"></h5>
+      <h5 id="announcement_normal" class="center light white-text" style="width: 100%; background-color: #fb8c00;"></h5>
     </div>
     <!-- Main Page -->
     <!-- Circular Loader -->
     <div id="loader_Container" class="container">
       <div id="circular_Loader_Section" class="section">
-        <div id="circular_Loader" class="preloader-wrapper big active">
+        <div id="circular_Loader" class="preloader-wrapper active">
           <div class="spinner-layer spinner-blue">
             <div class="circle-clipper left">
               <div class="circle"></div>
@@ -175,7 +175,7 @@
           <ul>
             <li><a href="addUser.html" class="normal btn-floating blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Add Users" style="display: none;"><i class="material-icons white-text">add</i></a></li>
             <li><a href="editUser.html" class="mod btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Users" style="display: none;"><i class="material-icons white-text">mode_edit</i></a></li>
-            <li><a href="removeUser.html" class="admin btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Remove Users" style="display: none;"><i class="material-icons white-text">clear_all</i></a></li>
+            <li><a href="removeUser.html" class="admin btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Remove Users" style="display: none;"><i class="material-icons white-text">delete</i></a></li>
           </ul>
         </div>
       </div>
@@ -214,6 +214,10 @@
         <div class="input-field col s12">
           <input id="edit_User_CurrentUnit" type="text" class="white-text" length="10">
           <label id="edit_User_CurrentUnit_Label" for="edit_User_CurrentUnit" class="white-text">Current Unit</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="edit_User_CurrentUnit_Pos" type="text" class="white-text">
+          <label id="edit_User_CurrentUnit_Pos_Label" for="edit_User_CurrentUnit_Pos" class="white-text">Current Unit Position</label>
         </div>
         <div class="input-field col s12">
           <input disabled id="edit_User_CurrentUnit_Key" type="text" class="white-text" length="10">
@@ -267,7 +271,9 @@
             This is an example quotation that uses the blockquote tag
           </blockquote>
           <div class="input-field col s12 m12">
-            <select class="icons white-text" id="add_User_Award">
+            <input type="text" id="add_User_Award" class="autocomplete white-text">
+            <label class="white-text" for="add_User_Award">Awards</label>
+            <!-- <select class="icons white-text" id="add_User_Award">
               <option value="" disabled selected>Select Award</option>
               <option value="1" data-icon="Ribbons/1.png" class="left circle">Medal of Honor</option>
               <option value="2" data-icon="Ribbons/2.png" class="left circle">Army Distinguished Service Cross</option>
@@ -413,7 +419,7 @@
               <option value="145" data-icon="Ribbons/145.png" class="left circle">Coast Guard Pistol Marksmanship Ribbon with Sharpshooter Device</option>
               <option value="146" data-icon="Ribbons/146.png" class="left circle">Navy Pistol Marksmanship Ribbon</option>
               <option value="147" data-icon="Ribbons/147.png" class="left circle">Coast Guard Pistol Marksmanship Ribbon</option>
-            </select>
+            </select> -->
           </div>
           <div class="input-field col s12">
             <textarea id="award_Description" class="materialize-textarea white-text"></textarea>
@@ -474,6 +480,10 @@
             <label for="add_User_Unit_Name" class="white-text">Unit Name</label>
           </div>
           <div class="input-field col s12">
+            <input id="add_User_Unit_Position" type="text" class="white-text">
+            <label for="add_User_Unit_Position" class="white-text">Unit Position</label>
+          </div>
+          <div class="input-field col s12">
             <input id="add_User_Unit_Date" type="date" class="datepicker white-text">
             <label for="add_User_Unit_Date" class="white-text">Entrance Date</label>
           </div>
@@ -511,6 +521,7 @@
                 <span class="card-title white-text">Username</span>
                 <p class="white-text" id="user_History_Branch">Branch:</p>
                 <p class="white-text" id="user_History_Unit">Unit</p>
+                <p class="white-text" id="user_History_Unit_Position">Position</p>
                 <p class="white-text" id="user_History_Unit_Key">Key</p>
                 <p class="white-text" id="user_History_Entrance">Entrance</p>
                 <p class="white-text" id="user_History_Departure">Departure</p>
@@ -742,8 +753,8 @@
 
       </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="js/init.js"></script>
       <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
       <script src="js/firebaseInit.js"></script>
       <script src="js/editUser.js"></script>
     </body>

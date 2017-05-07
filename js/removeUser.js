@@ -38,7 +38,7 @@ var search_Username;
 var newUnitKey;
 var activityKey;
 var unitHistoryKey;
-
+var currentPosition;
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
@@ -59,7 +59,7 @@ function displayUserInformation () {
 
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
-    $('#user_Information_Admin').html('Account Type: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
     $('#main_Container').css('display', 'block');
     $('#circular_Loader_Section').css('display', 'none');
   });
@@ -285,6 +285,7 @@ function userExistsCallback(userIdx, verifyIdx) {
     firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
       var username = user;
       currentUnit = snapshot.child('currentUnit').val();
+      currentPosition = snapshot.child('currentUnitPosition').val();
       branch = snapshot.child('branch').val();
       paygrade = snapshot.child('paygrade').val();
       var currentUnitKey = snapshot.child('currentUnitKey').val();
@@ -293,6 +294,8 @@ function userExistsCallback(userIdx, verifyIdx) {
       $('#edit_User_Username_Label').addClass('active');
       $('#edit_User_CurrentUnit').val(currentUnit);
       $('#edit_User_CurrentUnit_Label').addClass('active');
+      $('#edit_User_CurrentUnit_Pos').val(currentPosition);
+      $('#edit_User_CurrentUnit_Label_Pos').addClass('active');
       $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
       $('#edit_User_CurrentUnit_Key_Label').addClass('active');
       $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
@@ -520,6 +523,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       var username = capitalizeFirstLetter(user);
       var currentUnitKey = snap.key;
       var unit = snap.child('unit').val();
+      var unitPosition = snap.child('unitPosition').val();
       var branch = snap.child('branch').val();
       var entranceDate = snap.child('entranceDate').val();
       var departureDate = snap.child('departureDate').val();
@@ -531,6 +535,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       newCard.find('.card-title').text(username);
       newCard.find('#user_History_Branch').html('Branch: ' + branch);
       newCard.find('#user_History_Unit').html('Unit: ' + unit);
+      newCard.find('#user_History_Unit_Position').html('Position: ' + unitPosition);
       newCard.find('#user_History_Unit_Key').html('Unit Key: ' + currentUnitKey);
       newCard.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
       newCard.find('#user_History_Departure').html('Departure Date: ' + departureDate);
@@ -550,6 +555,8 @@ function userExistsCallback(userIdx, verifyIdx) {
         newCard.find('#update_Branch').val(branch);
         newCard.find('#user_History_Unit').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit' type='text'></input><label for='update_Unit' class='active white-text'>Unit</label></div>");
         newCard.find('#update_Unit').val(unit);
+        newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Unit</label></div>");
+        newCard.find('#update_Unit_Pos').val(unitPosition);
         newCard.find('#user_History_Unit_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Unit Key</label></div>");
         newCard.find('#update_Key').val(currentUnitKey);
         newCard.find('#user_History_Entrance').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Entrance' type='text'></input><label for='update_Entrance' class='active white-text'>Entrance Date (MM-DD-YYYY)</label></div>");
@@ -584,6 +591,7 @@ function userExistsCallback(userIdx, verifyIdx) {
           newCardInside.find('.card-title').text(username);
           newCardInside.find('#user_History_Branch').html('Branch: ' + branch);
           newCardInside.find('#user_History_Unit').html('Unit: ' + unit);
+          newCardInside.find('#user_History_Unit_Position').html('Position: ' + unitPosition);
           newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
           newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
           newCard.find('#card_Inside_Unit').remove();

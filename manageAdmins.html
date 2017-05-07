@@ -21,7 +21,7 @@
     background-color: #e53935;
   }
 
-  #search_Img {
+  #user_Img {
     display: inline-block;
     width: 60px;
     height: 60px;
@@ -34,6 +34,9 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
   }
 
+  #af_Section, #army_Section, #cg_Section, #mc_Section, #navy_Section, #accepted_Section, #denied_Section {
+    display: block;
+  }
   #circular_Loader_Section {
     position: absolute;
     left: 50%;
@@ -46,13 +49,10 @@
     display: none;
   }
 
-  #ribbons_Image {
-    display: none;
-    margin: 0 5px;
+  .inline {
+    display: inline-block;
   }
-  #promotionInformation, #activityInformation, #unitInformation {
-    display: none;
-  }
+
   </style>
 
 </head>
@@ -77,7 +77,7 @@
             <li><a href="index.html" class="white-text">Home</a></li>
             <li><a href="about.html" class="white-text">About</a></li>
             <li><a href="chainOfCommand.html" class="white-text">Chain of Command</a></li>
-            <li class="active"><a href="search.html" class="white-text">Search</a></li>
+            <li><a href="search.html" class="white-text">Search</a></li>
             <li id="transfer_Nav_Btn"><a id="transfer_Nav_Btn_Link" class="btn waves-effect blue darken-1">Transfer</a></li>
             <li id="sign_In_Nav_Btn" hidden><a id="sign_In_Nav_Btn_Link" class="btn waves-effect red darken-1">Sign In</a></li>
             <!-- Dropdown Trigger -->
@@ -102,13 +102,13 @@
             <li><a href="search.html" class="white-text"><i class="white-text material-icons">search</i>Search</a></li>
             <li><div class="divider"></div></li>
             <div class="normal" style="display: none;">
-            <li><a class="subheader white-text">Administrator</a></li>
-            <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
-            <li class="mod" hidden><a href="manageBranch.html" class="white-text"><i class="white-text material-icons">list</i>Manage Branch</a></li>
-            <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
-            <li class="divider"></li>
-            <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
-            <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
+              <li><a class="subheader white-text">Administrator</a></li>
+              <li class="normal"><a href="manageUsers.html" class="white-text"><i class="white-text material-icons">recent_actors</i>Manage Users</a></li>
+              <li class="mod" hidden><a href="manageBranch.html" class="blue-text"><i class="blue-text text-darken-1 material-icons">list</i>Manage Branch</a></li>
+              <li class="admin" hidden><a href="manageAdmins.html" class="white-text"><i class="white-text material-icons">supervisor_account</i>Manage Admin</a></li>
+              <li class="divider"></li>
+              <li hidden><a href="settings.html" class="white-text"><i class="white-text material-icons">settings</i>Settings</a></li>
+              <li><a id="sign_Out_Btn_SideNav" class="red-text"><i class="white-text material-icons">input</i>Sign Out</a></li>
             </div>
             <li id="transfer_Nav_Btn_SideNav"><a id="transfer_Nav_Btn_Link_SideNav" class="btn waves-effect blue darken-1">Transfer</a></li>
             <li id="sign_In_Nav_Btn_SideNav" hidden><a id="sign_In_Nav_Btn_Link_SideNav" class="btn waves-effect red darken-1">Sign In</a></li>
@@ -122,8 +122,8 @@
       <h5 id="announcement_normal" class="center light white-text" style="width: 100%; background-color: #fb8c00;"></h5>
     </div>
     <!-- Main Page -->
-
-    <div id="loader_Container" class="container">
+    <!-- Circular Loader -->
+    <div id="loader_Container" class="container" style="display: block;">
       <div id="circular_Loader_Section" class="section">
         <div id="circular_Loader" class="preloader-wrapper active">
           <div class="spinner-layer spinner-blue">
@@ -168,134 +168,176 @@
         </div>
       </div>
     </div>
+    <!-- Data Divs -->
+    <div id="main_Container" class="container" style="display: none;">
+      <div class="section">
+        <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large waves-effect blue-grey darken-1"><i class="material-icons white-text">menu</i></a>
+          <ul>
+            <li><a href="addUser.html" class="normal btn-floating blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Add Users" style="display: none;"><i class="material-icons white-text">add</i></a></li>
+            <li><a href="editUser.html" class="mod btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Users" style="display: none;"><i class="material-icons white-text">mode_edit</i></a></li>
+            <li><a href="removeUser.html" class="admin btn-floating disabled blue-grey darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Remove Users" style="display: none;"><i class="material-icons white-text">delete</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="header center light white-text">Manage Administrators</h3>
+      <div class="section">
+        <h5 class="white-text">Your Information:</h5>
+        <p id="user_Information_Username" class="white-text">Username:</p>
+        <p id="user_Information_Branch" class="white-text">Branch:</p>
+        <p id="user_Information_Admin" class="white-text">Account Type:</p>
+      </div>
 
-    <div id="data_Container" style="display: none;">
-      <div class="container">
-        <div class="section">
-          <div class="col s12 m12">
-            <div id="userProfile_Card" class="card-panel blue-grey darken-3">
-              <img id="search_Img" class="circle responsive-img" src="http://www.w3schools.com/w3css/img_avatar3.png" style="vertical-align: middle; display: inline;">
-              <span id="username" class="white-text" style="margin-left: 20px; font-size: 26px; vertical-align: middle; display: inline;"></span>
+      <!-- Admin Actions -->
+      <div class="card blue-grey darken-3">
+        <div class="card-content">
+          <h5 class="white-text">Administrative Actions</h5>
+        </div>
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width blue-grey darken-2">
+            <li class="tab"><a class="active" href="#server_Announcements">Announcements</a></li>
+            <li class="tab"><a href="#slider_Settings">Slider Settings</a></li>
+            <li class="tab"><a href="#server_Settings">Server Settings</a></li>
+          </ul>
+        </div>
+        <div class="card-content  blue-grey darken-3">
+          <div id="server_Announcements">
+            <h5 class="light white-text">Announcements</h5>
+            <p class="red-text">Note: This announcement system is to be SOLELY used for website announcements involving the development of this website. Any misuse or abuse of this system will result in immediate revokation of ALL administrative priviledges in this website.</p>
+            <blockquote id="announcement_Error" class="white-text" style="font-size: 20px; display: none;">
+              This is an example quotation that uses the blockquote tag
+            </blockquote>
+            <p class="light white-text" style="font-size: 18px;"><u>Important</u></p>
+            <div class="row">
+            <div class="input-field col s8">
+              <input id="important_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
+            </div>
+            <br>
+            <div class="col s2">
+              <a id="important_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
             </div>
           </div>
-          <!-- Specifics -->
+          <p class="light white-text" style="font-size: 18px;"><u>Normal</u></p>
           <div class="row">
-            <div class="col s12 m3">
-              <div class="card-panel teal darken-2 center">
-                <span id="rank" class="white-text"></span>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card-panel blue-grey darken-3 center">
-                <span id="paygrade" class="white-text"></span>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card-panel teal darken-2 center">
-                <span id="branch" class="white-text"></span>
-              </div>
-            </div>
-            <div class="col s12 m3">
-              <div class="card-panel blue-grey darken-3 center">
-                <span id="unit" class="white-text"></span>
-              </div>
-            </div>
+          <div class="input-field col s8">
+            <input id="normal_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
           </div>
-          <!-- Awards -->
-          <div class="col s12 m12">
-            <div id="" class="card-panel blue-grey darken-3">
-              <h5 class="light white-text">Awards</h5>
-              <br>
-              <div id="ribbons_Holder" class="center" hidden>
-                <img id="ribbons_Image" class="tooltipped" data-position="top" data-delay="50" data-tooltip="1" src="" alt="" width="155" height="50"/>
-              </div>
-              <h5 id="award_Error" class="light center white-text">No awards found.</h5>
-            </div>
+          <br>
+          <div class="col s3">
+            <a id="normal_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
           </div>
-          <!-- Promotions -->
-          <div class="col s12 m12">
-            <div id="" class="card-panel teal darken-2">
-              <h5 class="light white-text">Promotion Records</h5>
+        </div>
+          </div>
 
-              <table class="bordered responsive-table">
-                <thead id="promotionHead" style="display: none;">
-                  <tr>
-                    <th class="white-text">Username</th>
-                    <th class="white-text">Promotion</th>
-                    <th class="white-text">Date</th>
-                    <th class="white-text">Promoted By</th>
-                  </tr>
-                </thead>
-                <tbody id="promotion_Holder" hidden>
-                  <tr id="promotionInformation">
-                    <td id="promotion_User" class="white-text"></td>
-                    <td id="promotion_Grade" class="white-text"></td>
-                    <td id="promotion_Date" class="white-text"></td>
-                    <td id="promotion_By_User" class="white-text"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div id="slider_Settings">
+            <h5 class="light white-text">Slider Settings</h5>
+            <p class="white-text">Coming soon.</p>
           </div>
-          <!-- Accomplishments -->
-          <div class="col s12 m12">
-            <div id="" class="card-panel blue-grey darken-3">
-              <h5 class="light white-text">Activity</h5>
 
-              <table class="bordered responsive-table">
-                <thead id="activityHead" style="display: none;">
-                  <tr>
-                    <th class="white-text">Username</th>
-                    <th class="white-text">Type</th>
-                    <th class="white-text">Description</th>
-                    <th class="white-text">Date Completed</th>
-                    <th class="white-text">Sponsor</th>
-                  </tr>
-                </thead>
-                <tbody id="activity_Holder" hidden>
-                  <tr id="activityInformation">
-                    <td id="activity_User" class="white-text"></td>
-                    <td id="activity_Type" class="white-text"></td>
-                    <td id="activity_Description" class="white-text"></td>
-                    <td id="activity_Date" class="white-text"></td>
-                    <td id="activity_Sponsor" class="white-text"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- Units -->
-          <div class="col s12 m12">
-            <div id="" class="card-panel teal darken-2">
-              <h5 class="light white-text">Units</h5>
-
-              <table class="bordered responsive-table">
-                <thead id="unitHead" style="display: none;">
-                  <tr>
-                    <th class="white-text">Username</th>
-                    <th class="white-text">Branch</th>
-                    <th class="white-text">Unit</th>
-                    <th class="white-text">Position</th>
-                    <th class="white-text">Entrance Date</th>
-                    <th class="white-text">Departure Date</th>
-                  </tr>
-                </thead>
-                <tbody id="unit_Holder" hidden>
-                  <tr id="unitInformation">
-                    <td id="unit_User" class="white-text"></td>
-                    <td id="unit_Branch" class="white-text"></td>
-                    <td id="unit_Unit" class="white-text"></td>
-                    <td id="unit_Unit_Pos" class="white-text"></td>
-                    <td id="unit_Entrance" class="white-text"></td>
-                    <td id="unit_Departure" class="white-text"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div id="server_Settings">
+            <h5 class="light white-text">Server Settings</h5>
+            <br>
+            <p id="current_Code_Text"class="white-text">Current Verification Code: </p>
+            <p id="new_Code_Text" class="green-text text-darken-1" style="display: none;">New Code:</p>
+            <br>
+            <a id="generate_New_Code" class="btn waves-effect green darken-1">Generate Code</a>
+            <a id="update_New_Code" class="btn waves-effect orange darken-1" style="display: none;">Update Code</a>
           </div>
         </div>
       </div>
+      <!-- Announcements Table -->
+      <div class="col s12 m12">
+        <div id="server_Settings" class="col s12 m12">
+          <div id="" class="card-panel blue-grey darken-3">
+            <h5 class="light white-text">Announcements</h5>
+
+            <table class="bordered responsive-table">
+              <thead id="announcement_Head" style="display: none;">
+                <tr>
+                  <th class="white-text">Posted By</th>
+                  <th class="white-text">Type</th>
+                  <th class="white-text">Description</th>
+                  <th class="white-text">Date</th>
+                </tr>
+              </thead>
+              <tbody id="announcement_Holder">
+                <tr id="announcement_Information" style="display: none;">
+                  <td id="announcement_User" class="white-text"></td>
+                  <td id="announcement_Type" class="white-text"></td>
+                  <td id="announcement_Message" class="white-text"></td>
+                  <td id="announcement_Date" class="white-text"></td>
+                  <td class="white-text"><a id="delete_Announcement_Btn" class="btn-small waves-effect"><i class="material-icons white-text">delete</i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admins Table -->
+        <div id="" class="card-panel blue-grey darken-3">
+          <h5 class="light white-text">Administrators</h5>
+
+          <table class="bordered responsive-table">
+            <thead id="activityHead" style="display: none;">
+              <tr>
+                <th class="white-text">Username</th>
+                <th class="white-text">Rank</th>
+                <th class="white-text">Branch</th>
+                <th class="white-text">Email</th>
+                <th class="white-text">Access Level</th>
+                <th class="white-text">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin_Holder">
+              <tr id="admin_Information" style="display: none;">
+                <td id="admin_Username" class="white-text"></td>
+                <td id="admin_Rank" class="white-text"></td>
+                <td id="admin_Branch" class="white-text"></td>
+                <td id="admin_Email" class="white-text"></td>
+                <td id="admin_Access" class="white-text"></td>
+                <td id="admin_Update" style="display: none;">
+                  <div class="input-field col s12">
+                    <select id="update_Admin_Select" class="white-text">
+                      <option value="" disabled selected>Access Level</option>
+                      <option value="owner">Owner</option>
+                      <option value="superAdmin">Super Admin</option>
+                      <option value="admin">Admin</option>
+                      <option value="mod">Moderator</option>
+                      <option value="normal">Normal</option>
+                      <option value="none">None</option>
+                    </select>
+                  </div>
+                </td>
+                <!-- &emsp;<a id="delete_Button" class="btn-small waves-effect"><i class="material-icons white-text">delete</i></a> -->
+                <td id="admin_Action_Btn" class="white-text" style="display: none;"><a id="edit_Button" class="btn-small waves-effect"><i class="material-icons white-text">mode_edit</i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Logs Table -->
+      <div class="col s12 m12">
+        <div id="" class="card-panel blue-grey darken-3">
+          <h5 class="light white-text">Activity Logs</h5>
+
+          <table class="bordered responsive-table">
+            <thead id="logHead" style="display: none;">
+              <tr>
+                <th class="white-text">Logs</th>
+                <th class="white-text">Date</th>
+              </tr>
+            </thead>
+            <tbody id="log_Holder">
+              <tr id="log_Information" style="display: none;">
+                <td id="log_Description" class="white-text"></td>
+                <td id="log_Date" class="white-text"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
     <!-- Sign in Modal -->
     <div id="sign_In" class="modal blue-grey darken-4">
       <div class="modal-content">
@@ -463,6 +505,7 @@
         </div>
       </div>
     </div>
+
     <!--  Scripts-->
     <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
     <script>
@@ -477,10 +520,20 @@
     };
     firebase.initializeApp(config);
     </script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-98022200-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/firebaseInit.js"></script>
-    <script src="js/userProfile.js"></script>
+    <script src="js/manageAdmins.js"></script>
   </body>
   </html>

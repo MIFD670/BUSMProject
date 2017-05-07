@@ -4798,7 +4798,7 @@ small {
 }
 
 .tabs .tab a {
-  color: rgba(238, 110, 115, 0.7);
+  color: rgba(238, 255, 255, 0.7);
   display: block;
   width: 100%;
   height: 100%;
@@ -4811,7 +4811,7 @@ small {
 
 .tabs .tab a:hover, .tabs .tab a.active {
   background-color: transparent;
-  color: #ee6e73;
+  color: #ffffff;
 }
 
 .tabs .tab.disabled a,
@@ -4824,7 +4824,7 @@ small {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #f6b2b5;
+  background-color: #ffffff;
   will-change: left, right;
 }
 
@@ -6794,7 +6794,9 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc;
+  background: #26A69A;
+  /*background: #ccc;*/
+  /*color: ##26A69A;*/
 }
 
 input[type=range] {

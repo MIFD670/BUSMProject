@@ -28,7 +28,7 @@ function displayUserInformation() {
 
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
-    $('#user_Information_Admin').html('Account Type: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
   });
 }
 
@@ -80,10 +80,11 @@ function showData() {
       var oldRef = '/PendingTransfer/';
       var newRef = '/AcceptTransfer/';
       var user = key;
+      var status = "accept";
       console.log('Current key: ' + user);
       console.log('The request was accepted by ' + currentUser);
       //Sends data to be moved in Firebase
-      moveFirebaseData(oldRef, newRef, user, date);
+      moveFirebaseData(oldRef, newRef, user, date, status);
       var keyToLogs = firebaseRef.ref('Logs').push().key;
       var log = 'Admin user (' + currentUser + ') accepted user (' + username + ') transfer request on ' + date + '.';
       firebaseRef.ref('Logs').child(keyToLogs).update({
@@ -101,9 +102,10 @@ function showData() {
       var oldRef = '/PendingTransfer/';
       var newRef = '/DenyTransfer/';
       var user = key;
+      var status = "deny";
       console.log('The request was accepted by ' + currentUser);
       //Sends data to be moved in Firebase
-      moveFirebaseData(oldRef, newRef, user, date);
+      moveFirebaseData(oldRef, newRef, user, date, status);
       var keyToLogs = firebaseRef.ref('Logs').push().key;
       var log = 'Admin user (' + currentUser + ') denied user (' + username + ') transfer request on ' + date + '.';
       firebaseRef.ref('Logs').child(keyToLogs).update({
@@ -223,8 +225,8 @@ function showData() {
     $('#accepted_Card_Holder_Error').css('display', 'none');
     $('#accepted_Section').css('display', 'block');
   });
-  //Loops through the approved transfer requests
-  firebaseRef.ref('/DenyTransfer').orderByChild("acceptedOn").limitToFirst(10).on("child_added", snap => {
+  //Loops through the denied transfer requests
+  firebaseRef.ref('/DenyTransfer').orderByChild("deniedOn").limitToFirst(10).on("child_added", snap => {
     var username = capitalizeFirstLetter(snap.child('username').val());
     var currentBranch = snap.child('currentBranch').val();
     var toBranch = snap.child('toBranch').val();
@@ -301,20 +303,28 @@ function getCurrentDate() {
   return today;
 }
 
-function moveFirebaseData(oldRefIdx, newRefIdx, keyIdx, dateIdx) {
+function moveFirebaseData(oldRefIdx, newRefIdx, keyIdx, dateIdx, statusIdx) {
   var oldRef = oldRefIdx;
   var newRef = newRefIdx;
   var user = keyIdx;
   var date = dateIdx;
+  var status = statusIdx;
   firebaseRef.ref(oldRef + user).once('value', function(snap)  {
     firebaseRef.ref(newRef + user).set( snap.val(), function(error) {
       if( !error ) {  firebaseRef.ref(oldRef + user).remove(); }
       else if( typeof(console) !== 'undefined' && console.error ) {  console.error(error); }
     });
   });
-  firebaseRef.ref(newRef).child(user).update({
-    acceptedBy: currentUser,
-    acceptedOn: date
-  });
+  if (status == "accepted") {
+    firebaseRef.ref(newRef).child(user).update({
+      acceptedBy: currentUser,
+      acceptedOn: date
+    });
+  } else if (status == "deny") {
+    firebaseRef.ref(newRef).child(user).update({
+      deniedBy: currentUser,
+      deniedOn: date
+    });
+  }
 
 }

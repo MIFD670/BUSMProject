@@ -54,7 +54,7 @@ function displayUserInformation () {
 
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
-    $('#user_Information_Admin').html('Account Type: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
     $('#main_Container').css('display', 'block');
     $('#circular_Loader_Section').css('display', 'none');
   });
@@ -69,6 +69,7 @@ $('#add_User_Btn').on("click", function() {
 $('#add_User_Btn_Follow').on("click", function() {
   var username = $('#add_User_Username').val().toLowerCase();
   var currentUnit = $('#add_User_CurrentUnit').val();
+  var currentUnitPosition = $('#add_User_CurrentUnit_Pos').val();
   var branch = $('#add_User_Branch option:selected').text();
   var paygrade = $('#add_User_Paygrade option:selected').val();
   var verifiedUser = verified;
@@ -80,6 +81,7 @@ $('#add_User_Btn_Follow').on("click", function() {
     username: username,
     branch: branch,
     unit: currentUnit,
+    unitPosition: currentUnitPosition,
     entranceDate: date,
     departureDate: 'Serving'
   };
@@ -116,6 +118,7 @@ $('#add_User_Btn_Follow').on("click", function() {
     admin: 'none',
     branch: branch,
     currentUnit: currentUnit,
+    currentUnitPosition: currentUnitPosition,
     currentUnitKey: historyKey,
     paygrade: paygrade,
     rank: rank
@@ -134,6 +137,7 @@ $('#add_User_Btn_Follow').on("click", function() {
   $('#add_User_Btn_Container_Follow').css('display', 'none');
   $('#add_User_Username').val('');
   $('#add_User_CurrentUnit').val('');
+  $('#add_User_CurrentUnit_Pos').val('');
   $('#add_User_Branch').prop('selectedIndex', 0);
   $('#add_User_Branch').material_select();
   $('#add_User_Paygrade').prop('selectedIndex', 0);
