@@ -105,7 +105,7 @@ function showData() {
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
     //newList.find('select').material_select();
-    newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
+    //newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
@@ -128,7 +128,7 @@ function showData() {
           date: date,
           log: log
         });
-        newList.find('#admin_Access').text(newAdminAccess);
+        newList.find('#admin_Access').text(capitalizeFirstLetter(newAdminAccess));
       } else if (newAdminAccess == admin) {
         console.log('Admins remain the same.');
       }
