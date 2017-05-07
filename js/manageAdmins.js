@@ -11,6 +11,7 @@ var newCode;
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
+  $('select').material_select();
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
 });
@@ -92,6 +93,7 @@ function showData() {
     var checkAdmin = snap.child('admin').val();
     var branch = snap.child('branch').val();
     var email = snap.child('email').val();
+    var date = getCurrentDate();
     // Console logs
     console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
     // Creates a clone of the vocab card to edit
@@ -103,7 +105,6 @@ function showData() {
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
     newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
-    $('select').material_select();
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
