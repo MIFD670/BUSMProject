@@ -116,11 +116,11 @@ function showData() {
       //0 is false
       if (toggle1 == 0) {
         newList.find('#admin_Access').css('display', 'none');
-        newList.find('#admin_Update').css('display', '');
+        newList.find('#admin_Update').css('display', 'block');
         toggle1 = 1;
       } else {
         newList.find('#admin_Update').css('display', 'none');
-        newList.find('#admin_Access').css('display', '');
+        newList.find('#admin_Access').css('display', 'block');
         toggle1 = 0;
       }
     });
