@@ -103,7 +103,7 @@ function showData() {
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
     newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
-    newList.find('#update_Admin_Select').material_select();
+    $('select').material_select();
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
