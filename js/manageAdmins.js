@@ -156,10 +156,8 @@ function showData() {
     var currentCode = snapshot.child('verifyCode').val();
     $('#current_Code_Text').text('Current Verification Code: ' + currentCode);
   });
-
   $('#loader_Container').css('display', 'none');
   $('#main_Container').css('display', 'block');
-
 }
 
 // Important Announcement
