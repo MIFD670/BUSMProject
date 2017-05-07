@@ -102,10 +102,9 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
-    newList.find("admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
-  //  newList.find('#update_Admin_Select').material_select();
+    newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
+    newList.find('#update_Admin_Select').material_select();
     newList.removeAttr('style');
-    newList.css('display', '');
     //
     $('#activityHead').css('display', '');
     // Appending
