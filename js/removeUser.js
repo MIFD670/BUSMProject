@@ -555,7 +555,7 @@ function userExistsCallback(userIdx, verifyIdx) {
         newCard.find('#update_Branch').val(branch);
         newCard.find('#user_History_Unit').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit' type='text'></input><label for='update_Unit' class='active white-text'>Unit</label></div>");
         newCard.find('#update_Unit').val(unit);
-        newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Unit</label></div>");
+        newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Unit Position</label></div>");
         newCard.find('#update_Unit_Pos').val(unitPosition);
         newCard.find('#user_History_Unit_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Unit Key</label></div>");
         newCard.find('#update_Key').val(currentUnitKey);

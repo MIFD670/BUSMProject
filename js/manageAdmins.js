@@ -84,7 +84,7 @@ function showData() {
   });
   // Admin list
   firebaseRef.ref('/Users').orderByChild("email").on("child_added", snap => {
-    var username = capitalizeFirstLetter(snap.child('username').val());
+    var username = capitalizeFirstLetter(snap.key);
     var rank = snap.child('rank').val();
     var admin = capitalizeFirstLetter(snap.child('admin').val());
     var checkAdmin = snap.child('admin').val();
@@ -169,8 +169,8 @@ function showData() {
     $('#log_Holder').prepend(newList);
   });
   // Server Settings
-  firebaseRef.ref('/ServerSettings/').on("child_added", snap => {
-    var currentCode = snap.child('verifyCode').val();
+  firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
+    var currentCode = snapshot.child('verifyCode').val();
     $('#current_Code_Text').text('Current Verification Code: ' + currentCode);
   });
 
@@ -267,9 +267,9 @@ $('#update_New_Code').on("click", function() {
 });
 
 function getRandomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-    return result;
+  var result = '';
+  for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+  return result;
 }
 
 function capitalizeFirstLetter(wordIdx) {

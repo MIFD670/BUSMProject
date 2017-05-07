@@ -144,7 +144,7 @@ function initApp() {
     }
     newMessage.removeAttr('id');
     newMessage.text(message);
-    newMessage.css('display', '');
+    newMessage.css('display', 'block');
     $('#announcement').append(newMessage);
     $('#announcement').css('display', 'block');
   });
