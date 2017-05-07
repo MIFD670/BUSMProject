@@ -24,7 +24,7 @@ function displayUserInformation() {
     var branch = snapshot.child('branch').val();
     currentUserBranch = snapshot.child('branch').val();
     currentAdmin = snapshot.child('admin').val();
-    console.log('USERNAME: ' + username + ', BRANCH: ' + branch + ', ACCOUNT TYPE: ' + userAdmin);
+    //console.log('USERNAME: ' + username + ', BRANCH: ' + branch + ', ACCOUNT TYPE: ' + userAdmin);
 
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
@@ -41,7 +41,7 @@ $("#delete_Announcement_Btn i").hover(function(){
 });
 
 function showData() {
-  console.log('The current user is: ' + currentUser);
+  //console.log('The current user is: ' + currentUser);
 
   //Loops through important announcements found in Firebase
   firebaseRef.ref('/Announcements/').on("child_added", snap => {
@@ -61,7 +61,7 @@ function showData() {
     }
 
     // Console logs
-    console.log('CHECK USER IS: ' + username + ', ' +  ', DATE: ' + date);
+    //console.log('CHECK USER IS: ' + username + ', ' +  ', DATE: ' + date);
     // Creates a clone of the list to edit
     var newList = $('#announcement_Information').clone();
     newList.removeAttr('id');
@@ -76,7 +76,7 @@ function showData() {
     // Delete Button
     newList.find('td #delete_Announcement_Btn').on("click", function() {
       var key = snap.key;
-      console.log('Key At this point is: ' + key);
+      //console.log('Key At this point is: ' + key);
       firebaseRef.ref('/Announcements').child(key).remove();
       newList.remove();
       console.log("REMOVE: Successfully removed announcement");
@@ -93,7 +93,7 @@ function showData() {
     var email = snap.child('email').val();
     var date = getCurrentDate();
     // Console logs
-    console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
+    //console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
     // Creates a clone of the vocab card to edit
     var newList = $('#admin_Information').clone();
     newList.removeAttr('id');
@@ -137,7 +137,7 @@ function showData() {
     var description = snap.child('log').val();
     var date = snap.child('date').val();
     // Console logs
-    console.log('Log: ' + description + ', date: ' + date);
+    //console.log('Log: ' + description + ', date: ' + date);
     // Creates a clone of the vocab card to edit
     var newList = $('#log_Information').clone();
     newList.removeAttr('id');
@@ -177,7 +177,7 @@ $('#important_Announcement_Btn').on('click', function() {
   var messageToPush = $('#important_Announcement_Input').val();
   var date = getCurrentDate();
   var color = '#e53935';
-  console.log('Current username: ' + username);
+  //console.log('Current username: ' + username);
   if (messageToPush.length < 5) {
     $('#announcement_Error').html('Error: The message is too short and/or invalid.');
     $('#announcement_Error').css('display', 'block');
@@ -208,7 +208,7 @@ $('#normal_Announcement_Btn').on('click', function() {
   var messageToPush = $('#normal_Announcement_Input').val();
   var date = getCurrentDate();
   var color = '#fb8c00';
-  console.log('Current username: ' + username);
+  //console.log('Current username: ' + username);
   if (messageToPush.length < 5) {
     $('#announcement_Error').html('Error: The message is too short and/or invalid.');
     $('#announcement_Error').css('display', 'block');
@@ -269,7 +269,7 @@ function capitalizeFirstLetter(wordIdx) {
   var word = wordIdx;
   var newWord;
   newWord = word.substr(0, 1).toUpperCase() + word.substr(1).toLowerCase();
-  console.log(newWord);
+  //console.log(newWord);
   return newWord;
 }
 
