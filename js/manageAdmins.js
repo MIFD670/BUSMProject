@@ -98,6 +98,7 @@ function showData() {
     console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
     // Creates a clone of the vocab card to edit
     var newList = $('#admin_Information').clone();
+    $('select').material_select();
     newList.removeAttr('id');
     newList.find('#admin_Username').text(username);
     newList.find('#admin_Rank').text(rank);
