@@ -103,13 +103,14 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
-    newList.find('#admin_Access_Input').val(admin);
+    //newList.find('#admin_Access_Input').val(admin);
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
     // Appending
     $('#admin_Holder').append(newList);
     // Action buttons
+    /*
     newList.find('#update_Admin_Input').on('change', function() {
       var newAdminAccess = newList.find('#update_Admin_Select').val();
       if (newAdminAccess != admin) {
@@ -130,6 +131,7 @@ function showData() {
         console.log('Admins remain the same.');
       }
     });
+    */
   });
   // Activity Logs
   firebaseRef.ref('/Logs').orderByChild("date").limitToLast(25).on("child_added", snap => {
