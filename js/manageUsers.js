@@ -30,13 +30,6 @@ function displayUserInformation () {
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
-    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod") || (admin == "normal")) {
-      $('#loader_Container').css('display', 'none');
-      $('#main_Container').css('display', 'block');
-    } else {
-      $('#loader_Container').css('display', 'block');
-      $('#main_Container').css('display', 'none');
-    }
   });
 }
 
@@ -97,6 +90,18 @@ $('#army_Text').text('Army Personnel (' + cardNumberArmy + ')');
 $('#coastGuard_Text').text('Coast Guard Personnel (' + cardNumberCG + ')');
 $('#marineCorps_Text').text('Marine Corps Personnel (' + cardNumberMC + ')');
 $('#navy_Text').text('Navy Personnel (' + cardNumberNavy + ')');
+
+firebase.database().ref('/Users/' + currentUser).once('value').then(function(snapshot) {
+  var admin = snapshot.child('admin').val();
+  if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod") || (admin == "normal")) {
+    $('#loader_Container').css('display', 'none');
+    $('#main_Container').css('display', 'block');
+  } else {
+    $('#loader_Container').css('display', 'block');
+    $('#main_Container').css('display', 'none');
+  }
+});
+
 }
 
 function displayBranchData(branchIdx, adminIdx) {
