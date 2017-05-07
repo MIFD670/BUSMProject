@@ -106,7 +106,7 @@ function showData() {
     newList.css('display', '');
     //
     $('#activityHead').css('display', '');
-    newList.find('#admin_Action_Btn').css('display', 'block');
+    newList.find('#edit_Button').css('display', 'block');
     // Appending
     $('#admin_Holder').append(newList);
     // Action buttons
