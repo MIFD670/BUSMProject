@@ -89,7 +89,7 @@ function showData() {
     var username = capitalizeFirstLetter(snap.key);
     var rank = snap.child('rank').val();
     var admin = capitalizeFirstLetter(snap.child('admin').val());
-    var checkAdmin = currentUser;
+    var checkAdmin = snap.child('admin').val();
     var branch = snap.child('branch').val();
     var email = snap.child('email').val();
     // Console logs
@@ -102,26 +102,15 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
+    newList.find("#update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
+    newList.find('#update_Admin_Select').material_select();
     newList.removeAttr('style');
     newList.css('display', '');
     //
     $('#activityHead').css('display', '');
-    newList.find('#edit_Button').css('display', 'block');
     // Appending
     $('#admin_Holder').append(newList);
     // Action buttons
-    newList.find('#edit_Button').on("click", function() {
-      //0 is false
-      if (toggle1 == 0) {
-        newList.find('#admin_Access').css('display', 'none');
-        newList.find('#admin_Update').css('display', 'block');
-        toggle1 = 1;
-      } else {
-        newList.find('#admin_Update').css('display', 'none');
-        newList.find('#admin_Access').css('display', 'block');
-        toggle1 = 0;
-      }
-    });
     newList.find('#update_Admin_Select').on('change', function() {
       var newAdminAccess = newList.find('#update_Admin_Select').find(":selected").val();
       if (newAdminAccess != admin) {

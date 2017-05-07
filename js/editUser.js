@@ -283,7 +283,7 @@ var awardListNumber = {
   "Naval Reserve Meritorious Service Medal": 69,
   "Air Reserve Forces Meritorious Service Medal": 70,
   "Selected Marine Corps Reserve Medal": 71,
-  "Coast Guard Reserve Good Conduct Medal": 'Ribbons/72.png',  number: 72,
+  "Coast Guard Reserve Good Conduct Medal": 72,
   "Armed Forces Reserve Medal": 73,
   "Navy Expeditionary Medal": 74,
   "Marine Corps Expeditionary Medal": 75,
