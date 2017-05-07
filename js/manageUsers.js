@@ -30,7 +30,7 @@ function displayUserInformation () {
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
-    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod")) {
+    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod") || (admin == "normal")) {
       $('#loader_Container').css('display', 'none');
       $('#main_Container').css('display', 'block');
     } else {
