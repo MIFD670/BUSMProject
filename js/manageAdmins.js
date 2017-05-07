@@ -106,10 +106,8 @@ function showData() {
     newList.css('display', '');
     //
     $('#activityHead').css('display', '');
+    newList.find('#admin_Action_Btn').css('display', 'block');
     // Appending
-    if (checkAdmin == "buddy1926") {
-      $('#admin_Action_Btn').css('display', '');
-    }
     $('#admin_Holder').append(newList);
     // Action buttons
     newList.find('#edit_Button').on("click", function() {
