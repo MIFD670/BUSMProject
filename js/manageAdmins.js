@@ -105,6 +105,7 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
+    $('select').material_select();
     //newList.find('select').material_select();
     //newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
     newList.removeAttr('style');
@@ -134,7 +135,6 @@ function showData() {
       }
     });
   });
-  $('select').material_select();
   // Activity Logs
   firebaseRef.ref('/Logs').orderByChild("date").limitToLast(25).on("child_added", snap => {
     var description = snap.child('log').val();
