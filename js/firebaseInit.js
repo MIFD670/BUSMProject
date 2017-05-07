@@ -132,7 +132,7 @@ function initApp() {
       type = "Unknown";
     }
     // Console logs
-    console.log('Message: ' + message + ', ' +  ', color: ' + color);
+    console.log('Message: ' + message + ', ' +  'color: ' + color);
     // Creates a clone of the template to edit
     var newMessage = $('#announcement_Template').clone();
     newMessage.removeAttr('id');
@@ -146,8 +146,8 @@ function initApp() {
       newMessage.addClass('blue');
     }
     newMessage.removeAttr('style');
-    $('#announcement').append(newMessage);
-    $('#announcement').css('display', 'block');
+    $('.announcement').append(newMessage);
+    $('.announcement').css('display', 'block');
   });
 }
 // Sign in

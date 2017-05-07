@@ -78,7 +78,7 @@ function showData() {
     newList.find('td #delete_Announcement_Btn').on("click", function() {
       var key = snap.key;
       console.log('Key At this point is: ' + key);
-      firebaseRef.ref('/Announcements/Important/' + key).remove();
+      firebaseRef.ref('/Announcements/' + key).remove();
       newList.remove();
       console.log("REMOVE: Successfully removed announcement");
       Materialize.toast('Success!', 4000);
@@ -125,7 +125,7 @@ function showData() {
       }
     });
     newList.find('#admin_Update #update_Admin_Select').on('change', function() {
-      var newAdminAccess = $(this).find(":selected").val();
+      var newAdminAccess = newList.find('#admin_Update #update_Admin_Select').find(":selected").val();
       if (newAdminAccess != admin) {
         console.log('Admins have changed.');
         var updateAccess = {
