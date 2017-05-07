@@ -115,12 +115,12 @@ function showData() {
     newList.find('#admin_Action_Btn #edit_Button').on("click", function() {
       //0 is false
       if (toggle1 == 0) {
-        $('#admin_Access').css('display', 'none');
-        $('#admin_Update').css('display', '');
+        newList.find('#admin_Access').css('display', 'none');
+        newList.find('#admin_Update').css('display', '');
         toggle1 = 1;
       } else {
-        $('#admin_Update').css('display', 'none');
-        $('#admin_Access').css('display', '');
+        newList.find('#admin_Update').css('display', 'none');
+        newList.find('#admin_Access').css('display', '');
         toggle1 = 0;
       }
     });
