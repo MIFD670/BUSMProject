@@ -89,7 +89,7 @@ function showData() {
     var username = capitalizeFirstLetter(snap.key);
     var rank = snap.child('rank').val();
     var admin = capitalizeFirstLetter(snap.child('admin').val());
-    var checkAdmin = snap.child('admin').val();
+    var checkAdmin = currentUser;
     var branch = snap.child('branch').val();
     var email = snap.child('email').val();
     // Console logs
@@ -107,18 +107,8 @@ function showData() {
     //
     $('#activityHead').css('display', '');
     // Appending
-    if (checkAdmin == "owner") {
-      console.log('Removed admin action for users with access level owner.');
-      newList.find('#admin_Action_Btn').addClass('owner');
-      newList.find('#admin_Action_Btn').css('display', '');
-    } else if (checkAdmin == "superAdmin") {
-      console.log('Adding owner class to this user');
-      newList.find('#admin_Action_Btn').addClass('superAdmin');
-      newList.find('#admin_Action_Btn').css('display', '');
-    } else {
-      console.log('Adding admin class to the rest.');
-      newList.find('#admin_Action_Btn').addClass('admin');
-      newList.find('#admin_Action_Btn').css('display', '');
+    if (checkAdmin == "buddy1926") {
+      $('#admin_Action_Btn').css('display', '');
     }
     $('#admin_Holder').append(newList);
     // Action buttons
