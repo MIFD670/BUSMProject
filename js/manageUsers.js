@@ -20,6 +20,7 @@ function displayUserInformation () {
   // Get user data to display in "Your Information" section
   firebase.database().ref('/Users/' + currentUser).once('value').then(function(snapshot) {
     var username = capitalizeFirstLetter(currentUser);
+    var admin = snapshot.child('admin').val();
     var userAdmin = capitalizeFirstLetter(snapshot.child('admin').val());
     var branch = snapshot.child('branch').val();
     currentUserBranch = snapshot.child('branch').val();
@@ -29,6 +30,13 @@ function displayUserInformation () {
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod")) {
+      $('#loader_Container').css('display', 'none');
+      $('#main_Container').css('display', 'block');
+    } else {
+      $('#loader_Container').css('display', 'block');
+      $('#main_Container').css('display', 'none');
+    }
   });
 }
 
@@ -112,8 +120,6 @@ function displayBranchData(branchIdx, adminIdx) {
     $('#cg_Section').css('display', 'block');
     $('#navy_Section').css('display', 'block');
   }
-  $('#loader_Container').css('display', 'none');
-  $('#main_Container').css('display', 'block');
 }
 
 function capitalizeFirstLetter(wordIdx) {

@@ -41,7 +41,6 @@ $("#delete_Announcement_Btn i").hover(function(){
 });
 
 function showData() {
-  currentUser = firebase.auth().currentUser.displayName.toLowerCase();
   console.log('The current user is: ' + currentUser);
 
   //Loops through important announcements found in Firebase
@@ -156,8 +155,20 @@ function showData() {
     var currentCode = snapshot.child('verifyCode').val();
     $('#current_Code_Text').text('Current Verification Code: ' + currentCode);
   });
-  $('#loader_Container').css('display', 'none');
-  $('#main_Container').css('display', 'block');
+
+  currentUser = firebase.auth().currentUser.displayName.toLowerCase();
+
+  firebase.database().ref('/Users/' + currentUser.toLowerCase()).once('value').then(function(snapshot) {
+    var userAdmin = snapshot.child('admin').val();
+    if ((userAdmin == "owner") || (userAdmin == "superAdmin") || (userAdmin == "admin")) {
+      $('#loader_Container').css('display', 'none');
+      $('#main_Container').css('display', 'block');
+    } else {
+      $('#loader_Container').css('display', 'block');
+      $('#main_Container').css('display', 'none');
+    }
+  });
+
 }
 
 // Important Announcement
