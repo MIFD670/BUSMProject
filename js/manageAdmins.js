@@ -12,7 +12,7 @@ $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
   //$('select').material_select();
-  $('select').material_select();
+  //$('select').material_select();
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
 });
