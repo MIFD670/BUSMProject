@@ -78,7 +78,7 @@ function showData() {
     newList.find('td #delete_Announcement_Btn').on("click", function() {
       var key = snap.key;
       console.log('Key At this point is: ' + key);
-      firebaseRef.ref('/Announcements/' + key).remove();
+      firebaseRef.ref('/Announcements').child(key).remove();
       newList.remove();
       console.log("REMOVE: Successfully removed announcement");
       Materialize.toast('Success!', 4000);
@@ -112,7 +112,7 @@ function showData() {
     }
     $('#admin_Holder').append(newList);
     // Action buttons
-    newList.find('#admin_Action_Btn #edit_Button').on("click", function() {
+    newList.find('#edit_Button').on("click", function() {
       //0 is false
       if (toggle1 == 0) {
         newList.find('#admin_Access').css('display', 'none');
@@ -124,8 +124,8 @@ function showData() {
         toggle1 = 0;
       }
     });
-    newList.find('#admin_Update #update_Admin_Select').on('change', function() {
-      var newAdminAccess = newList.find('#admin_Update #update_Admin_Select').find(":selected").val();
+    newList.find('#update_Admin_Select').on('change', function() {
+      var newAdminAccess = newList.find('#update_Admin_Select').find(":selected").val();
       if (newAdminAccess != admin) {
         console.log('Admins have changed.');
         var updateAccess = {
