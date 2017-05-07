@@ -97,7 +97,6 @@ function showData() {
     // Console logs
     console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
     // Creates a clone of the vocab card to edit
-    //$('select').material_select();
     var newList = $('#admin_Information').clone();
     newList.removeAttr('id');
     newList.find('#admin_Username').text(username);
@@ -105,13 +104,14 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
-    newList.find('select').material_select();
+    //newList.find('select').material_select();
     newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
     // Appending
     $('#admin_Holder').append(newList);
+    $('select').material_select();
     // Action buttons
     newList.find('#update_Admin_Select').on('change', function() {
       var newAdminAccess = newList.find('#update_Admin_Select').find(":selected").val();
