@@ -76,6 +76,8 @@ function showData() {
     $('#announcement_Holder').prepend(newList);
     // Delete Button
     newList.find('td #delete_Announcement_Btn').on("click", function() {
+      var key = snap.key;
+      console.log('Key At this point is: ' + key);
       firebaseRef.ref('/Announcements/Important/' + key).remove();
       newList.remove();
       console.log("REMOVE: Successfully removed announcement");
@@ -83,7 +85,7 @@ function showData() {
     });
   });
   // Admin list
-  firebaseRef.ref('/Users').orderByChild("email").on("child_added", snap => {
+  firebaseRef.ref('/Users').orderByChild("email").startAt(!null).on("child_added", snap => {
     var username = capitalizeFirstLetter(snap.key);
     var rank = snap.child('rank').val();
     var admin = capitalizeFirstLetter(snap.child('admin').val());
@@ -108,12 +110,15 @@ function showData() {
     if (checkAdmin == "owner") {
       console.log('Removed admin action for users with access level owner.');
       newList.find('#admin_Action_Btn').addClass('owner');
+      newList.find('#admin_Action_Btn').css('display', '');
     } else if (checkAdmin == "superAdmin") {
       console.log('Adding owner class to this user');
       newList.find('#admin_Action_Btn').addClass('superAdmin');
+      newList.find('#admin_Action_Btn').css('display', '');
     } else {
       console.log('Adding admin class to the rest.');
       newList.find('#admin_Action_Btn').addClass('admin');
+      newList.find('#admin_Action_Btn').css('display', '');
     }
     $('#admin_Holder').append(newList);
     // Action buttons

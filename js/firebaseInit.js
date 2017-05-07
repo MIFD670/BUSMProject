@@ -134,17 +134,18 @@ function initApp() {
     // Console logs
     console.log('Message: ' + message + ', ' +  ', color: ' + color);
     // Creates a clone of the template to edit
-    var newMessage;
-    if (type == "Important") {
-      newMessage = $('#announcement_important').clone();
-    } else if (type == "Normal") {
-      newMessage = $('#announcement_normal').clone();
-    } else if (type == "Unknown") {
-      newMessage = $('#announcement_normal').clone();
-    }
+    var newMessage = $('#announcement_Template').clone();
     newMessage.removeAttr('id');
-    newMessage.text(message);
-    newMessage.css('display', 'block');
+    newMessage.html(message);
+    newMessage.css("width", "100%");
+    if (type == "Important") {
+      newMessage.addClass('red');
+    } else if (type == "Normal") {
+      newMessage.addClass('orange');
+    } else if (type == "Unknown") {
+      newMessage.addClass('blue');
+    }
+    newMessage.removeAttr('style');
     $('#announcement').append(newMessage);
     $('#announcement').css('display', 'block');
   });
