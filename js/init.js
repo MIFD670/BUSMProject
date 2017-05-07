@@ -182,7 +182,7 @@
       dismissible: false, // Modal can be dismissed by clicking outside of the modal
     });
 
-    //$('select').material_select();
+    $('select').material_select();
 
     $('.button-collapse').sideNav({
       menuWidth: 280, // Default is 300

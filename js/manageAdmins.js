@@ -11,8 +11,6 @@ var newCode;
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
-  //$('select').material_select();
-  //$('select').material_select();
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
 });
@@ -105,17 +103,15 @@ function showData() {
     newList.find('#admin_Branch').text(branch);
     newList.find('#admin_Email').text(email);
     newList.find('#admin_Access').text(admin);
-    $('select').material_select();
-    //newList.find('select').material_select();
-    //newList.find("#admin_Holder #update_Admin_Select option[value=" + checkAdmin + "]").attr("selected", true);
+    newList.find('#admin_Access_Input').val(admin);
     newList.removeAttr('style');
     //
     $('#activityHead').css('display', '');
     // Appending
     $('#admin_Holder').append(newList);
     // Action buttons
-    newList.find('#update_Admin_Select').on('change', function() {
-      var newAdminAccess = newList.find('#update_Admin_Select').find(":selected").val();
+    newList.find('#update_Admin_Input').on('change', function() {
+      var newAdminAccess = newList.find('#update_Admin_Select').val();
       if (newAdminAccess != admin) {
         console.log('Admins have changed.');
         var updateAccess = {
