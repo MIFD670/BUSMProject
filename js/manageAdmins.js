@@ -12,6 +12,7 @@ $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
   //$('select').material_select();
+  $('select').material_select();
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
 });
@@ -111,7 +112,6 @@ function showData() {
     $('#activityHead').css('display', '');
     // Appending
     $('#admin_Holder').append(newList);
-    $('select').material_select();
     // Action buttons
     newList.find('#update_Admin_Select').on('change', function() {
       var newAdminAccess = newList.find('#update_Admin_Select').find(":selected").val();
@@ -134,6 +134,7 @@ function showData() {
       }
     });
   });
+  $('select').material_select();
   // Activity Logs
   firebaseRef.ref('/Logs').orderByChild("date").limitToLast(25).on("child_added", snap => {
     var description = snap.child('log').val();
