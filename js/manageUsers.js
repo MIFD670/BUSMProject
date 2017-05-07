@@ -1,5 +1,6 @@
 // Variables
 var getData;
+var displayAllData;
 var displayUserData;
 var currentUser;
 var currentAdmin;
@@ -13,6 +14,7 @@ $(document).ready(function() {
   //Wait 3 seconds to display data
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
+  displayAllData = setTimeout(displayALLData, 3500);
 });
 
 function displayUserInformation () {
@@ -78,30 +80,32 @@ function showData() {
       window.location ='userProfile.html' + search_Query + username;
     });
   });
-console.log('Display content length');
-var cardNumberAF = $('#af_Section #af_Card_Holder .card-panel').length;
-var newCardNumberAF = cardNumberAF - 1;
-var cardNumberArmy = $('#army_Section #army_Card_Holder .card-panel').length;
-var cardNumberCG = $('#cg_Section #cg_Card_Holder .card-panel').length;
-var cardNumberMC = $('#mc_Section #mc_Card_Holder .card-panel').length;
-var cardNumberNavy = $('#navy_Section #navy_Card_Holder .card-panel').length;
-$('#airForce_Text').text('Air Force Personnel (' + newCardNumberAF + ')');
-$('#army_Text').text('Army Personnel (' + cardNumberArmy + ')');
-$('#coastGuard_Text').text('Coast Guard Personnel (' + cardNumberCG + ')');
-$('#marineCorps_Text').text('Marine Corps Personnel (' + cardNumberMC + ')');
-$('#navy_Text').text('Navy Personnel (' + cardNumberNavy + ')');
+  console.log('Display content length');
+  var cardNumberAF = $('#af_Section #af_Card_Holder .card-panel').length;
+  var newCardNumberAF = cardNumberAF - 1;
+  var cardNumberArmy = $('#army_Section #army_Card_Holder .card-panel').length;
+  var cardNumberCG = $('#cg_Section #cg_Card_Holder .card-panel').length;
+  var cardNumberMC = $('#mc_Section #mc_Card_Holder .card-panel').length;
+  var cardNumberNavy = $('#navy_Section #navy_Card_Holder .card-panel').length;
+  $('#airForce_Text').text('Air Force Personnel (' + newCardNumberAF + ')');
+  $('#army_Text').text('Army Personnel (' + cardNumberArmy + ')');
+  $('#coastGuard_Text').text('Coast Guard Personnel (' + cardNumberCG + ')');
+  $('#marineCorps_Text').text('Marine Corps Personnel (' + cardNumberMC + ')');
+  $('#navy_Text').text('Navy Personnel (' + cardNumberNavy + ')');
+}
 
-firebase.database().ref('/Users/' + currentUser).once('value').then(function(snapshot) {
-  var admin = snapshot.child('admin').val();
-  if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod") || (admin == "normal")) {
-    $('#loader_Container').css('display', 'none');
-    $('#main_Container').css('display', 'block');
-  } else {
-    $('#loader_Container').css('display', 'block');
-    $('#main_Container').css('display', 'none');
-  }
-});
-
+function displayALLData() {
+  var currentUser = firebase.auth().currentUser.displayName.toLowerCase();
+  firebase.database().ref('/Users/' + currentUser).once('value').then(function(snapshot) {
+    var admin = snapshot.child('admin').val();
+    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod") || (admin == "normal")) {
+      $('#loader_Container').css('display', 'none');
+      $('#main_Container').css('display', 'block');
+    } else {
+      $('#loader_Container').css('display', 'block');
+      $('#main_Container').css('display', 'none');
+    }
+  });
 }
 
 function displayBranchData(branchIdx, adminIdx) {
