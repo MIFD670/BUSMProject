@@ -11,7 +11,7 @@ var newCode;
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
   //Wait 3 seconds to display data
-  $('select').material_select();
+  //$('select').material_select();
   displayUserData = setTimeout(displayUserInformation, 2500);
   getData = setTimeout(showData, 3000);
 });
@@ -97,8 +97,8 @@ function showData() {
     // Console logs
     console.log('Username: ' + username + ', rank: ' + rank + ', admin: ' + admin + ', branch: ' + branch + ', email: ' + email);
     // Creates a clone of the vocab card to edit
-    var newList = $('#admin_Information').clone();
     $('select').material_select();
+    var newList = $('#admin_Information').clone();
     newList.removeAttr('id');
     newList.find('#admin_Username').text(username);
     newList.find('#admin_Rank').text(rank);
