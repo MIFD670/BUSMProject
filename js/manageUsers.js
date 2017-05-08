@@ -122,7 +122,7 @@ function displayBranchData(branchIdx, adminIdx) {
     $('#cg_Section').css('display', 'block');
   } else if ((currentBranch == "Navy") && ((currentAdminType == "normal") || (currentAdminType == "mod"))) {
     $('#navy_Section').css('display', 'block');
-  } else if ((currentAdminType == "admin") || (currentAdminType == "owner")) {
+  } else if ((currentAdminType == "admin") || (currentAdminType == "owner") || (currentAdminType == "superAdmin")) {
     $('#army_Section').css('display', 'block');
     $('#af_Section').css('display', 'block');
     $('#mc_Section').css('display', 'block');
