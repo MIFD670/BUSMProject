@@ -76,9 +76,16 @@ function showData() {
     // Delete Button
     newList.find('td #delete_Announcement_Btn').on("click", function() {
       var key = snap.key;
+      var logDate = getCurrentDate();
       //console.log('Key At this point is: ' + key);
       firebaseRef.ref('/Announcements').child(key).remove();
       newList.remove();
+      var keyToLogs = firebaseRef.ref('Logs').push().key;
+      var log = 'Admin user (' + currentUser + ') deleted announcement (' + message + ') on ' + logDate + ' .';
+      firebaseRef.ref('Logs').child(keyToLogs).update({
+        date: date,
+        log: log
+      });
       console.log("REMOVE: Successfully removed announcement");
       Materialize.toast('Success!', 4000);
     });
