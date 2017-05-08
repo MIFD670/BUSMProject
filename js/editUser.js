@@ -463,6 +463,13 @@ $('#update_User_Btn').on("click", function() {
   } else {
     console.log('No new units were added.');
   }
+  if (newCurrentUnitPosition != currentUnitPosition) {
+    firebaseRef.ref('/Users/' + username).update({
+      currentUnitPosition: newCurrentUnitPosition
+    });
+  } else {
+    console.log('No new unit positions.');
+  }
   if (username.length < 3) {
     $('#edit_User_Error').html('Error: Username invalid. Please enter a valid username.');
     $('#edit_User_Error').css('display', 'block');
