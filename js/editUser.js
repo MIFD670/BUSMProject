@@ -432,44 +432,7 @@ $('#update_User_Btn').on("click", function() {
   var date = getCurrentDate();
   console.log('Current paygrade is: ' + paygrade);
   console.log('New paygrade is: ' + newPaygrade);
-  // If there is a new pay-grade being updated, then send the data to Firebase promotions
-  if (newPaygrade !== paygrade) {
-    var promotionHistory = {
-      username: username,
-      promotion: newPaygrade,
-      date: date,
-      promotedBy: currentUser
-    };
-  } else {
-    console.log('The paygrades equal to eachother.');
-  }
-  // If there is a new unit being updated, then send the data to Firebase unit history
-  if (newCurrentUnit !== currentUnit) {
-    var unitHistory = {
-      username: username,
-      branch: newBranch,
-      unit: newCurrentUnit,
-      unitPosition: newCurrentUnitPosition,
-      entranceDate: date,
-      departureDate: 'UPDATE'
-    };
-    newUnitKey = firebaseRef.ref('/Users/' + username + '/units').push().key;
-    firebaseRef.ref('/Users/' + username + '/units').child(newUnitKey).update(unitHistory);
-    firebaseRef.ref('/Users/' + username).update({
-      currentUnit: newCurrentUnit,
-      currentUnitKey: newUnitKey,
-      currentUnitPosition: newCurrentUnitPosition
-    });
-  } else {
-    console.log('No new units were added.');
-  }
-  if (newCurrentUnitPosition != currentUnitPosition) {
-    firebaseRef.ref('/Users/' + username).update({
-      currentUnitPosition: newCurrentUnitPosition
-    });
-  } else {
-    console.log('No new unit positions.');
-  }
+
   if (username.length < 3) {
     $('#edit_User_Error').html('Error: Username invalid. Please enter a valid username.');
     $('#edit_User_Error').css('display', 'block');
@@ -494,11 +457,49 @@ $('#update_User_Btn').on("click", function() {
     paygrade: newPaygrade,
     rank: rank
   });
-  promotionKey = firebaseRef.ref('/Users/' + username + '/promotions').push().key;
-  console.log('Promotion Key: ' + promotionKey);
-  firebaseRef.ref('/Users/' + username + '/promotions').child(promotionKey).update(promotionHistory);
-  console.log('Promotion added.');
-  console.log('Units added.');
+  if (newCurrentUnitPosition != currentUnitPosition) {
+    firebaseRef.ref('/Users/' + username).update({
+      currentUnitPosition: newCurrentUnitPosition
+    });
+  } else {
+    console.log('No new unit positions.');
+  }
+  // If there is a new pay-grade being updated, then send the data to Firebase promotions
+  if (newPaygrade !== paygrade) {
+    var promotionHistory = {
+      username: username,
+      promotion: newPaygrade,
+      date: date,
+      promotedBy: currentUser
+    };
+    promotionKey = firebaseRef.ref('/Users/' + username + '/promotions').push().key;
+    console.log('Promotion Key: ' + promotionKey);
+    firebaseRef.ref('/Users/' + username + '/promotions').child(promotionKey).update(promotionHistory);
+    console.log('Promotion added.');
+    console.log('Units added.');
+  } else {
+    console.log('The paygrades equal to eachother.');
+  }
+  // If there is a new unit being updated, then send the data to Firebase unit history
+  if (newCurrentUnit !== currentUnit) {
+    var unitHistory = {
+      username: username,
+      branch: newBranch,
+      unit: newCurrentUnit,
+      unitPosition: newCurrentUnitPosition,
+      entranceDate: date,
+      departureDate: 'UPDATE'
+    };
+    newUnitKey = firebaseRef.ref('/Users/' + username + '/units').push().key;
+    firebaseRef.ref('/Users/' + username + '/units').child(newUnitKey).update(unitHistory);
+    firebaseRef.ref('/Users/' + username).update({
+      currentUnit: newCurrentUnit,
+      currentUnitKey: newUnitKey,
+      currentUnitPosition: newCurrentUnitPosition
+    });
+  } else {
+    console.log('No new units were added.');
+  }
   $('#add_User_Btn_Container_Follow').css('display', 'none');
   var keyToLogs = firebaseRef.ref('Logs').push().key;
   var log = 'Admin user (' + currentUser + ') edited user (' + username + ') on ' + date + '.';
