@@ -457,7 +457,8 @@ $('#update_User_Btn').on("click", function() {
     firebaseRef.ref('/Users/' + username + '/units').child(newUnitKey).update(unitHistory);
     firebaseRef.ref('/Users/' + username).update({
       currentUnit: newCurrentUnit,
-      currentUnitKey: newUnitKey
+      currentUnitKey: newUnitKey,
+      currentUnitPosition: newCurrentUnitPosition
     });
   } else {
     console.log('No new units were added.');
