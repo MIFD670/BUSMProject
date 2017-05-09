@@ -353,6 +353,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       console.log('User exists name: ' + userToUpdateAdmin);
       var admin = capitalizeFirstLetter(snapshot.child('admin').val());
       $('#admin_Acess_Label').html('Current Administrative Access: <em class="blue-text">' + admin + '</em>');
+      $('#result_Section').css('display', 'block');
     });
   }
 }
