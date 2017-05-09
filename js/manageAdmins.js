@@ -7,6 +7,7 @@ var currentUserBranch;
 var firebaseRef = firebase.database();
 var toggle1 = 0;
 var newCode;
+var userToUpdateAdmin;
 
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
@@ -25,7 +26,13 @@ function displayUserInformation() {
     currentUserBranch = snapshot.child('branch').val();
     currentAdmin = snapshot.child('admin').val();
     //console.log('USERNAME: ' + username + ', BRANCH: ' + branch + ', ACCOUNT TYPE: ' + userAdmin);
-
+    if (currentAdmin == "admin") {
+      $('#admin_Container').css('display', 'block');
+    } else if (currentAdmin == "superAdmin") {
+      $('#super_Admin_Container').css('display', 'block');
+    } else if (currentAdmin == "owner") {
+      $('#owner_Container').css('display', 'block');
+    }
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
@@ -118,63 +125,63 @@ function showData() {
     // Action buttons
     /*
     newList.find('#update_Admin_Input').on('change', function() {
-      var newAdminAccess = newList.find('#update_Admin_Select').val();
-      if (newAdminAccess != admin) {
-        console.log('Admins have changed.');
-        var updateAccess = {
-          admin: newAdminAccess
-        };
-        firebaseRef.ref('/Users/' + username.toLowerCase()).update(updateAccess);
-        // Log
-        var keyToLogs = firebaseRef.ref('Logs').push().key;
-        var log = 'Admin user (' + currentUser + ') edited user (' + username.toLowerCase() + ') admin on ' + date + ' from ' + admin + ' to' + newAdminAccess + '.';
-        firebaseRef.ref('Logs').child(keyToLogs).update({
-          date: date,
-          log: log
-        });
-        newList.find('#admin_Access').text(capitalizeFirstLetter(newAdminAccess));
-      } else if (newAdminAccess == admin) {
-        console.log('Admins remain the same.');
-      }
-    });
-    */
-  });
-  // Activity Logs
-  firebaseRef.ref('/Logs').orderByChild("date").limitToLast(25).on("child_added", snap => {
-    var description = snap.child('log').val();
-    var date = snap.child('date').val();
-    // Console logs
-    //console.log('Log: ' + description + ', date: ' + date);
-    // Creates a clone of the vocab card to edit
-    var newList = $('#log_Information').clone();
-    newList.removeAttr('id');
-    newList.find('#log_Description').text(description);
-    newList.find('#log_Date').text(date);
-    newList.removeAttr('style');
-    newList.css('display', '');
-    //
-    $('#logHead').css('display', '');
-    // Appending
-    $('#log_Holder').prepend(newList);
-  });
-  // Server Settings
-  firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
-    var currentCode = snapshot.child('verifyCode').val();
-    $('#current_Code_Text').text('Current Verification Code: ' + currentCode);
-  });
+    var newAdminAccess = newList.find('#update_Admin_Select').val();
+    if (newAdminAccess != admin) {
+    console.log('Admins have changed.');
+    var updateAccess = {
+    admin: newAdminAccess
+  };
+  firebaseRef.ref('/Users/' + username.toLowerCase()).update(updateAccess);
+  // Log
+  var keyToLogs = firebaseRef.ref('Logs').push().key;
+  var log = 'Admin user (' + currentUser + ') edited user (' + username.toLowerCase() + ') admin on ' + date + ' from ' + admin + ' to' + newAdminAccess + '.';
+  firebaseRef.ref('Logs').child(keyToLogs).update({
+  date: date,
+  log: log
+});
+newList.find('#admin_Access').text(capitalizeFirstLetter(newAdminAccess));
+} else if (newAdminAccess == admin) {
+console.log('Admins remain the same.');
+}
+});
+*/
+});
+// Activity Logs
+firebaseRef.ref('/Logs').orderByChild("date").limitToLast(25).on("child_added", snap => {
+  var description = snap.child('log').val();
+  var date = snap.child('date').val();
+  // Console logs
+  //console.log('Log: ' + description + ', date: ' + date);
+  // Creates a clone of the vocab card to edit
+  var newList = $('#log_Information').clone();
+  newList.removeAttr('id');
+  newList.find('#log_Description').text(description);
+  newList.find('#log_Date').text(date);
+  newList.removeAttr('style');
+  newList.css('display', '');
+  //
+  $('#logHead').css('display', '');
+  // Appending
+  $('#log_Holder').prepend(newList);
+});
+// Server Settings
+firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
+  var currentCode = snapshot.child('verifyCode').val();
+  $('#current_Code_Text').text('Current Verification Code: ' + currentCode);
+});
 
-  currentUser = firebase.auth().currentUser.displayName.toLowerCase();
+currentUser = firebase.auth().currentUser.displayName.toLowerCase();
 
-  firebase.database().ref('/Users/' + currentUser.toLowerCase()).once('value').then(function(snapshot) {
-    var userAdmin = snapshot.child('admin').val();
-    if ((userAdmin == "owner") || (userAdmin == "superAdmin") || (userAdmin == "admin")) {
-      $('#loader_Container').css('display', 'none');
-      $('#main_Container').css('display', 'block');
-    } else {
-      $('#loader_Container').css('display', 'block');
-      $('#main_Container').css('display', 'none');
-    }
-  });
+firebase.database().ref('/Users/' + currentUser.toLowerCase()).once('value').then(function(snapshot) {
+  var userAdmin = snapshot.child('admin').val();
+  if ((userAdmin == "owner") || (userAdmin == "superAdmin") || (userAdmin == "admin")) {
+    $('#loader_Container').css('display', 'none');
+    $('#main_Container').css('display', 'block');
+  } else {
+    $('#loader_Container').css('display', 'block');
+    $('#main_Container').css('display', 'none');
+  }
+});
 
 }
 
@@ -296,3 +303,99 @@ function getCurrentDate() {
   today = mm +'-'+ dd +'-'+ yyyy;
   return today;
 }
+
+$('#admin_Search_Username').on('keyup', function(e) {
+  if (e.keyCode === 13) {
+    var search_Username = $('#admin_Search_Username').val().toLowerCase();
+    console.log('Selected username: ' + search_Username);
+    if (search_Username.length > 3) {
+      checkIfUserExists(search_Username);
+    } else {
+      $('#admin_User_Error').html('Error: Username is too short.');
+      $('#admin_User_Error').css('display', 'block');
+      $("#server_Settings").animate({ scrollTop: 0 }, "slow");
+    }
+  }
+});
+
+function checkIfUserExists(userIdx) {
+  //Checks to see if the user already exists
+  var user = userIdx;
+  var verify;
+  console.log('Works here.');
+  firebaseRef.ref('/Users/' + user).once('value', function(snapshot) {
+    //If it exists mark it true
+    if (snapshot.val() !== null) {
+      verify = "true";
+      console.log('Test');
+      //If it does not, mark it false
+    } else {
+      verify = "false";
+    }
+    console.log('And here.');
+    userExistsCallback(userIdx, verify);
+  });
+}
+
+function userExistsCallback(userIdx, verifyIdx) {
+  var user = userIdx;
+  console.log(user);
+  var checker = verifyIdx;
+  if (checker == "false") {
+    console.log('User does not exist.');
+    $('#admin_User_Error').html('Error: Username does not exist.');
+    $('#admin_User_Error').css('display', 'block');
+    $("#server_Settings").animate({ scrollTop: 0 }, "slow");
+  } else if (checker == "true") {
+    console.log('User exists, proceed.');
+    firebaseRef.ref('/Users/' + user).once('value', function(snapshot) {
+      userToUpdateAdmin = user;
+      console.log('User exists name: ' + userToUpdateAdmin);
+      var admin = capitalizeFirstLetter(snapshot.child('admin').val());
+      $('#admin_Acess_Label').html('Current Administrative Access: <em class="blue-text">' + admin + '</em>');
+    });
+  }
+}
+
+$('#update_Administrative_Access_Btn').on("click", function() {
+  var user = userToUpdateAdmin;
+  var admin_Select = $('#admin_Select option:selected').val();
+  var super_Admin_Select = $('#super_Admin_Select option:selected').val();
+  var owner_Select = $('#owner_Select option:selected').val();
+  var final_Select_Value;
+  console.log('1: ' + admin_Select + ', 2: ' + super_Admin_Select + ', 3: ' + owner_Select + '.');
+  // Check if any of the selects are selected
+  if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select == null)) {
+    $('#admin_User_Error').html('Error: No admin value selected.');
+    $('#admin_User_Error').css('display', 'block');
+    $("#server_Settings").animate({ scrollTop: 0 }, "slow");
+    return;
+  } else if ((admin_Select != null) && (super_Admin_Select == null) && (owner_Select == null)) {
+    final_Select_Value = admin_Select;
+    console.log('This is the final value: ' + final_Select_Value);
+    firebaseRef.ref('Users/' + user).update({
+      admin: final_Select_Value
+    });
+  } else if ((admin_Select == null) && (super_Admin_Select != null) && (owner_Select == null)) {
+    final_Select_Value = super_Admin_Select;
+    console.log('This is the final value: ' + final_Select_Value);
+    firebaseRef.ref('Users/' + user).update({
+      admin: final_Select_Value
+    });
+  } else if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select != null)) {
+    final_Select_Value = owner_Select;
+    console.log('This is the final value: ' + final_Select_Value);
+    firebaseRef.ref('Users/' + user).update({
+      admin: final_Select_Value
+    });
+  }
+  // Logs
+  var logDate = getCurrentDate();
+  var keyToLogs = firebaseRef.ref('Logs').push().key;
+  var log = 'Admin user (' + currentUser + ') changed user (' + user + ') admin to (' + final_Select_Value + ') on ' + logDate + '.';
+  firebaseRef.ref('Logs').child(keyToLogs).update({
+    date: date,
+    log: log
+  });
+  location.reload();
+});

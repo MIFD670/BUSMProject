@@ -52,7 +52,9 @@
   .inline {
     display: inline-block;
   }
-
+  .test {
+    display: none;
+  }
   </style>
 
 </head>
@@ -168,7 +170,7 @@
       </div>
     </div>
     <!-- Data Divs -->
-    <div id="main_Container" class="container" style="display: none;">
+    <div id="main_Container" class="container" style="display: block;">
       <div class="section">
         <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
           <a class="btn-floating btn-large waves-effect blue-grey darken-1"><i class="material-icons white-text">menu</i></a>
@@ -208,24 +210,24 @@
             </blockquote>
             <p class="light white-text" style="font-size: 18px;"><u>Important</u></p>
             <div class="row">
-            <div class="input-field col s8">
-              <input id="important_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
+              <div class="input-field col s8">
+                <input id="important_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
+              </div>
+              <br>
+              <div class="col s2">
+                <a id="important_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
+              </div>
             </div>
-            <br>
-            <div class="col s2">
-              <a id="important_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
+            <p class="light white-text" style="font-size: 18px;"><u>Normal</u></p>
+            <div class="row">
+              <div class="input-field col s8">
+                <input id="normal_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
+              </div>
+              <br>
+              <div class="col s3">
+                <a id="normal_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
+              </div>
             </div>
-          </div>
-          <p class="light white-text" style="font-size: 18px;"><u>Normal</u></p>
-          <div class="row">
-          <div class="input-field col s8">
-            <input id="normal_Announcement_Input" type="text" class="white-text" placeholder="Write announcement here">
-          </div>
-          <br>
-          <div class="col s3">
-            <a id="normal_Announcement_Btn" class="btn waves-effect green darken-1">Post</a>
-          </div>
-        </div>
           </div>
 
           <div id="slider_Settings">
@@ -235,12 +237,64 @@
 
           <div id="server_Settings">
             <h5 class="light white-text">Server Settings</h5>
+            <p class="divider"></p>
             <br>
+            <p class="light white-text" style="font-size: 18px;"><u>Account Creation Verification</u></p>
             <p id="current_Code_Text"class="white-text">Current Verification Code: </p>
             <p id="new_Code_Text" class="green-text text-darken-1" style="display: none;">New Code:</p>
             <br>
             <a id="generate_New_Code" class="btn waves-effect green darken-1">Generate Code</a>
             <a id="update_New_Code" class="btn waves-effect orange darken-1" style="display: none;">Update Code</a>
+            <br><br>
+            <p class="divider"></p>
+            <br>
+            <p class="light white-text" style="font-size: 18px;"><u>Administrative Access</u></p>
+            <p class="white-text">Type the <b><u>exact</u></b> username and press enter.</p>
+            <blockquote id="admin_User_Error" class="white-text" style="font-size: 20px; display: none;">
+              This is an example quotation that uses the blockquote tag
+            </blockquote>
+            <div class="section">
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">search</i>
+                  <input id="admin_Search_Username" type="text" class="white-text">
+                  <label for="admin_Search_Username" class="white-text">Search</label>
+                </div>
+              </div>
+            </div>
+            <div class="section" id="result_Section" style="display: block">
+              <p id="admin_Acess_Label" class="white-text">Administrative Access:</p>
+              <div class="row">
+                <div class="input-field col s6" id="admin_Container" style="display: none;">
+                  <select class="icons white-text" id="admin_Select">
+                    <option value="" disabled selected>Select Access Level</option>
+                    <option value="none">None</option>
+                    <option value="normal">Normal (JS)</option>
+                    <option value="mod">Moderator (VJCS+)</option>
+                  </select>
+                </div>
+                <div class="input-field col s6" id="super_Admin_Container" style="display: none;">
+                  <select class="icons white-text" id="super_Admin_Select">
+                    <option value="" disabled selected>Select Access Level</option>
+                    <option value="none">None</option>
+                    <option value="normal">Normal (JS)</option>
+                    <option value="mod">Moderator (VJCS+)</option>
+                    <option value="admin">Admin (HIGHCOM+)</option>
+                  </select>
+                </div>
+                <div class="input-field col s6" id="owner_Container" style="display: none;">
+                  <select class="icons white-text" id="owner_Select">
+                    <option value="" disabled selected>Select Access Level</option>
+                    <option value="none">None</option>
+                    <option value="normal">Normal (JS)</option>
+                    <option value="mod">Moderator (VJCS+)</option>
+                    <option value="admin">Admin (HIGHCOM+)</option>
+                    <option value="superAdmin">Super Admin (DOD+)</option>
+                  </select>
+                </div>
+              </div>
+              <a id="update_Administrative_Access_Btn" class="btn waves-effect orange darken-1">Update Administrative Access</a>
+            </div>
           </div>
         </div>
       </div>
@@ -295,235 +349,235 @@
                 <td id="admin_Access" class="white-text"></td>
                 <!--
                 <td id="admin_Update">
-                  <div class="input-field col s6">
-                    <input id="admin_Access_Input" type="text" class="white-text" placeholder="Type admin">
-                  </div>
-                </td> -->
-                <!-- &emsp;<a id="delete_Button" class="btn-small waves-effect"><i class="material-icons white-text">delete</i></a> -->
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- Logs Table -->
-      <div class="col s12 m12">
-        <div id="" class="card-panel blue-grey darken-3">
-          <h5 class="light white-text">Activity Logs</h5>
+                <div class="input-field col s6">
+                <input id="admin_Access_Input" type="text" class="white-text" placeholder="Type admin">
+              </div>
+            </td> -->
+            <!-- &emsp;<a id="delete_Button" class="btn-small waves-effect"><i class="material-icons white-text">delete</i></a> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Logs Table -->
+  <div class="col s12 m12">
+    <div id="" class="card-panel blue-grey darken-3">
+      <h5 class="light white-text">Activity Logs</h5>
 
-          <table class="bordered responsive-table">
-            <thead id="logHead" style="display: none;">
-              <tr>
-                <th class="white-text">Logs</th>
-                <th class="white-text">Date</th>
-              </tr>
-            </thead>
-            <tbody id="log_Holder">
-              <tr id="log_Information" style="display: none;">
-                <td id="log_Description" class="white-text"></td>
-                <td id="log_Date" class="white-text"></td>
-              </tr>
-            </tbody>
-          </table>
+      <table class="bordered responsive-table">
+        <thead id="logHead" style="display: none;">
+          <tr>
+            <th class="white-text">Logs</th>
+            <th class="white-text">Date</th>
+          </tr>
+        </thead>
+        <tbody id="log_Holder">
+          <tr id="log_Information" style="display: none;">
+            <td id="log_Description" class="white-text"></td>
+            <td id="log_Date" class="white-text"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Sign in Modal -->
+<div id="sign_In" class="modal blue-grey darken-4">
+  <div class="modal-content">
+    <h4 class="center white-text">Sign In</h4>
+    <div class="row">
+      <blockquote id="sign_In_Error" class="white-text" style="font-size: 20px; display: none;">
+        This is an example quotation that uses the blockquote tag
+      </blockquote>
+      <form class="col s12">
+        <div class="input-field col s12">
+          <input id="sign_In_Email" type="email" class="validate white-text">
+          <label for="sign_In_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="sign_In_Password" type="password" class="white-text">
+          <label for="sign_In_Password" class="white-text">Password</label>
+        </div>
+        <div class="col s12">
+          <a id="forgot_Password_Btn" class="white-text" style="cursor: pointer;"><u>Forgot Password?</u></a>
+        </div>
+      </form>
+      <div class="center">
+        <a id="sign_In_Btn" class="btn waves-effect red darken-1">Sign In</a>
+        <br><br>
+        <a id="sign_Up_Trigger" class="white-text" style="cursor: pointer;">Or create account</a>
+      </div>
+      <div id="codeVerifier" style="display: none;">
+        <p class="light white-text">Please verify that you are an officer of the United States Military by entering the <u>6 digit verification code</u> given to you by the HIGHCOM.</p>
+        <blockquote id="verify_Error" class="white-text" style="font-size: 20px; display: none;">
+          This is an example quotation that uses the blockquote tag
+        </blockquote>
+        <div class="input-field col s6">
+          <input id="verification_Input" type="text" class="white-text" placeholder="Verification Code">
+        </div>
+        <br>
+        <div class="col s6">
+          <a id="code_Verification_Btn" class="btn waves-effect red darken-1">Verify</a>
         </div>
       </div>
     </div>
-
-    <!-- Sign in Modal -->
-    <div id="sign_In" class="modal blue-grey darken-4">
-      <div class="modal-content">
-        <h4 class="center white-text">Sign In</h4>
-        <div class="row">
-          <blockquote id="sign_In_Error" class="white-text" style="font-size: 20px; display: none;">
-            This is an example quotation that uses the blockquote tag
-          </blockquote>
-          <form class="col s12">
-            <div class="input-field col s12">
-              <input id="sign_In_Email" type="email" class="validate white-text">
-              <label for="sign_In_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
-            </div>
-            <div class="input-field col s12">
-              <input id="sign_In_Password" type="password" class="white-text">
-              <label for="sign_In_Password" class="white-text">Password</label>
-            </div>
-            <div class="col s12">
-              <a id="forgot_Password_Btn" class="white-text" style="cursor: pointer;"><u>Forgot Password?</u></a>
-            </div>
-          </form>
-          <div class="center">
-            <a id="sign_In_Btn" class="btn waves-effect red darken-1">Sign In</a>
-            <br><br>
-            <a id="sign_Up_Trigger" class="white-text" style="cursor: pointer;">Or create account</a>
-          </div>
-          <div id="codeVerifier" style="display: none;">
-            <p class="light white-text">Please verify that you are an officer of the United States Military by entering the <u>6 digit verification code</u> given to you by the HIGHCOM.</p>
-            <blockquote id="verify_Error" class="white-text" style="font-size: 20px; display: none;">
-              This is an example quotation that uses the blockquote tag
-            </blockquote>
-            <div class="input-field col s6">
-              <input id="verification_Input" type="text" class="white-text" placeholder="Verification Code">
-            </div>
-            <br>
-            <div class="col s6">
-              <a id="code_Verification_Btn" class="btn waves-effect red darken-1">Verify</a>
-            </div>
-          </div>
-        </div>
+  </div>
+</div>
+<!-- Sign up Modal -->
+<div id="sign_Up" class="modal blue-grey darken-4">
+  <div class="modal-content">
+    <h4 class="center white-text">Sign Up</h4>
+    <div class="row">
+      <p class="center light white-text">*Accounts are only for <b>authorized</b> officers of the United States Military.</p>
+      <ul>
+        <li class="light white-text"><b>Requirements:</b></li>
+        <li class="light white-text">*Passwords must contain <u>more than 8</u> characters</li>
+        <li class="light white-text">*Emails must be <u>valid</u></li>
+      </ul>
+      <blockquote id="sign_Up_Error" class="white-text" style="font-size: 20px; display: none;">
+        Error
+      </blockquote>
+      <div class="input-field col s12">
+        <input id="sign_Up_Email" type="email" class="validate white-text">
+        <label for="sign_Up_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="sign_Up_Password" type="password" class="white-text">
+        <label for="sign_Up_Password" class="white-text">Password</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="sign_Up_Password_Verify" type="password" class="white-text">
+        <label for="sign_Up_Password_Verify" class="white-text">Confirm Password</label>
+      </div>
+      <div class="center">
+        <p class="center red-text"><b>A FOLLOW UP POPUP WILL DISPLAY SHORTLY AFTER YOUR DATA IS VALIDATED! PLEASE WAIT!</b></p>
+        <a id="sign_Up_Btn" class="btn waves-effect red darken-1">Create Account</a>
       </div>
     </div>
-    <!-- Sign up Modal -->
-    <div id="sign_Up" class="modal blue-grey darken-4">
-      <div class="modal-content">
-        <h4 class="center white-text">Sign Up</h4>
-        <div class="row">
-          <p class="center light white-text">*Accounts are only for <b>authorized</b> officers of the United States Military.</p>
-          <ul>
-            <li class="light white-text"><b>Requirements:</b></li>
-            <li class="light white-text">*Passwords must contain <u>more than 8</u> characters</li>
-            <li class="light white-text">*Emails must be <u>valid</u></li>
-          </ul>
-          <blockquote id="sign_Up_Error" class="white-text" style="font-size: 20px; display: none;">
-            Error
-          </blockquote>
-          <div class="input-field col s12">
-            <input id="sign_Up_Email" type="email" class="validate white-text">
-            <label for="sign_Up_Email" data-error="Enter Valid Email" data-success="Valid Email" class="white-text">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="sign_Up_Password" type="password" class="white-text">
-            <label for="sign_Up_Password" class="white-text">Password</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="sign_Up_Password_Verify" type="password" class="white-text">
-            <label for="sign_Up_Password_Verify" class="white-text">Confirm Password</label>
-          </div>
-          <div class="center">
-            <p class="center red-text"><b>A FOLLOW UP POPUP WILL DISPLAY SHORTLY AFTER YOUR DATA IS VALIDATED! PLEASE WAIT!</b></p>
-            <a id="sign_Up_Btn" class="btn waves-effect red darken-1">Create Account</a>
-          </div>
-        </div>
+  </div>
+</div>
+<!-- Follow up modal -->
+<div id="sign_Up_Follow" class="modal blue-grey darken-4">
+  <div class="modal-content">
+    <h4 class="center white-text">Continue</h4>
+    <div class="row">
+      <p class="center light white-text">*Please continue this form.</p>
+      <blockquote id="sign_Up_Error_Follow" class="white-text" style="font-size: 20px; display: none;">
+        This is an example quotation that uses the blockquote tag
+      </blockquote>
+      <div class="input-field col s12">
+        <input id="sign_Up_Username_Follow" type="text" class="white-text">
+        <label for="sign_Up_Username_Follow" class="white-text">Roblox Username</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="sign_Up_Current_Unit_Follow" type="text" class="white-text" length="20">
+        <label for="sign_Up_Current_Unit_Follow" class="white-text">Current Unit</label>
+      </div>
+      <div class="input-field col s12 m12">
+        <select class="icons white-text" id="sign_Up_Paygrade">
+          <option value="" disabled selected>Select Pay-Grade</option>
+          <option value="O-1">O-1</option>
+          <option value="O-2">O-2</option>
+          <option value="O-3">O-3</option>
+          <option value="O-4">O-4</option>
+          <option value="O-5">O-5</option>
+          <option value="O-6">O-6</option>
+          <option value="O-7">O-7</option>
+          <option value="O-8">O-8</option>
+          <option value="O-9">O-9</option>
+          <option value="O-10">O-10</option>
+        </select>
+      </div>
+      <div class="input-field col s12 m12">
+        <select class="icons white-text" id="sign_Up_Branch">
+          <option value="" disabled selected>Select Branch</option>
+          <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+          <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+          <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+          <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+          <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+        </select>
+      </div>
+      <div class="center">
+        <a id="sign_Up_Btn_Follow" class="btn waves-effect red darken-1">Create Account</a>
       </div>
     </div>
-    <!-- Follow up modal -->
-    <div id="sign_Up_Follow" class="modal blue-grey darken-4">
-      <div class="modal-content">
-        <h4 class="center white-text">Continue</h4>
-        <div class="row">
-          <p class="center light white-text">*Please continue this form.</p>
-          <blockquote id="sign_Up_Error_Follow" class="white-text" style="font-size: 20px; display: none;">
-            This is an example quotation that uses the blockquote tag
-          </blockquote>
-          <div class="input-field col s12">
-            <input id="sign_Up_Username_Follow" type="text" class="white-text">
-            <label for="sign_Up_Username_Follow" class="white-text">Roblox Username</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="sign_Up_Current_Unit_Follow" type="text" class="white-text" length="20">
-            <label for="sign_Up_Current_Unit_Follow" class="white-text">Current Unit</label>
-          </div>
-          <div class="input-field col s12 m12">
-            <select class="icons white-text" id="sign_Up_Paygrade">
-              <option value="" disabled selected>Select Pay-Grade</option>
-              <option value="O-1">O-1</option>
-              <option value="O-2">O-2</option>
-              <option value="O-3">O-3</option>
-              <option value="O-4">O-4</option>
-              <option value="O-5">O-5</option>
-              <option value="O-6">O-6</option>
-              <option value="O-7">O-7</option>
-              <option value="O-8">O-8</option>
-              <option value="O-9">O-9</option>
-              <option value="O-10">O-10</option>
-            </select>
-          </div>
-          <div class="input-field col s12 m12">
-            <select class="icons white-text" id="sign_Up_Branch">
-              <option value="" disabled selected>Select Branch</option>
-              <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
-              <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
-              <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
-              <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
-              <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
-            </select>
-          </div>
-          <div class="center">
-            <a id="sign_Up_Btn_Follow" class="btn waves-effect red darken-1">Create Account</a>
-          </div>
-        </div>
+  </div>
+</div>
+<!-- Transfer modal -->
+<div id="transfer_Request_Modal" class="modal blue-grey darken-4">
+  <div class="modal-content">
+    <h4 class="center white-text">Transfer Request</h4>
+    <div class="row">
+      <ul>
+        <li class="center light white-text">*Please complete this form if you wish to request a branch transfer.</li>
+        <li class="center light white-text">*Your request is not valid until your respective Joint Chief of Staff approves.</li>
+      </ul>
+      <blockquote id="transfer_Error" class="white-text" style="font-size: 20px; display: none;">
+        This is an example quotation that uses the blockquote tag
+      </blockquote>
+      <div class="input-field col s12">
+        <input id="transfer_Username" type="text" class="white-text">
+        <label for="transfer_Username" class="white-text">Roblox Username</label>
+      </div>
+      <div class="input-field col s12 m12">
+        <p class="white-text">Current Branch:</p>
+        <select class="icons white-text" id="transfer_Current_Branch">
+          <option value="" disabled selected>Branch</option>
+          <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+          <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+          <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+          <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+          <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+        </select>
+      </div>
+      <div class="input-field col s12 m12">
+        <p class="white-text">Transfer to:</p>
+        <select class="icons white-text" id="transfer_To_Branch">
+          <option value="" disabled selected>Branch</option>
+          <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
+          <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
+          <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
+          <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
+          <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
+        </select>
+      </div>
+      <div class="center">
+        <a id="transfer_Send_Btn" class="btn waves-effect red darken-1">Send Transfer Request</a>
       </div>
     </div>
-    <!-- Transfer modal -->
-    <div id="transfer_Request_Modal" class="modal blue-grey darken-4">
-      <div class="modal-content">
-        <h4 class="center white-text">Transfer Request</h4>
-        <div class="row">
-          <ul>
-            <li class="center light white-text">*Please complete this form if you wish to request a branch transfer.</li>
-            <li class="center light white-text">*Your request is not valid until your respective Joint Chief of Staff approves.</li>
-          </ul>
-          <blockquote id="transfer_Error" class="white-text" style="font-size: 20px; display: none;">
-            This is an example quotation that uses the blockquote tag
-          </blockquote>
-          <div class="input-field col s12">
-            <input id="transfer_Username" type="text" class="white-text">
-            <label for="transfer_Username" class="white-text">Roblox Username</label>
-          </div>
-          <div class="input-field col s12 m12">
-            <p class="white-text">Current Branch:</p>
-            <select class="icons white-text" id="transfer_Current_Branch">
-              <option value="" disabled selected>Branch</option>
-              <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
-              <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
-              <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
-              <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
-              <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
-            </select>
-          </div>
-          <div class="input-field col s12 m12">
-            <p class="white-text">Transfer to:</p>
-            <select class="icons white-text" id="transfer_To_Branch">
-              <option value="" disabled selected>Branch</option>
-              <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
-              <option value="Army" data-icon="images/Seal of the Army.png" class="left circle">Army</option>
-              <option value="Coast Guard" data-icon="images/Seal of the Coast Guard.png" class="left circle">Coast Guard</option>
-              <option value="Marine Corps" data-icon="images/Seal of the Marine Corps.png" class="left circle">Marine Corps</option>
-              <option value="Navy" data-icon="images/Seal of the Navy.png" class="left circle">Navy</option>
-            </select>
-          </div>
-          <div class="center">
-            <a id="transfer_Send_Btn" class="btn waves-effect red darken-1">Send Transfer Request</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+</div>
 
-    <!--  Scripts-->
-    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyB0OAIYQiVp4HtdkxATtkAf17Mf966CJU8",
-      authDomain: "busm-database.firebaseapp.com",
-      databaseURL: "https://busm-database.firebaseio.com",
-      projectId: "busm-database",
-      storageBucket: "busm-database.appspot.com",
-      messagingSenderId: "827489391075"
-    };
-    firebase.initializeApp(config);
-    </script>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!--  Scripts-->
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB0OAIYQiVp4HtdkxATtkAf17Mf966CJU8",
+  authDomain: "busm-database.firebaseapp.com",
+  databaseURL: "https://busm-database.firebaseio.com",
+  projectId: "busm-database",
+  storageBucket: "busm-database.appspot.com",
+  messagingSenderId: "827489391075"
+};
+firebase.initializeApp(config);
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-98022200-1', 'auto');
-    ga('send', 'pageview');
+ga('create', 'UA-98022200-1', 'auto');
+ga('send', 'pageview');
 
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/firebaseInit.js"></script>
-    <script src="js/manageAdmins.js"></script>
-  </body>
-  </html>
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="js/firebaseInit.js"></script>
+<script src="js/manageAdmins.js"></script>
+</body>
+</html>
