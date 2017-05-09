@@ -309,6 +309,7 @@ $('#admin_Search_Username').on('keyup', function(e) {
     var search_Username = $('#admin_Search_Username').val().toLowerCase();
     console.log('Selected username: ' + search_Username);
     if (search_Username.length > 3) {
+      $('#loader_Two').css('display', 'block');
       checkIfUserExists(search_Username);
     } else {
       $('#admin_User_Error').html('Error: Username is too short.');
@@ -353,6 +354,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       console.log('User exists name: ' + userToUpdateAdmin);
       var admin = capitalizeFirstLetter(snapshot.child('admin').val());
       $('#admin_Acess_Label').html('Current Administrative Access: <em class="blue-text">' + admin + '</em>');
+      $('#loader_Two').css('display', 'none');
       $('#result_Section').css('display', 'block');
     });
   }
@@ -395,7 +397,7 @@ $('#update_Administrative_Access_Btn').on("click", function() {
   var keyToLogs = firebaseRef.ref('Logs').push().key;
   var log = 'Admin user (' + currentUser + ') changed user (' + user + ') admin to (' + final_Select_Value + ') on ' + logDate + '.';
   firebaseRef.ref('Logs').child(keyToLogs).update({
-    date: date,
+    date: logDate,
     log: log
   });
   location.reload();
