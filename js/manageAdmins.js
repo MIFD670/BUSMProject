@@ -400,5 +400,5 @@ $('#update_Administrative_Access_Btn').on("click", function() {
     date: logDate,
     log: log
   });
-  location.reload();
+  //location.reload();
 });
