@@ -368,19 +368,19 @@ $('#update_Administrative_Access_Btn').on("click", function() {
   var final_Select_Value;
   console.log('1: ' + admin_Select + ', 2: ' + super_Admin_Select + ', 3: ' + owner_Select + '.');
   // Check if any of the selects are selected
-  if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select == null)) {
+  if ((admin_Select == "") && (super_Admin_Select == "") && (owner_Select == "")) {
     $('#admin_User_Error').html('Error: No admin value selected.');
     $('#admin_User_Error').css('display', 'block');
     $("#server_Settings").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  if ((admin_Select !== null) && (super_Admin_Select == null) && (owner_Select == null)) {
+  if ((admin_Select != "") && (super_Admin_Select == "") && (owner_Select == "")) {
     final_Select_Value = admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-  } else if ((admin_Select == null) && (super_Admin_Select !== null) && (owner_Select == null)) {
+  } else if ((admin_Select == "") && (super_Admin_Select != "") && (owner_Select == "")) {
     final_Select_Value = super_Admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-  } else if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select !== null)) {
+  } else if ((admin_Select == "") && (super_Admin_Select == "") && (owner_Select != "")) {
     final_Select_Value = owner_Select;
     console.log('This is the final value: ' + final_Select_Value);
   }
