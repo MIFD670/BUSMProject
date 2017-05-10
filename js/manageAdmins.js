@@ -380,7 +380,7 @@ $('#update_Administrative_Access_Btn').on("click", function() {
     $("#server_Settings").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  if (((user == "buddy1926") || (user == "directlegend")) && ((currentAdmin == "admin") || (currentAdmin == "mod") || (currentAdmin == "superAdmin"))) {
+  if (((user == "buddy1926") || (user == "directlegend")) && ((currentAdmin == "normal") || (currentAdmin == "admin") || (currentAdmin == "mod") || (currentAdmin == "superAdmin"))) {
     $('#admin_User_Error').html('Error: You cannot change the admin of these users.');
     $('#admin_User_Error').css('display', 'block');
     $("#server_Settings").animate({ scrollTop: 0 }, "slow");
