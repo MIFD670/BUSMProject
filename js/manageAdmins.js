@@ -353,6 +353,12 @@ function userExistsCallback(userIdx, verifyIdx) {
       userToUpdateAdmin = user;
       console.log('User exists name: ' + userToUpdateAdmin);
       var admin = capitalizeFirstLetter(snapshot.child('admin').val());
+      $('#admin_Select').prop('selectedIndex', 0);
+      $('#admin_Select').material_select();
+      $('#super_Admin_Select').prop('selectedIndex', 0);
+      $('#super_Admin_Select').material_select();
+      $('#owner_Select').prop('selectedIndex', 0);
+      $('#owner_Select').material_select();
       $('#admin_Acess_Label').html('Current Administrative Access: <em class="blue-text">' + admin + '</em>');
       $('#loader_Two').css('display', 'none');
       $('#result_Section').css('display', 'block');
@@ -395,5 +401,5 @@ $('#update_Administrative_Access_Btn').on("click", function() {
     date: logDate,
     log: log
   });
-  //location.reload();
+  location.reload();
 });
