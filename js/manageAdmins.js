@@ -374,13 +374,13 @@ $('#update_Administrative_Access_Btn').on("click", function() {
     $("#server_Settings").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  if ((admin_Select != null) && (super_Admin_Select == null) && (owner_Select == null)) {
+  if ((admin_Select !== null) && (super_Admin_Select == null) && (owner_Select == null)) {
     final_Select_Value = admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-  } else if ((admin_Select == null) && (super_Admin_Select != null) && (owner_Select == null)) {
+  } else if ((admin_Select == null) && (super_Admin_Select !== null) && (owner_Select == null)) {
     final_Select_Value = super_Admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-  } else if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select != null)) {
+  } else if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select !== null)) {
     final_Select_Value = owner_Select;
     console.log('This is the final value: ' + final_Select_Value);
   }
