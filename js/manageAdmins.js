@@ -373,25 +373,20 @@ $('#update_Administrative_Access_Btn').on("click", function() {
     $('#admin_User_Error').css('display', 'block');
     $("#server_Settings").animate({ scrollTop: 0 }, "slow");
     return;
-  } else if ((admin_Select != null) && (super_Admin_Select == null) && (owner_Select == null)) {
+  }
+  if ((admin_Select != null) && (super_Admin_Select == null) && (owner_Select == null)) {
     final_Select_Value = admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-    firebaseRef.ref('Users/' + user).update({
-      admin: final_Select_Value
-    });
   } else if ((admin_Select == null) && (super_Admin_Select != null) && (owner_Select == null)) {
     final_Select_Value = super_Admin_Select;
     console.log('This is the final value: ' + final_Select_Value);
-    firebaseRef.ref('Users/' + user).update({
-      admin: final_Select_Value
-    });
   } else if ((admin_Select == null) && (super_Admin_Select == null) && (owner_Select != null)) {
     final_Select_Value = owner_Select;
     console.log('This is the final value: ' + final_Select_Value);
-    firebaseRef.ref('Users/' + user).update({
-      admin: final_Select_Value
-    });
   }
+  firebaseRef.ref('Users/' + user).update({
+    admin: final_Select_Value
+  });
   // Logs
   var logDate = getCurrentDate();
   var keyToLogs = firebaseRef.ref('Logs').push().key;
