@@ -493,7 +493,7 @@ $('#update_User_Btn').on("click", function() {
     console.log('No new status.');
   }
   // If there is a new pay-grade being updated, then send the data to Firebase promotions
-  if (newPaygrade != paygrade) {
+  if (newPaygrade !== paygrade) {
     var promotionHistory = {
       username: username,
       promotion: newPaygrade,
