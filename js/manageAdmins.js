@@ -266,7 +266,7 @@ $('#group_Announcement_Btn').on("click", function() {
   var postURL = "https://" + apiURL + "/shout/" + groupID;
   var data = {};
   data.key = apiKey;
-  data.message = message;
+  data.message = messageToPush;
 
   $.ajax({
     url: postURL,
