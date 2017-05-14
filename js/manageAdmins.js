@@ -45,7 +45,6 @@ function displayUserInformation() {
   firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
     apiKey = snapshot.child('apiKey').val();
     apiURL = snapshot.child('apiURL').val();
-    console.log('API KEY: ' + apiKey + ', API URL: ' + apiURL);
   });
 }
 
