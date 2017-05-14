@@ -223,6 +223,20 @@
           <label id="edit_User_CurrentUnit_Key_Label" for="edit_User_CurrentUnit_Key" class="white-text">Current Unit Key</label>
         </div>
         <div class="input-field col s12 m12">
+          <select class="icons white-text" id="edit_User_Status">
+            <option value="" disabled selected>Select User Status</option>
+            <option value="Active Duty">Active Duty</option>
+            <option value="Reserves">Reserves</option>
+            <option value="Inactive Ready Reserves">Inactive Ready Reserves</option>
+            <option value="Medical Leave">Medical Leave</option>
+            <option value="Administrative Leave">Administrative Leave</option>
+            <option value="Pending Court Martial">Pending Court Martial</option>
+            <option value="Pending Dishonorable Discharge">Pending Dishonorable Discharge</option>
+            <option value="Pending Other Action">Pending Other Action</option>
+            <option value="AWOL">AWOL</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12">
           <select class="icons white-text" id="edit_User_Branch">
             <option value="" disabled selected>Select Branch</option>
             <option value="Air Force" data-icon="images/Seal of the Air Force.png" class="left circle">Air Force</option>
@@ -235,7 +249,6 @@
         <div class="input-field col s12 m12">
           <select class="icons white-text" id="edit_User_Paygrade">
             <option value="" disabled selected>Select Pay-Grade</option>
-            <option value="Discharge" class="red-text">DISCHARGE</option>
             <option value="E-1">E-1</option>
             <option value="E-2">E-2</option>
             <option value="E-3">E-3</option>
@@ -261,6 +274,8 @@
             <option value="O-8">O-8</option>
             <option value="O-9">O-9</option>
             <option value="O-10">O-10</option>
+            <option value="VJCS">VJCS</option>
+            <option value="JCS">JCS</option>
           </select>
         </div>
         <u><center><a id="show_Awards_Section_Btn" class="admin" style="display: none; cursor: pointer;">Add Awards</a></center></u>

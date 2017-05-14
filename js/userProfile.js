@@ -25,14 +25,46 @@ function displayData(userIdx) {
     var paygrade = snapshot.child('paygrade').val();
     var rank = snapshot.child('rank').val();
     var profilePicture = snapshot.child('profilePic').val();
+    var dutyStatus = snapshot.child('status').val();
     console.log('1: ' + username + ', 2: ' + unit + ', 3: ' + branch + ', 4: ' + paygrade + ', 5: ' + rank + ', 6: ' + profilePicture);
     //Display Data
-    $('#username').html(username);
+    $('#username').html(username + ' ');
     $('#search_Img').attr('src', profilePicture);
     $('#rank').html('Rank: ' + rank);
     $('#paygrade').html('Pay-Grade: ' + paygrade);
     $('#branch').html('Branch: ' + branch);
     $('#unit').html('Unit: ' + unit);
+    if (dutyStatus == "Active Duty") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('green');
+    } else if (dutyStatus == "Reserves") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('orange darken-1');
+    } else if (dutyStatus == "Inactive Ready Reserves") {
+      $('#status').html(dutyStatus);
+      $('#status').removeClass('white-text');
+      $('#status').addClass('yellow');
+    } else if (dutyStatus == "Medical Leave") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('cyan darken-1');
+    } else if (dutyStatus == "Administrative Leave") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('amber darken-1');
+    } else if (dutyStatus == "Pending Court Martial") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('pink darken-1');
+    } else if (dutyStatus == "Pending Dishonorable Discharge") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('red darken-3');
+    } else if (dutyStatus == "Pending Other Action") {
+      $('#status').html(dutyStatus);
+      $('#status').addClass('deep-purple darken-1');
+    } else if (dutyStatus == "AWOL") {
+      $('#status').html(dutyStatus);
+      $('#status').removeClass('white-text');
+    } else if (dutyStatus.length < 3) {
+      $('#status').remove();
+    }
   });
   //Awards
   firebaseRef.ref('/Users/' + username + '/awards').on("child_added", snap => {

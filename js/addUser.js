@@ -77,6 +77,7 @@ $('#add_User_Btn_Follow').on("click", function() {
   var currentUnit = $('#add_User_CurrentUnit').val();
   var currentUnitPosition = $('#add_User_CurrentUnit_Pos').val();
   var branch = $('#add_User_Branch option:selected').text();
+  var status = $('#add_User_Status option:selected').text();
   var paygrade = $('#add_User_Paygrade option:selected').val();
   var verifiedUser = verified;
   console.log('Verified: ' + verifiedUser);
@@ -97,8 +98,6 @@ $('#add_User_Btn_Follow').on("click", function() {
     date: date,
     promotedBy: currentUser
   };
-  promotionKey = firebaseRef.ref('/Users/' + username + '/promotions').push().key;
-  historyKey = firebaseRef.ref('/Users/' + username + '/units').push().key;
   if (username.length < 3) {
     $('#add_User_Error').html('Error: Username invalid. Please enter a valid username.');
     $('#add_User_Error').css('display', 'block');
@@ -111,7 +110,13 @@ $('#add_User_Btn_Follow').on("click", function() {
     $("#add_User_Error").animate({ scrollTop: 0 }, "slow");
     return;
   }
-  if ((paygrade == null) || (paygrade == "Select Pay-Grade")) {
+  if ((status == null) || (status == "Select User Status")){
+    $('#add_User_Error').html('Error: Status value invalid. Please select a valid military status.');
+    $('#add_User_Error').css('display', 'block');
+    $("#add_User_Error").animate({ scrollTop: 0 }, "slow");
+    return;
+  }
+  if ((paygrade == null) || (paygrade.length == 0)) {
     $('#add_User_Error').html('Error: Pay-Grade value invalid. Please select a valid pay-grade.');
     $('#add_User_Error').css('display', 'block');
     $("#add_User_Error").animate({ scrollTop: 0 }, "slow");
@@ -119,7 +124,8 @@ $('#add_User_Btn_Follow').on("click", function() {
   }
   console.log('User does not exist');
   getProfileIDURL(username);
-
+  promotionKey = firebaseRef.ref('/Users/' + username + '/promotions').push().key;
+  historyKey = firebaseRef.ref('/Users/' + username + '/units').push().key;
   firebase.database().ref('Users/' + username).set({
     admin: 'none',
     branch: branch,
@@ -127,7 +133,8 @@ $('#add_User_Btn_Follow').on("click", function() {
     currentUnitPosition: currentUnitPosition,
     currentUnitKey: historyKey,
     paygrade: paygrade,
-    rank: rank
+    rank: rank,
+    status: status
   });
   console.log('Promotion Key: ' + promotionKey);
   firebaseRef.ref('/Users/' + username + '/promotions').child(promotionKey).update(promotionHistory);
@@ -148,6 +155,8 @@ $('#add_User_Btn_Follow').on("click", function() {
   $('#add_User_Branch').material_select();
   $('#add_User_Paygrade').prop('selectedIndex', 0);
   $('#add_User_Paygrade').material_select();
+  $('#add_User_Status').prop('selectedIndex', 0);
+  $('#add_User_Status').material_select();
 });
 
 function capitalizeFirstLetter(wordIdx) {
@@ -240,7 +249,7 @@ function getRank(strPaygrade, strBranch) {
     formattedRank = "First Sergeant";
   } else if (strPaygrade == "E-9B" && (branch == "Navy")) {
     formattedRank = "Force Command Chief Petty Officer";
-  } else if(strPaygrade == "E-9B" && (branch == "Coast Guard")) {
+  } else if (strPaygrade == "E-9B" && (branch == "Coast Guard")) {
     formattedRank = "Command Master Chief";
   } else if (strPaygrade == "SEA" && (branch == "Army")) {
     formattedRank = "Sergeant Major of the Army";

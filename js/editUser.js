@@ -1,26 +1,3 @@
-// TO-DO:
-//1. Finish Formatting Enlisted Ranks DONE
-//2. Finish "Add User" page DONE
-//  - Promotion History --> After calling the add user function, write a function that automatically creates a key and
-//    adds it to the user "promotions" section for that rank
-//3. Write "Edit User" page
-//  - Update User Data
-//  - Add Awards Data
-//  - Add Unit History Data
-//  - Add Promotion History Data
-//4. Write "Delete User" page
-//5. Write "Manage Admins" page
-//  - Ability to connect accounts (emails added to user database)
-//  - Ability to disable accounts
-//  - Ability to delete accounts
-//  - Ability to change admin types, displayed in sections "normals, mods, admins, super admin, owner"
-//6. Write search page and javascript
-//7. User Settings page
-//  - Password reset
-//  - Verify Email (?)
-//  - Merge Account Request?
-
-
 // Variables
 var getData;
 var displayUserData;
@@ -42,6 +19,11 @@ var newUnitKey;
 var activityKey;
 var unitHistoryKey;
 var currentUnitPosition;
+//-------- Roblox API Information --------
+var apiKey;
+var apiURL;
+var groupID = 2520003;
+var searchUserID;
 var awardList = {
   "Medal of Honor": 'Ribbons/1.png',
   "Army Distinguished Service Cross": 'Ribbons/2.png',
@@ -93,7 +75,7 @@ var awardList = {
   "Army Meritorious Unit Commendation": 'Ribbons/48.png',
   "Navy Meritorious Unit Commendation": 'Ribbons/49.png',
   "Air Force Meritorious Unit Award": 'Ribbons/50.png',
-  "Coast Guard Meritorious Unit Commendation":  51,
+  "Coast Guard Meritorious Unit Commendation":  'Ribbons/51.png',
   "Army Superior Unit Award": 'Ribbons/52.png',
   "Air Force Outstanding Unit Award": 'Ribbons/53.png',
   "Coast Guard Meritorious Team Commendation": 'Ribbons/54.png',
@@ -112,7 +94,7 @@ var awardList = {
   "Air Force Recognition Ribbon": 'Ribbons/67.png',
   "Army Reserve Components Achievement Medal": 'Ribbons/68.png',
   "Naval Reserve Meritorious Service Medal": 'Ribbons/69.png',
-  "Air Reserve Forces Meritorious Service Medal": 'Ribbons/70.png',
+  "Air Reserve Forces Meritorious Service Medal": 'Ribbons/70.PNG',
   "Selected Marine Corps Reserve Medal": 'Ribbons/71.png',
   "Coast Guard Reserve Good Conduct Medal": 'Ribbons/72.png',
   "Armed Forces Reserve Medal": 'Ribbons/73.png',
@@ -204,10 +186,10 @@ var awardList = {
   "Commadant of the Marine Corps Service Medal": 'Ribbons/162.png',
   "Assistant Commadant of the Marine Corps Service Medal": 'Ribbons/163.png',
   "Sergeant Major of the Marine Corps Service Medal": 'Ribbons/164.png',
-  "Defense Advanced Research Projects Agency Service Medal": /*'Ribbons/165.png'*/ null,
-  "Enlisted Service Member of the Quarter Achievement Medal": /*'Ribbons/166.png'*/ null,
-  "Warrant Officer of the Quarter Achievement Medal": /*'Ribbons/167.png'*/ null,
-  "Officer of the Quarter Achievement Medal": /*'Ribbons/168.png'*/ null,
+  "Defense Advanced Research Projects Agency Service Medal": 'Ribbons/165.png',
+  "Enlisted Service Member of the Quarter Achievement Medal": 'Ribbons/166.png',
+  "Warrant Officer of the Quarter Achievement Medal": 'Ribbons/167.png',
+  "Officer of the Quarter Achievement Medal": 'Ribbons/168.png',
   "Founder's Meritorious Acheivement Medal": 'Ribbons/169.png',
   "Founder's Distinguished Service Ribbon": 'Ribbons/170.png'
 };
@@ -404,6 +386,22 @@ function displayUserInformation () {
     $('#user_Information_Username').html('Username: <em class="blue-text text-darken-1">' + username + '</em>');
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
+    if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin")) {
+      // Do nothing
+      console.log('The user has the necessary administrative access');
+    } else if (admin == "mod") {
+      $("#edit_User_Paygrade option[value='JCS']")
+      .attr("disabled", "disabled")
+      .siblings().removeAttr("disabled");
+    } else if (admin == "normal") {
+      $("#edit_User_Paygrade option[value='VJCS']")
+      .attr("disabled", "disabled")
+      .siblings().removeAttr("disabled");
+      $("#edit_User_Paygrade option[value='JCS']")
+      .attr("disabled", "disabled")
+      .siblings().removeAttr("disabled");
+    }
+
     if ((admin == "owner") || (admin == "superAdmin") || (admin == "admin") || (admin == "mod")) {
       $('#loader_Container').css('display', 'none');
       $('#main_Container').css('display', 'block');
@@ -411,6 +409,12 @@ function displayUserInformation () {
       $('#loader_Container').css('display', 'block');
       $('#main_Container').css('display', 'none');
     }
+  });
+  // Find the API Information
+  firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
+    apiKey = snapshot.child('apiKey').val();
+    apiURL = snapshot.child('apiURL').val();
+    console.log('API KEY: ' + apiKey + ', API URL: ' + apiURL);
   });
 }
 
@@ -428,6 +432,7 @@ $('#update_User_Btn').on("click", function() {
   var newCurrentUnit = $('#edit_User_CurrentUnit').val();
   var newBranch = $('#edit_User_Branch option:selected').text();
   var newPaygrade = $('#edit_User_Paygrade option:selected').val();
+  var newStatus = $('#edit_User_Status option:selected').text();
   var newCurrentUnitPosition = $('#edit_User_CurrentUnit_Pos').val();
   var date = getCurrentDate();
   console.log('Current paygrade is: ' + paygrade);
@@ -441,6 +446,12 @@ $('#update_User_Btn').on("click", function() {
   }
   if ((newBranch == null) || (newBranch == "Select Branch")){
     $('#edit_User_Error').html('Error: Branch value invalid. Please select a valid branch.');
+    $('#edit_User_Error').css('display', 'block');
+    $("#edit_User_Error").animate({ scrollTop: 0 }, "slow");
+    return;
+  }
+  if ((newStatus == null) || (newStatus == "Select User Status")){
+    $('#edit_User_Error').html('Error: Status value invalid. Please select a valid military status.');
     $('#edit_User_Error').css('display', 'block');
     $("#edit_User_Error").animate({ scrollTop: 0 }, "slow");
     return;
@@ -464,6 +475,23 @@ $('#update_User_Btn').on("click", function() {
   } else {
     console.log('No new unit positions.');
   }
+  if (newStatus != userStatus) {
+    firebaseRef.ref('/Users/' + username).update({
+      status: newStatus
+    });
+    var description = "Change of status from " + userStatus + " to " + newStatus + ".";
+    var activityHistory = {
+      username: username,
+      type: "Change of Status",
+      description: description,
+      date: date,
+      sponsor: currentUser
+    };
+    var activityHistoryKey = firebaseRef.ref('/Users/' + username + '/activity').push().key;
+    firebaseRef.ref('/Users/' + username + '/activity').child(activityHistoryKey).update(activityHistory);
+  } else {
+    console.log('No new status.');
+  }
   // If there is a new pay-grade being updated, then send the data to Firebase promotions
   if (newPaygrade !== paygrade) {
     var promotionHistory = {
@@ -477,6 +505,8 @@ $('#update_User_Btn').on("click", function() {
     firebaseRef.ref('/Users/' + username + '/promotions').child(promotionKey).update(promotionHistory);
     console.log('Promotion added.');
     console.log('Units added.');
+    console.log('The current user ID: ' + searchUserID);
+    setRank(searchUserID, username, newPaygrade, newCurrentUnit);
   } else {
     console.log('The paygrades equal to eachother.');
   }
@@ -500,7 +530,6 @@ $('#update_User_Btn').on("click", function() {
   } else {
     console.log('No new units were added.');
   }
-  $('#add_User_Btn_Container_Follow').css('display', 'none');
   var keyToLogs = firebaseRef.ref('Logs').push().key;
   var log = 'Admin user (' + currentUser + ') edited user (' + username + ') on ' + date + '.';
   firebaseRef.ref('Logs').child(keyToLogs).update({
@@ -849,6 +878,69 @@ function getAwardNumber(awardIdx) {
   return returnNumber;
 }
 
+function setRank(userIDIdx, usernameIdx, paygradeIdx, unitIdx) {
+  var strPaygrade = paygradeIdx;
+  var strUserID = userIDIdx;
+  var strUsername = usernameIdx;
+  var strUnit = unitIdx;
+  var formattedRank;
+
+  if (strPaygrade == "E-1") {
+    formattedRank = 231;
+  } else if ((strPaygrade == "E-2") || (strPaygrade == "E-3")) {
+    formattedRank = 236;
+  } else if ((strPaygrade == "E-4") || (strPaygrade == "E-5")) {
+    formattedRank = 237;
+  } else if ((strPaygrade == "E-6") || (strPaygrade == "E-7")) {
+    formattedRank = 238;
+  } else if ((strPaygrade == "E-8") || (strPaygrade == "E-9")) {
+    formattedRank = 239;
+  } else if (strPaygrade == "SEA") {
+    formattedRank = 240;
+  } else if ((strPaygrade == "O-1") || (strPaygrade == "O-2")) {
+    formattedRank = 242;
+  } else if ((strPaygrade == "O-3") || (strPaygrade == "O-4")) {
+    formattedRank = 243;
+  } else if ((strPaygrade == "O-5") || (strPaygrade == "O-6")) {
+    formattedRank = 244;
+  } else if ((strPaygrade == "O-7") || (strPaygrade == "O-8")) {
+    formattedRank = 245;
+  } else if (strPaygrade == "O-9") {
+    formattedRank = 246;
+  } else if (strPaygrade == "O-10") {
+    formattedRank = 248;
+  } else if ((strPaygrade == "VJCS") && ((strUnit == "HQDA") || (strUnit == "HQDN") || (strUnit == "HQMC") || (strUnit == "HQAF") || (strUnit == "HQCG"))) {
+    formattedRank = 249;
+  } else if ((strPaygrade == "JCS") && ((strUnit == "HQDA") || (strUnit == "HQDN") || (strUnit == "HQMC") || (strUnit == "HQAF") || (strUnit == "HQCG"))) {
+    formattedRank = 250;
+  } else if ((strPaygrade == "VJCS") && ((strUnit == "HQDA") || (strUnit == "HQDN") || (strUnit == "HQMC") || (strUnit == "HQAF") || (strUnit == "HQCG"))) {
+    formattedRank = 249;
+  }
+  console.log('The role ID is: ' + formattedRank);
+  var data = {};
+  data.key = apiKey;
+  var postURL = "https://" + apiURL + "/setRank/" + groupID + "/" + strUserID + "/" + formattedRank;
+  var date = getCurrentDate();
+
+  $.ajax({
+    url: postURL,
+    method: 'POST',
+    data: data,
+    dataType: "json",
+    success: function () {
+      Materialize.toast('Successfully Updated Group Rank!', 4000);
+      var keyToLogs = firebaseRef.ref('Logs').push().key;
+      var log = 'Admin user (' + currentUser + ') promoted user (' + strUsername + ') in group [BUSM] on ' + date + '.';
+      firebaseRef.ref('Logs').child(keyToLogs).update({
+        date: date,
+        log: log
+      });
+      console.log('The ranking was a success.');
+    }
+  });
+
+}
+
 function checkIfUserExists(userIdx) {
   //Checks to see if the user already exists
   var user = userIdx;
@@ -873,233 +965,263 @@ function userExistsCallback(userIdx, verifyIdx) {
     console.log('User does exist!');
     $('#search_User_Error').html('');
     $('#search_User_Error').css('display', 'none');
-    //Remove from here and add to the function where it checks if it does exist
 
-    firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
-      var username = user;
-      currentUnit = snapshot.child('currentUnit').val();
-      currentUnitPosition = snapshot.child('currentUnitPosition').val();
-      branch = snapshot.child('branch').val();
-      paygrade = snapshot.child('paygrade').val();
-      var currentUnitKey = snapshot.child('currentUnitKey').val();
-      console.log('1: ' + user + ', 2: ' + currentUnit + ', 3: ' + branch + ', 4: ' + paygrade + ', 5: ' + currentUnitKey);
-      $('#edit_User_Username').val(username);
-      $('#edit_User_Username_Label').addClass('active');
-      $('#edit_User_CurrentUnit').val(currentUnit);
-      $('#edit_User_CurrentUnit_Label').addClass('active');
-      $('#edit_User_CurrentUnit_Pos').val(currentUnitPosition);
-      $('#edit_User_CurrentUnit_Pos_Label').addClass('active');
-      $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
-      $('#edit_User_CurrentUnit_Key_Label').addClass('active');
-      $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
-      $("#edit_User_Paygrade option[value=" + paygrade + "]").attr("selected", true);
-      $('#edit_User_Branch').material_select();
-      $('#edit_User_Paygrade').material_select();
-    });
+    //Get the User ID
+    var endText = '&format=json';
+    var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+    var robloxBaseURL = 'https://api.roblox.com/users/get-by-username?username=';
+    var key = "";
+    var searchURL = robloxBaseURL + userIdx + endText;
+    // Retrieves Data
+    $.ajax({
+      url: apiPassThruUrl,
+      dataType: 'json',
+      method: 'GET',
+      data: {"apiEndpoint": searchURL,
+      "key": key
+    /*"format": "json"*/}
+  }).done (function (data) {
+    id = data['Id'];
+    setUserID(id);
+    /*$.each(data['bustime-response']['prd'], function (i, v) {
+    $('body').append("Route ID: " + v.rt + ", Bus Stop: " + v.stpid + ", ETA: " + v.prdctdn);
+  })*/
+});
 
-    firebaseRef.ref('/Users/' + user + '/units').orderByChild("departureDate").on("child_added", snap => {
-      var username = capitalizeFirstLetter(user);
-      var currentUnitKey = snap.key;
-      var unit = snap.child('unit').val();
-      var currentPosition = snap.child('unitPosition').val();
-      var branch = snap.child('branch').val();
-      var entranceDate = snap.child('entranceDate').val();
-      var departureDate = snap.child('departureDate').val();
-      // Console logs
-      console.log('CHECK USER IS: ' + username + ', ' + 'CURRENT BRANCH: ' + branch + ', ' + ', ENTRANCE: ' + entranceDate + ', DEPARTURE: ' + departureDate);
-      // Creates a clone of the vocab card to edit
-      var newCard = $('#user_Card').clone();
-      newCard.removeAttr('id');
-      newCard.find('.card-title').text(username);
-      newCard.find('#user_History_Branch').html('Branch: ' + branch);
-      newCard.find('#user_History_Unit').html('Unit: ' + unit);
-      newCard.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
-      newCard.find('#user_History_Unit_Key').html('Unit Key: ' + currentUnitKey);
-      newCard.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
-      newCard.find('#user_History_Departure').html('Departure Date: ' + departureDate);
-      //newCard.find('#user_Img').attr('src', profilePic);
-      newCard.removeAttr('style');
-      //Appends to "approved section"
-      $('#unit_Section').append(newCard);
-      $('#unit_Section').css('display', 'block');
-      $('#unit_Card_Holder_Error').css('display', 'none');
-      // Edit button
-      newCard.find('#edit_button').on("click", function() {
-        console.log("The edit button works!");
-        // replaces current elements with input fields
-        newCard.find('.card-title').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Username' type='text'></input><label for='update_Username' class='active white-text'>Username</label></div>");
-        newCard.find('#update_Username').val(username);
-        newCard.find('#user_History_Branch').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Branch' type='text'></input><label for='update_Branch' class='active white-text'>Branch</label></div>");
-        newCard.find('#update_Branch').val(branch);
-        newCard.find('#user_History_Unit').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit' type='text'></input><label for='update_Unit' class='active white-text'>Unit</label></div>");
-        newCard.find('#update_Unit').val(unit);
-        newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Position</label></div>");
-        newCard.find('#update_Unit_Pos').val(currentPosition);
-        newCard.find('#user_History_Unit_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Unit Key</label></div>");
-        newCard.find('#update_Key').val(currentUnitKey);
-        newCard.find('#user_History_Entrance').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Entrance' type='text'></input><label for='update_Entrance' class='active white-text'>Entrance Date (MM-DD-YYYY)</label></div>");
-        newCard.find('#update_Entrance').val(entranceDate);
-        newCard.find('#user_History_Departure').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Departure' type='text'></input><label for='update_Departure' class='active white-text'>Departure Date (MM-DD-YYYY)</label></div>");
-        newCard.find('#update_Departure').val(departureDate);
-        newCard.find('.card-action').css("display", "block");
-        // Does indeed update
-        newCard.find('#update_button').on("click", function() {
-          var updateBranch = $('#update_Branch').val();
-          console.log('Update Branch: ' + updateBranch);
-          var updateUnit = $('#update_Unit').val();
-          console.log('Update Unit: ' + updateUnit);
-          var updateEntrance = $('#update_Entrance').val();
-          console.log('Update Entrance: ' + updateEntrance);
-          var updateDeparture = $('#update_Departure').val();
-          console.log('Update Departure: ' + updateDeparture);
-          var updatePosition = $('#update_Unit_Pos').val();
-          console.log('Update Position: ' + updatePosition);
-          var key = currentUnitKey;
-          console.log(key);
-          console.log(username);
-          // This function updates the key and stores it in the Firebase database
-          firebaseRef.ref('/Users/' + username.toLowerCase() + '/units/' + key).update({
-            username: username,
-            branch: updateBranch,
-            unit: updateUnit,
-            unitPosition: updatePosition,
-            entranceDate: updateEntrance,
-            departureDate: updateDeparture
-          });
-          console.log('The unit information has been UPDATED');
-          // Returns the card back to normal with updated stuff
-          var newCardInside = $('#card_Inside').clone();
-          console.log("The Upgrade button works!")
-          newCard.find('.card-title').text(username);
-          newCardInside.find('#user_History_Branch').html('Branch: ' + updateBranch);
-          newCardInside.find('#user_History_Unit').html('Unit: ' + updateUnit);
-          newCardInside.find('#user_History_Unit_Position').html('Position: ' + updatePosition);
-          newCardInside.find('#user_History_Unit_Key').html('Key: ' + currentUnitKey);
-          newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + updateEntrance);
-          newCardInside.find('#user_History_Departure').html('Departure Date: ' + updateDeparture);
-          // Hides the "Card-Action" and removes the "editable" view of the cards
-          newCard.find('.card-action').css("display", "none");
-          newCard.find('#card_Inside').remove();
-          // Appends the new, updated "normal" view of the user cards
-          newCard.append(newCardInside);
-          Materialize.toast('Unit History Updated!&nbsp<b><u><a href="">Reload</a></u></b>', 5000);
-        });
-        // Disregards update
-        newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside').clone();
-          console.log("The Disregard Upgrade button works!");
-          newCardInside.find('.card-title').text(username);
-          newCardInside.find('#user_History_Branch').html('Branch: ' + branch);
-          newCardInside.find('#user_History_Unit').html('Unit: ' + unit);
-          newCardInside.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
-          newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
-          newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
-          newCard.find('#card_Inside').remove();
-          newCard.append(newCardInside);
-          console.log('Disregard!');
-        });
+//Remove from here and add to the function where it checks if it does exist
+firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
+  var username = user;
+  currentUnit = snapshot.child('currentUnit').val();
+  currentUnitPosition = snapshot.child('currentUnitPosition').val();
+  branch = snapshot.child('branch').val();
+  paygrade = snapshot.child('paygrade').val();
+  userStatus = snapshot.child('status').val();
+  var currentUnitKey = snapshot.child('currentUnitKey').val();
+  console.log('1: ' + user + ', 2: ' + currentUnit + ', 3: ' + branch + ', 4: ' + paygrade + ', 5: ' + currentUnitKey);
+  $('#edit_User_Username').val(username);
+  $('#edit_User_Username_Label').addClass('active');
+  $('#edit_User_CurrentUnit').val(currentUnit);
+  $('#edit_User_CurrentUnit_Label').addClass('active');
+  $('#edit_User_CurrentUnit_Pos').val(currentUnitPosition);
+  $('#edit_User_CurrentUnit_Pos_Label').addClass('active');
+  $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
+  $('#edit_User_CurrentUnit_Key_Label').addClass('active');
+  $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
+  $("#edit_User_Status option[value=" + userStatus + "]").attr("selected", true);
+  $("#edit_User_Paygrade option[value=" + paygrade + "]").attr("selected", true);
+  $('#edit_User_Branch').material_select();
+  $('#edit_User_Paygrade').material_select();
+  $('#edit_User_Status').material_select();
+});
+
+firebaseRef.ref('/Users/' + user + '/units').orderByChild("departureDate").on("child_added", snap => {
+  var username = capitalizeFirstLetter(user);
+  var currentUnitKey = snap.key;
+  var unit = snap.child('unit').val();
+  var currentPosition = snap.child('unitPosition').val();
+  var branch = snap.child('branch').val();
+  var entranceDate = snap.child('entranceDate').val();
+  var departureDate = snap.child('departureDate').val();
+  // Console logs
+  console.log('CHECK USER IS: ' + username + ', ' + 'CURRENT BRANCH: ' + branch + ', ' + ', ENTRANCE: ' + entranceDate + ', DEPARTURE: ' + departureDate);
+  // Creates a clone of the vocab card to edit
+  var newCard = $('#user_Card').clone();
+  newCard.removeAttr('id');
+  newCard.find('.card-title').text(username);
+  newCard.find('#user_History_Branch').html('Branch: ' + branch);
+  newCard.find('#user_History_Unit').html('Unit: ' + unit);
+  newCard.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
+  newCard.find('#user_History_Unit_Key').html('Unit Key: ' + currentUnitKey);
+  newCard.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
+  newCard.find('#user_History_Departure').html('Departure Date: ' + departureDate);
+  //newCard.find('#user_Img').attr('src', profilePic);
+  newCard.removeAttr('style');
+  //Appends to "approved section"
+  $('#unit_Section').append(newCard);
+  $('#unit_Section').css('display', 'block');
+  $('#unit_Card_Holder_Error').css('display', 'none');
+  // Edit button
+  newCard.find('#edit_button').on("click", function() {
+    console.log("The edit button works!");
+    // replaces current elements with input fields
+    newCard.find('.card-title').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Username' type='text'></input><label for='update_Username' class='active white-text'>Username</label></div>");
+    newCard.find('#update_Username').val(username);
+    newCard.find('#user_History_Branch').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Branch' type='text'></input><label for='update_Branch' class='active white-text'>Branch</label></div>");
+    newCard.find('#update_Branch').val(branch);
+    newCard.find('#user_History_Unit').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Unit' type='text'></input><label for='update_Unit' class='active white-text'>Unit</label></div>");
+    newCard.find('#update_Unit').val(unit);
+    newCard.find('#user_History_Unit_Position').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Unit_Pos' type='text'></input><label for='update_Unit_Pos' class='active white-text'>Position</label></div>");
+    newCard.find('#update_Unit_Pos').val(currentPosition);
+    newCard.find('#user_History_Unit_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Unit Key</label></div>");
+    newCard.find('#update_Key').val(currentUnitKey);
+    newCard.find('#user_History_Entrance').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Entrance' type='text'></input><label for='update_Entrance' class='active white-text'>Entrance Date (MM-DD-YYYY)</label></div>");
+    newCard.find('#update_Entrance').val(entranceDate);
+    newCard.find('#user_History_Departure').replaceWith("<div class='input-field inline'><input class='white-text' id='update_Departure' type='text'></input><label for='update_Departure' class='active white-text'>Departure Date (MM-DD-YYYY)</label></div>");
+    newCard.find('#update_Departure').val(departureDate);
+    newCard.find('.card-action').css("display", "block");
+    // Does indeed update
+    newCard.find('#update_button').on("click", function() {
+      var updateBranch = $('#update_Branch').val();
+      console.log('Update Branch: ' + updateBranch);
+      var updateUnit = $('#update_Unit').val();
+      console.log('Update Unit: ' + updateUnit);
+      var updateEntrance = $('#update_Entrance').val();
+      console.log('Update Entrance: ' + updateEntrance);
+      var updateDeparture = $('#update_Departure').val();
+      console.log('Update Departure: ' + updateDeparture);
+      var updatePosition = $('#update_Unit_Pos').val();
+      console.log('Update Position: ' + updatePosition);
+      var key = currentUnitKey;
+      console.log(key);
+      console.log(username);
+      // This function updates the key and stores it in the Firebase database
+      firebaseRef.ref('/Users/' + username.toLowerCase() + '/units/' + key).update({
+        username: username,
+        branch: updateBranch,
+        unit: updateUnit,
+        unitPosition: updatePosition,
+        entranceDate: updateEntrance,
+        departureDate: updateDeparture
       });
-    });
-    //REMOVE APRIL 30th, 2017
-    firebaseRef.ref('/Users/' + user + '/promotions').orderByChild("departureDate").on("child_added", snap => {
-      var username = capitalizeFirstLetter(user);
-      var currentPromotionKey = snap.key;
-      var promotion = snap.child('promotion').val();
-      var promotedBy = snap.child('promotedBy').val();
-      var promotionDate = snap.child('date').val();
-      // Console logs
-      console.log('USERNAME: ' + username + ", PROMOTION: " + promotion + ", PROMOTED BY: " + promotedBy + ", DATE: " + promotionDate);
-      // Creates a clone of the vocab card to edit
-      var newCard = $('#user_Card_Promotion').clone();
-      newCard.removeAttr('id');
+      console.log('The unit information has been UPDATED');
+      // Returns the card back to normal with updated stuff
+      var newCardInside = $('#card_Inside').clone();
+      console.log("The Upgrade button works!")
       newCard.find('.card-title').text(username);
-      newCard.find('#user_Promotion').html('Promotion to: ' + promotion);
-      newCard.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
-      newCard.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
-      newCard.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
-      //newCard.find('#user_Img').attr('src', profilePic);
-      newCard.removeAttr('style');
-      //Appends to "approved section"
-      $('#promotion_Section').append(newCard);
-      $('#promotion_Section').css('display', 'block');
-      $('#promotion_Card_Holder_Error').css('display', 'none');
-      // Edit button
-      newCard.find('#edit_button').on("click", function() {
-        console.log("The edit button works!");
-        // replaces current elements with input fields
-        newCard.find('.card-title').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Username' type='text'></input><label for='update_Username' class='active white-text'>Username</label></div>");
-        newCard.find('#update_Username').val(username);
-        newCard.find('#user_Promotion').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotionTo' type='text'></input><label for='update_Branch' class='active white-text'>Promotion to</label></div>");
-        newCard.find('#update_PromotionTo').val(promotion);
-        newCard.find('#user_PromotedBy').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotedBy' type='text'></input><label for='update_Unit' class='active white-text'>Promoted by</label></div>");
-        newCard.find('#update_PromotedBy').val(promotedBy);
-        newCard.find('#user_Promotion_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Promotion Key</label></div>");
-        newCard.find('#update_Key').val(currentPromotionKey);
-        newCard.find('#user_PromotedOn').replaceWith("<div class='input-field inline'><input class='white-text' id='update_PromotionDate' type='text'></input><label for='update_Entrance' class='active white-text'>Promotion Date (MM-DD-YYYY)</label></div>");
-        newCard.find('#update_PromotionDate').val(promotionDate);
-        newCard.find('.card-action').css("display", "block");
-        // Does indeed update
-        newCard.find('#update_button').on("click", function() {
-          var updatePromotion = $('#update_PromotionTo').val();
-          //console.log('Update Branch: ' + updateBranch);
-          var updatePromotionBy = $('#update_PromotedBy').val();
-          //console.log('Update Unit: ' + updateUnit);
-          var updatePromotionDate = $('#update_PromotionDate').val();
-          //console.log('Update Entrance: ' + updateEntrance);
-          var key = currentPromotionKey;
-          console.log(key);
-          console.log(username);
-          // This function updates the key and stores it in the Firebase database
-          firebaseRef.ref('/Users/' + username.toLowerCase() + '/promotions/' + key).update({
-            username: username,
-            promotion: updatePromotion,
-            promotedBy: updatePromotionBy,
-            date: updatePromotionDate,
-          });
-          console.log('The promotion information has been UPDATED');
-          // Returns the card back to normal with updated stuff
-          var newCardInside = $('#card_Inside_Promotion').clone();
-          console.log("The Upgrade button works!")
-          newCardInside.find('.card-title').text(username);
-          newCardInside.find('#user_Promotion').html('Promotion to: ' + updatePromotion);
-          newCardInside.find('#user_PromotedBy').html('Promoted by: ' + updatePromotionBy);
-          newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + key);
-          newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + updatePromotionDate);
-          // Hides the "Card-Action" and removes the "editable" view of the cards
-          newCard.find('.card-action').css("display", "none");
-          newCard.find('#card_Inside_Promotion').remove();
-          // Appends the new, updated "normal" view of the user cards
-          newCard.append(newCardInside);
-          Materialize.toast('Promotion History Updated!&nbsp<b><u><a href="">Reload</a></u></b>', 5000);
-        });
-        // Disregards update
-        newCard.find('#disregard_button').on("click", function() {
-          var newCardInside = $('#card_Inside_Promotion').clone();
-          console.log("The Disregard Upgrade button works!");
-          newCardInside.find('.card-title').text(username);
-          newCardInside.find('#user_Promotion').html('Promotion to: ' + promotion);
-          newCardInside.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
-          newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
-          newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
-          newCard.find('#card_Inside_Promotion').remove();
-          newCard.append(newCardInside);
-          console.log('Disregard!');
-        });
-      });
+      newCardInside.find('#user_History_Branch').html('Branch: ' + updateBranch);
+      newCardInside.find('#user_History_Unit').html('Unit: ' + updateUnit);
+      newCardInside.find('#user_History_Unit_Position').html('Position: ' + updatePosition);
+      newCardInside.find('#user_History_Unit_Key').html('Key: ' + currentUnitKey);
+      newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + updateEntrance);
+      newCardInside.find('#user_History_Departure').html('Departure Date: ' + updateDeparture);
+      // Hides the "Card-Action" and removes the "editable" view of the cards
+      newCard.find('.card-action').css("display", "none");
+      newCard.find('#card_Inside').remove();
+      // Appends the new, updated "normal" view of the user cards
+      newCard.append(newCardInside);
+      Materialize.toast('Unit History Updated!&nbsp<b><u><a href="">Reload</a></u></b>', 5000);
     });
-    //
-    $('#awards_Section').css('display', 'none');
-    //
-    $('#activity_Section').css('display', 'none');
-    //
-    $('#edit_Unit_Section').css('display', 'none');
-    //
-    $('#sub_Container').css('display', 'block');
-    $("#sub_Container").animate({ scrollTop: 100 }, "slow");
-  } else {
-    console.log('User does not exist, do not proceed.');
-    $('#search_User_Error').html('Error: This user does not exist.');
-    $('#search_User_Error').css('display', 'block');
-    $("#main_Container").animate({ scrollTop: 0 }, "slow");
-  }
+    // Disregards update
+    newCard.find('#disregard_button').on("click", function() {
+      var newCardInside = $('#card_Inside').clone();
+      console.log("The Disregard Upgrade button works!");
+      newCardInside.find('.card-title').text(username);
+      newCardInside.find('#user_History_Branch').html('Branch: ' + branch);
+      newCardInside.find('#user_History_Unit').html('Unit: ' + unit);
+      newCardInside.find('#user_History_Unit_Position').html('Position: ' + currentPosition);
+      newCardInside.find('#user_History_Entrance').html('Entrance Date: ' + entranceDate);
+      newCardInside.find('#user_History_Departure').html('Departure Date: ' + departureDate);
+      newCard.find('#card_Inside').remove();
+      newCard.append(newCardInside);
+      console.log('Disregard!');
+    });
+  });
+});
+//REMOVE APRIL 30th, 2017
+firebaseRef.ref('/Users/' + user + '/promotions').orderByChild("departureDate").on("child_added", snap => {
+  var username = capitalizeFirstLetter(user);
+  var currentPromotionKey = snap.key;
+  var promotion = snap.child('promotion').val();
+  var promotedBy = snap.child('promotedBy').val();
+  var promotionDate = snap.child('date').val();
+  // Console logs
+  console.log('USERNAME: ' + username + ", PROMOTION: " + promotion + ", PROMOTED BY: " + promotedBy + ", DATE: " + promotionDate);
+  // Creates a clone of the vocab card to edit
+  var newCard = $('#user_Card_Promotion').clone();
+  newCard.removeAttr('id');
+  newCard.find('.card-title').text(username);
+  newCard.find('#user_Promotion').html('Promotion to: ' + promotion);
+  newCard.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
+  newCard.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
+  newCard.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
+  //newCard.find('#user_Img').attr('src', profilePic);
+  newCard.removeAttr('style');
+  //Appends to "approved section"
+  $('#promotion_Section').append(newCard);
+  $('#promotion_Section').css('display', 'block');
+  $('#promotion_Card_Holder_Error').css('display', 'none');
+  // Edit button
+  newCard.find('#edit_button').on("click", function() {
+    console.log("The edit button works!");
+    // replaces current elements with input fields
+    newCard.find('.card-title').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Username' type='text'></input><label for='update_Username' class='active white-text'>Username</label></div>");
+    newCard.find('#update_Username').val(username);
+    newCard.find('#user_Promotion').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotionTo' type='text'></input><label for='update_Branch' class='active white-text'>Promotion to</label></div>");
+    newCard.find('#update_PromotionTo').val(promotion);
+    newCard.find('#user_PromotedBy').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_PromotedBy' type='text'></input><label for='update_Unit' class='active white-text'>Promoted by</label></div>");
+    newCard.find('#update_PromotedBy').val(promotedBy);
+    newCard.find('#user_Promotion_Key').replaceWith("<div class='input-field inline'><input class='white-text' disabled id='update_Key' type='text'></input><label for='update_Key' class='active white-text'>Promotion Key</label></div>");
+    newCard.find('#update_Key').val(currentPromotionKey);
+    newCard.find('#user_PromotedOn').replaceWith("<div class='input-field inline'><input class='white-text' id='update_PromotionDate' type='text'></input><label for='update_Entrance' class='active white-text'>Promotion Date (MM-DD-YYYY)</label></div>");
+    newCard.find('#update_PromotionDate').val(promotionDate);
+    newCard.find('.card-action').css("display", "block");
+    // Does indeed update
+    newCard.find('#update_button').on("click", function() {
+      var updatePromotion = $('#update_PromotionTo').val();
+      //console.log('Update Branch: ' + updateBranch);
+      var updatePromotionBy = $('#update_PromotedBy').val();
+      //console.log('Update Unit: ' + updateUnit);
+      var updatePromotionDate = $('#update_PromotionDate').val();
+      //console.log('Update Entrance: ' + updateEntrance);
+      var key = currentPromotionKey;
+      console.log(key);
+      console.log(username);
+      // This function updates the key and stores it in the Firebase database
+      firebaseRef.ref('/Users/' + username.toLowerCase() + '/promotions/' + key).update({
+        username: username,
+        promotion: updatePromotion,
+        promotedBy: updatePromotionBy,
+        date: updatePromotionDate,
+      });
+      console.log('The promotion information has been UPDATED');
+      // Returns the card back to normal with updated stuff
+      var newCardInside = $('#card_Inside_Promotion').clone();
+      console.log("The Upgrade button works!")
+      newCardInside.find('.card-title').text(username);
+      newCardInside.find('#user_Promotion').html('Promotion to: ' + updatePromotion);
+      newCardInside.find('#user_PromotedBy').html('Promoted by: ' + updatePromotionBy);
+      newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + key);
+      newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + updatePromotionDate);
+      // Hides the "Card-Action" and removes the "editable" view of the cards
+      newCard.find('.card-action').css("display", "none");
+      newCard.find('#card_Inside_Promotion').remove();
+      // Appends the new, updated "normal" view of the user cards
+      newCard.append(newCardInside);
+      Materialize.toast('Promotion History Updated!&nbsp<b><u><a href="">Reload</a></u></b>', 5000);
+    });
+    // Disregards update
+    newCard.find('#disregard_button').on("click", function() {
+      var newCardInside = $('#card_Inside_Promotion').clone();
+      console.log("The Disregard Upgrade button works!");
+      newCardInside.find('.card-title').text(username);
+      newCardInside.find('#user_Promotion').html('Promotion to: ' + promotion);
+      newCardInside.find('#user_PromotedBy').html('Promoted by: ' + promotedBy);
+      newCardInside.find('#user_Promotion_Key').html('Promotion Key: ' + currentPromotionKey);
+      newCardInside.find('#user_PromotedOn').html('Promotion Date: ' + promotionDate);
+      newCard.find('#card_Inside_Promotion').remove();
+      newCard.append(newCardInside);
+      console.log('Disregard!');
+    });
+  });
+});
+//
+$('#awards_Section').css('display', 'none');
+//
+$('#activity_Section').css('display', 'none');
+//
+$('#edit_Unit_Section').css('display', 'none');
+//
+$('#sub_Container').css('display', 'block');
+$("#sub_Container").animate({ scrollTop: 100 }, "slow");
+} else {
+  console.log('User does not exist, do not proceed.');
+  $('#search_User_Error').html('Error: This user does not exist.');
+  $('#search_User_Error').css('display', 'block');
+  $("#main_Container").animate({ scrollTop: 0 }, "slow");
+}
+}
+
+function setUserID(userIDx) {
+  searchUserID = userIDx;
+  console.log('current user id is : ' + searchUserID);
 }

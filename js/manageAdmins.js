@@ -8,6 +8,10 @@ var firebaseRef = firebase.database();
 var toggle1 = 0;
 var newCode;
 var userToUpdateAdmin;
+//-------- Roblox API Information --------
+var apiKey;
+var apiURL;
+var groupID = 2520003;
 
 $(document).ready(function() {
   //alert('ManageUsers.js works!');
@@ -37,7 +41,15 @@ function displayUserInformation() {
     $('#user_Information_Branch').html('Branch: <em class="blue-text text-darken-1">' + branch + '</em>');
     $('#user_Information_Admin').html('Access Level: <em class="blue-text text-darken-1">' + userAdmin + '</em>');
   });
+  // Find the API Information
+  firebaseRef.ref('/ServerSettings/').once('value').then(function(snapshot) {
+    apiKey = snapshot.child('apiKey').val();
+    apiURL = snapshot.child('apiURL').val();
+    console.log('API KEY: ' + apiKey + ', API URL: ' + apiURL);
+  });
 }
+
+
 
 $("#delete_Announcement_Btn i").hover(function(){
   $(this).removeClass('white-text');
@@ -245,6 +257,28 @@ $('#normal_Announcement_Btn').on('click', function() {
   $('#announcement_Error').html('');
   $('#announcement_Error').css('display', 'none');
   $('#normal_Announcement_Input').html('');
+});
+
+$('#group_Announcement_Btn').on("click", function() {
+  var username = currentUser;
+  var messageToPush = $('#group_Announcement_Input').val();
+  var date = getCurrentDate();
+  var postURL = "https://" + apiURL + "/shout/" + groupID;
+  var data = {};
+  data.key = apiKey;
+  data.message = message;
+
+  $.ajax({
+    url: postURL,
+    method: 'POST',
+    data: data,
+    dataType: "json",
+    success: function () {
+      console.log("Success");
+      Materialize.toast('Successfully Shouted In Group!', 4000);
+    }
+  });
+
 });
 
 // Get New Code
