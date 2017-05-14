@@ -19,6 +19,7 @@ var newUnitKey;
 var activityKey;
 var unitHistoryKey;
 var currentUnitPosition;
+var userStatus;
 //-------- Roblox API Information --------
 var apiKey;
 var apiURL;
@@ -422,6 +423,12 @@ $('#search_Username').on('keyup', function(e) {
     search_Username = $('#search_Username').val().toLowerCase();
     console.log('Search user: ' + search_Username);
     $('#sub_Container').css('display', 'none');
+    $('#edit_User_Branch').prop('selectedIndex', 0);
+    $('#edit_User_Branch').material_select();
+    $('#edit_User_Status').prop('selectedIndex', 0);
+    $('#edit_User_Status').material_select();
+    $('#edit_User_Paygrade').prop('selectedIndex', 0);
+    $('#edit_User_Paygrade').material_select();
     checkIfUserExists(search_Username);
   }
 });
@@ -492,7 +499,7 @@ $('#update_User_Btn').on("click", function() {
     console.log('No new status.');
   }
   // If there is a new pay-grade being updated, then send the data to Firebase promotions
-  if (newPaygrade !== paygrade) {
+  if (newPaygrade != paygrade) {
     var promotionHistory = {
       username: username,
       promotion: newPaygrade,
@@ -510,7 +517,7 @@ $('#update_User_Btn').on("click", function() {
     console.log('The paygrades equal to eachother.');
   }
   // If there is a new unit being updated, then send the data to Firebase unit history
-  if (newCurrentUnit !== currentUnit) {
+  if (newCurrentUnit != currentUnit) {
     var unitHistory = {
       username: username,
       branch: newBranch,
@@ -535,7 +542,7 @@ $('#update_User_Btn').on("click", function() {
     date: date,
     log: log
   });
-  location.reload();
+  //location.reload();
 });
 // Add awards to user in Firebase
 $('#add_Award_Btn').on("click", function() {
