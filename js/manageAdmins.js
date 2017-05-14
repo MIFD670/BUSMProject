@@ -276,6 +276,7 @@ $('#group_Announcement_Btn').on("click", function() {
     success: function () {
       console.log("Success");
       Materialize.toast('Successfully Shouted In Group!', 4000);
+      $('#group_Announcement_Input').val('');
     }
   });
 
