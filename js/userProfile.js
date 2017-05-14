@@ -62,7 +62,7 @@ function displayData(userIdx) {
     } else if (dutyStatus == "AWOL") {
       $('#status').html(dutyStatus);
       $('#status').removeClass('white-text');
-    } else if (dutyStatus.length < 3) {
+    } else if (dutyStatus == null) {
       $('#status').remove();
     }
   });
