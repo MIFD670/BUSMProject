@@ -434,6 +434,7 @@ $('#search_Username').on('keyup', function(e) {
 });
 // Update Current Data
 $('#update_User_Btn').on("click", function() {
+  $('#update_User_Btn').addClass('disabled');
   var username = $('#edit_User_Username').val().toLowerCase();
   var newCurrentUnit = $('#edit_User_CurrentUnit').val();
   var newBranch = $('#edit_User_Branch option:selected').text();
@@ -942,6 +943,9 @@ function setRank(userIDIdx, usernameIdx, paygradeIdx, unitIdx) {
         log: log
       });
       console.log('The ranking was a success.');
+      setTimeout(function(){
+        location.reload();
+      }, 3000);
     }
   });
 
