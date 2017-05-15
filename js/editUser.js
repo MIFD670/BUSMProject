@@ -543,6 +543,11 @@ $('#update_User_Btn').on("click", function() {
     date: date,
     log: log
   });
+  if (newPaygrade != paygrade) {
+    console.log('Paygrades do not equal to eachother.');
+  } else {
+    location.reload();
+  }
   //location.reload();
 });
 // Add awards to user in Firebase
