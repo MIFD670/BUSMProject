@@ -1006,6 +1006,8 @@ firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
   branch = snapshot.child('branch').val();
   paygrade = snapshot.child('paygrade').val();
   userStatus = snapshot.child('status').val();
+  var statusNew = "'" +  userStatus + "'";
+  var branchNew = "'" + branch + "'";
   var currentUnitKey = snapshot.child('currentUnitKey').val();
   console.log('1: ' + user + ', 2: ' + currentUnit + ', 3: ' + branch + ', 4: ' + paygrade + ', 5: ' + currentUnitKey);
   $('#edit_User_Username').val(username);
@@ -1016,8 +1018,8 @@ firebaseRef.ref('/Users/' + user).once('value').then(function(snapshot) {
   $('#edit_User_CurrentUnit_Pos_Label').addClass('active');
   $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
   $('#edit_User_CurrentUnit_Key_Label').addClass('active');
-  $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
-  $("#edit_User_Status option[value=" + userStatus + "]").attr("selected", true);
+  $("#edit_User_Branch option[value=" + branchNew + "]").attr("selected", true);
+  $("#edit_User_Status option[value=" + statusNew + "]").attr("selected", true);
   $("#edit_User_Paygrade option[value=" + paygrade + "]").attr("selected", true);
   $('#edit_User_Branch').material_select();
   $('#edit_User_Paygrade').material_select();
