@@ -111,7 +111,7 @@ function showData() {
       var newRef = '/DenyTransfer/';
       var user = key;
       var status = "deny";
-      console.log('The request was accepted by ' + currentUser);
+      console.log('The request was denied by ' + currentUser);
       //Sends data to be moved in Firebase
       moveFirebaseData(oldRef, newRef, user, date, status);
       var keyToLogs = firebaseRef.ref('Logs').push().key;
