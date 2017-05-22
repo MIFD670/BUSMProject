@@ -321,7 +321,7 @@ function moveFirebaseData(oldRefIdx, newRefIdx, keyIdx, dateIdx, statusIdx) {
       else if( typeof(console) !== 'undefined' && console.error ) {  console.error(error); }
     });
   });
-  if (status == "accepted") {
+  if (status == "accept") {
     firebaseRef.ref(newRef).child(user).update({
       acceptedBy: currentUser,
       acceptedOn: date
