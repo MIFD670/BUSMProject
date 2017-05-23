@@ -294,6 +294,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       currentPosition = snapshot.child('currentUnitPosition').val();
       branch = snapshot.child('branch').val();
       paygrade = snapshot.child('paygrade').val();
+      var branchNew = "'" + branch + "'";
       var currentUnitKey = snapshot.child('currentUnitKey').val();
       console.log('1: ' + user + ', 2: ' + currentUnit + ', 3: ' + branch + ', 4: ' + paygrade + ', 5: ' + currentUnitKey);
       $('#edit_User_Username').val(username);
@@ -304,7 +305,7 @@ function userExistsCallback(userIdx, verifyIdx) {
       $('#edit_User_CurrentUnit_Label_Pos').addClass('active');
       $('#edit_User_CurrentUnit_Key').val(currentUnitKey);
       $('#edit_User_CurrentUnit_Key_Label').addClass('active');
-      $("#edit_User_Branch option[value=" + branch + "]").attr("selected", true);
+      $("#edit_User_Branch option[value=" + branchNew + "]").attr("selected", true);
       $("#edit_User_Paygrade option[value=" + paygrade + "]").attr("selected", true);
       $('#edit_User_Branch').material_select();
       $('#edit_User_Paygrade').material_select();
