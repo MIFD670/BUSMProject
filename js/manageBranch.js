@@ -208,7 +208,7 @@ function showData() {
     // });
   });
   //Loops through the approved transfer requests
-  firebaseRef.ref('/AcceptTransfer').orderByChild("acceptedOn").limitToLast(10).on("child_added", snap => {
+  firebaseRef.ref('/AcceptTransfer').orderByChild("acceptedOn").limitToLast(15).on("child_added", snap => {
     var username = capitalizeFirstLetter(snap.child('username').val());
     var currentBranch = snap.child('currentBranch').val();
     var toBranch = snap.child('toBranch').val();
@@ -232,7 +232,7 @@ function showData() {
     $('#accepted_Section').css('display', 'block');
   });
   //Loops through the denied transfer requests
-  firebaseRef.ref('/DenyTransfer').orderByChild("deniedOn").limitToFirst(10).on("child_added", snap => {
+  firebaseRef.ref('/DenyTransfer').orderByChild("deniedOn").limitToFirst(15).on("child_added", snap => {
     var username = capitalizeFirstLetter(snap.child('username').val());
     var currentBranch = snap.child('currentBranch').val();
     var toBranch = snap.child('toBranch').val();

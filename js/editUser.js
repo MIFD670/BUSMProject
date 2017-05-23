@@ -901,11 +901,11 @@ function setRank(userIDIdx, usernameIdx, paygradeIdx, unitIdx) {
     formattedRank = 231;
   } else if ((strPaygrade == "E-2") || (strPaygrade == "E-3")) {
     formattedRank = 236;
-  } else if ((strPaygrade == "E-4") || (strPaygrade == "E-5")) {
+  } else if ((strPaygrade == "E-4A") || (strPaygrade == "E-4B") || (strPaygrade == "E-5")) {
     formattedRank = 237;
-  } else if ((strPaygrade == "E-6") || (strPaygrade == "E-7")) {
+  } else if ((strPaygrade == "E-6") || (strPaygrade == "E-7A") || (strPaygrade == "E-7B")) {
     formattedRank = 238;
-  } else if ((strPaygrade == "E-8") || (strPaygrade == "E-9")) {
+  } else if ((strPaygrade == "E-8A") || (strPaygrade == "E-8B") || (strPaygrade == "E-9A") || (strPaygrade == "E-9B") || (strPaygrade == "E-9C")) {
     formattedRank = 239;
   } else if (strPaygrade == "SEA") {
     formattedRank = 240;
@@ -925,8 +925,6 @@ function setRank(userIDIdx, usernameIdx, paygradeIdx, unitIdx) {
     formattedRank = 249;
   } else if ((strPaygrade == "JCS") && ((strUnit == "HQDA") || (strUnit == "HQDN") || (strUnit == "HQMC") || (strUnit == "HQAF") || (strUnit == "HQCG"))) {
     formattedRank = 250;
-  } else if ((strPaygrade == "VJCS") && ((strUnit == "HQDA") || (strUnit == "HQDN") || (strUnit == "HQMC") || (strUnit == "HQAF") || (strUnit == "HQCG"))) {
-    formattedRank = 249;
   }
   console.log('The role ID is: ' + formattedRank);
   var data = {};
