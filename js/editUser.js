@@ -743,9 +743,9 @@ function getRank(strPaygrade, strBranch) {
   } else if (strPaygrade == "E-3" && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Seaman";
   } else if (strPaygrade == "E-4A" && (branch == "Army" || branch == "Marine Corps")) {
-    formattedRank = "Corporal";
-  } else if (strPaygrade == "E-4B" && (branch == "Army")) {
     formattedRank = "Specialist";
+  } else if (strPaygrade == "E-4B" && (branch == "Army")) {
+    formattedRank = "Corporal";
   } else if (strPaygrade == "E-4A" && (branch == "Air Force")) {
     formattedRank = "Senior Airman";
   } else if (strPaygrade == "E-4A" && (branch == "Navy" || branch == "Coast Guard")) {
