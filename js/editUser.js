@@ -852,6 +852,14 @@ function getRank(strPaygrade, strBranch) {
     formattedRank = "General";
   } else if (strPaygrade == 'O-10' && (branch == "Navy" || branch == "Coast Guard")) {
     formattedRank = "Admiral";
+  } else if ((strPaygrade == "VJCS") && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force")) {
+    formattedRank = "General";
+  } else if ((strPaygrade == "VJCS") && (branch == "Navy" || branch == "Coast Guard")) {
+    formattedRank = "Admiral";
+  } else if ((strPaygrade == "JCS") && (branch == "Army" || branch == "Marine Corps" || branch == "Air Force")) {
+    formattedRank = "General";
+  } else if ((strPaygrade == "JCS") && (branch == "Navy" || branch == "Coast Guard")) {
+    formattedRank = "Admiral";
   }
   console.log('The rank is: ' + formattedRank);
   return formattedRank;
